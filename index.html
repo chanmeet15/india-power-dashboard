@@ -615,6 +615,84 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
       <tbody id="state-annual-peak-tbody"></tbody>
     </table></div>
   </div>
+
+  <!-- ── Historical All-Time Peak Demand Records ── -->
+  <div class="sec" style="margin-top:22px">
+    <div class="slbl">🏆 Historical Peak Demand — All-Time Records vs Daily Trend</div>
+    <div class="sa">
+      <div class="cs">Source: CEA Annual Reports 1985–2025 · Grid India · Updated by live scraper</div>
+    </div>
+  </div>
+
+  <!-- National All-Time KPI row -->
+  <div class="g4 mb">
+    <div class="card kpi-card" style="border-top:3px solid #d0004a">
+      <div class="ct"><div class="dot" style="background:#d0004a"></div>All-Time National Record</div>
+      <div class="kv pk" id="at-nat-peak">—</div>
+      <div class="cs" id="at-nat-peak-date">— date</div>
+    </div>
+    <div class="card kpi-card" style="border-top:3px solid #e85d00">
+      <div class="ct"><div class="dot do"></div>This FY Record</div>
+      <div class="kv o" id="at-fy-peak">—</div>
+      <div class="cs" id="at-fy-label">— FY</div>
+    </div>
+    <div class="card kpi-card" style="border-top:3px solid #cc8800">
+      <div class="ct"><div class="dot dy"></div>Today's Peak</div>
+      <div class="kv y" id="at-today-peak">—</div>
+      <div class="cs" id="at-vs-record">— vs all-time record</div>
+    </div>
+    <div class="card kpi-card" style="border-top:3px solid #007744">
+      <div class="ct"><div class="dot dg"></div>YoY Growth Rate</div>
+      <div class="kv g" id="at-yoy-growth">—</div>
+      <div class="cs">% avg annual peak growth</div>
+    </div>
+  </div>
+
+  <!-- National FY peak series + Daily comparison -->
+  <div class="g2 mb">
+    <div class="card">
+      <div class="ct"><div class="dot dp"></div>National Peak Demand — FY Series (1985–Now)</div>
+      <div class="cs">Annual peak MW per financial year · from CEA annual reports · colour = deficit era vs met era</div>
+      <div class="cw h280"><canvas id="ch-at-fy-series"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct"><div class="dot do"></div>Daily Peak vs Historical Records</div>
+      <div class="cs">Today's scrape peak vs this-FY record vs all-time record</div>
+      <div class="cw h280"><canvas id="ch-at-daily-vs-record"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Peak demand deficit trend (demand vs met) -->
+  <div class="card mb">
+    <div class="ct"><div class="dot dc"></div>Peak Demand vs Peak Met — Historical Deficit Story</div>
+    <div class="cs">How much of peak demand was actually met each year · gap = grid stress · MW</div>
+    <div class="cw h260"><canvas id="ch-at-dem-vs-met"></canvas></div>
+  </div>
+
+  <!-- State all-time records table -->
+  <div class="card mb">
+    <div class="sec" style="margin-bottom:8px">
+      <div class="ct"><div class="dot dp"></div>State-wise All-Time Peak Demand Records</div>
+      <div class="cs">Highest peak demand ever recorded per state · FY 2024-25 data · CEA State Reports</div>
+      <div class="frow">
+        <input class="srch" id="at-state-search" oninput="renderAtStateTable()"
+               placeholder="Search state..." style="width:140px">
+        <button class="btn bg" onclick="dlAtRecordsCSV()">⬇ CSV</button>
+      </div>
+    </div>
+    <div class="tw"><table class="t" id="at-state-tbl">
+      <thead><tr>
+        <th>State</th><th>Region</th>
+        <th class="num">All-Time Peak (MW)</th>
+        <th class="num">Record Date</th>
+        <th class="num">FY</th>
+        <th class="num">Today's Peak (MW)</th>
+        <th class="num">% of Record</th>
+        <th class="num">Gap to Record (MW)</th>
+      </tr></thead>
+      <tbody id="at-state-tbody"></tbody>
+    </table></div>
+  </div>
 </div>
 
 <!-- ══ PAGE: DEMAND vs SUPPLY ════════════════════════════════════════════ -->
@@ -1386,12 +1464,64 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
 
 <!-- ══ PAGE: DATABASE ════════════════════════════════════════════════════ -->
 <div id="page-database" class="page">
-  <div class="sec"><div class="slbl">Data Repository</div>
+  <div class="sec"><div class="slbl">Data Repository & Historical Download</div>
     <div class="sa">
-      <button class="btn bg" onclick="dlExcel()">⬇ Full Excel (All Tables)</button>
       <button class="btn bc" onclick="loadDbStats()">⟳ Refresh Stats</button>
     </div>
   </div>
+
+  <!-- ── Historical Excel Download Panel ── -->
+  <div class="card mb" style="border:1.5px solid #2a4a7a">
+    <div class="sec" style="margin-bottom:12px">
+      <div class="ct"><div class="dot dg"></div>⬇ Download Historical Data — Excel</div>
+      <div class="cs">All tables · full history · no row limits · auto-filtered sheets</div>
+    </div>
+
+    <!-- Date range + table selector -->
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;padding:0 4px 12px">
+      <div>
+        <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);margin-bottom:4px">FROM DATE</div>
+        <input type="date" id="xl-from" class="flt" style="font-family:var(--fm);font-size:.72rem;padding:5px 8px;border:1px solid #b8cde0;border-radius:6px;background:#f8fbff">
+      </div>
+      <div>
+        <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);margin-bottom:4px">TO DATE</div>
+        <input type="date" id="xl-to" class="flt" style="font-family:var(--fm);font-size:.72rem;padding:5px 8px;border:1px solid #b8cde0;border-radius:6px;background:#f8fbff">
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);margin-bottom:4px">INCLUDE SHEETS (leave blank = all)</div>
+        <div id="xl-sheet-picks" style="display:flex;flex-wrap:wrap;gap:5px;padding:6px 0">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Download buttons -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;padding:0 4px 8px">
+      <button class="btn bg" style="font-size:.78rem;padding:8px 18px" onclick="dlExcelFull()">
+        ⬇ Download Excel (All History)
+      </button>
+      <button class="btn bc" style="font-size:.78rem;padding:8px 18px" onclick="dlExcelRange()">
+        ⬇ Download Excel (Selected Range)
+      </button>
+      <button class="btn bo" style="font-size:.78rem;padding:8px 18px" onclick="dlHistoryXlsx()">
+        ⬇ Download Pre-built Excel (GitHub Pages)
+      </button>
+    </div>
+
+    <!-- Progress / status -->
+    <div id="xl-status" style="font-family:var(--fm);font-size:.68rem;color:#5a7a9a;padding:4px 4px 0;min-height:18px"></div>
+
+    <!-- Info box -->
+    <div style="background:#f0f8ff;border-radius:6px;padding:10px 14px;margin-top:10px;font-family:var(--fm);font-size:.67rem;color:#334;line-height:1.8">
+      <b style="color:#1a3a5c">How it works:</b><br>
+      • <b>Download Excel (All History)</b> — calls your local scraper server, exports everything with no limits. Works only when server is running at localhost:8080.<br>
+      • <b>Download Excel (Selected Range)</b> — same as above but filtered to your chosen date range and sheets.<br>
+      • <b>Download Pre-built Excel</b> — downloads the <code>history.xlsx</code> file from GitHub (updated daily with your push). Works without the local server. May be up to 24 hours old.<br>
+      • All sheets have <b>auto-filters enabled</b> in Excel — click the dropdown arrows to filter/sort any column.<br>
+      • The file includes a <b>Summary</b> sheet showing row counts per table and the export date range.
+    </div>
+  </div>
+
   <div id="db-stats" class="g3 mb"></div>
   <div class="g2 mb">
     <div class="card">
@@ -1400,8 +1530,8 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
       <div id="api-list" style="font-family:var(--fm);font-size:.65rem;color:var(--muted);line-height:2.3"></div>
     </div>
     <div class="card">
-      <div class="ct"><div class="dot dg"></div>Excel Sheets</div>
-      <div class="cs">Content of the exported workbook</div>
+      <div class="ct"><div class="dot dg"></div>Excel Sheets Available</div>
+      <div class="cs">Tables included in the exported workbook</div>
       <div id="xl-list" style="font-family:var(--fm);font-size:.65rem;color:var(--muted);line-height:2.3"></div>
     </div>
   </div>
@@ -1495,7 +1625,7 @@ function pg(id){
   if(id==='states')   renderStates();
   if(id==='prices')   renderPrices();
   if(id==='history')  loadHistCharts();
-  if(id==='database') {loadDbStats();loadDbTbl();}
+  if(id==='database') {loadDbStats();loadDbTbl();initXlSheetPicks();}
   if(id==='supply')   renderSupply();
   if(id==='sldc')     renderSLDC();
   if(id==='futures')  renderFutures();
@@ -1803,7 +1933,7 @@ function renderRegional(){
 }
 
 // ── STATES PAGE ───────────────────────────────────────────────────────────
-function renderStates(){ filterStates(); renderAnnualPeakKpis(); renderAnnualPeakCharts(); }
+function renderStates(){ filterStates(); renderAnnualPeakKpis(); renderAnnualPeakCharts(); renderAllTimePeak(); }
 
 function filterStates(){
   const q=(document.getElementById('state-search')?.value||'').toLowerCase();
@@ -2219,27 +2349,121 @@ function updateSB(){
 }
 
 // ── Exports ───────────────────────────────────────────────────────────────
-async function dlExcel(){
-  try{const r=await fetch(`${SRV}/export/excel`);if(!r.ok) throw 0;
-    const b=await r.blob(); const u=URL.createObjectURL(b);
-    const a=document.createElement('a');a.href=u;a.download=`india_power_${tod()}.xlsx`;a.click();
-    toast('Excel downloaded from database ✓','ok');return;}catch{}
-  // SheetJS fallback
-  if(!data){toast('No data loaded','err');return;}
-  const wb=XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(stateData.map(s=>({
-    'State':s.state,'Region':s.region,'Demand MW':s.demand_mw,'Met MW':s.met_mw,
-    'Shortage MW':s.shortage_mw,'Shortage %':s.shortage_pct,
-    'Energy Req MU':s.energy_req_mu,'Peak Demand MW':s.peak_demand_mw,'Peak Met MW':s.peak_met_mw,
-  }))),'State Demand');
-  const iex=data.iex_dam||{};
-  if(iex.blocks?.length)
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(iex.blocks.map(b=>({
-      Block:b.block,Time:b.time,'MCP ₹/kWh':b.mcp,'Purchase MW':b.purchase_mw,'Sell MW':b.sell_mw
-    }))),'DAM Blocks');
-  XLSX.writeFile(wb,`india_power_${tod()}.xlsx`);
-  toast('Excel exported ✓','ok');
+// ── EXCEL / HISTORICAL DATA DOWNLOAD ─────────────────────────────────────
+const XL_SHEETS = [
+  'National Demand','Regional Demand','State Demand','Peak Demand',
+  'IEX DAM Summary','IEX DAM Blocks','PXIL Prices','MERIT Generation',
+  'Storage Dispatch','VRE Curtailment','RE Capacity','Electricity Futures',
+  'RLDC Data','RLDC State Drawal','SLDC State Data','POSOCO Realtime','Scrape Log'
+];
+
+// Populate sheet checkboxes on page load
+function initXlSheetPicks(){
+  const wrap = document.getElementById('xl-sheet-picks');
+  if(!wrap || wrap.children.length) return; // already done
+  XL_SHEETS.forEach(s => {
+    const lbl = document.createElement('label');
+    lbl.style = 'display:inline-flex;align-items:center;gap:3px;font-family:var(--fm);font-size:.63rem;background:#e8f0fb;padding:3px 7px;border-radius:12px;cursor:pointer;user-select:none;color:#1a3a5c';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.value = s; cb.checked = true;
+    cb.style = 'width:11px;height:11px;cursor:pointer;accent-color:#2E75B6';
+    lbl.appendChild(cb); lbl.append(s);
+    wrap.appendChild(lbl);
+  });
+  // Set default date range: 30 days ago to today
+  const today = new Date().toISOString().slice(0,10);
+  const ago30 = new Date(Date.now()-30*86400000).toISOString().slice(0,10);
+  const fromEl = document.getElementById('xl-from');
+  const toEl   = document.getElementById('xl-to');
+  if(fromEl && !fromEl.value) fromEl.value = ago30;
+  if(toEl   && !toEl.value)   toEl.value   = today;
 }
+
+function _xlStatus(msg, color='#5a7a9a'){
+  const el = document.getElementById('xl-status');
+  if(el){ el.textContent = msg; el.style.color = color; }
+}
+
+function _xlSelectedSheets(){
+  const cbs = document.querySelectorAll('#xl-sheet-picks input[type=checkbox]:checked');
+  return [...cbs].map(c => c.value);
+}
+
+// ── 1. Download full history from live server (no limits) ─────────────────
+async function dlExcelFull(){
+  const isLive = MODE==='live' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if(!isLive && !window.location.hostname.endsWith('github.io')){
+    toast('Server not running — use the Pre-built Excel button instead','err');
+    dlHistoryXlsx(); return;
+  }
+  _xlStatus('⏳ Requesting full export from server — this may take 10–30 seconds...');
+  try{
+    const r = await fetch(`${SRV}/export/excel`, {signal: AbortSignal.timeout(120000)});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const b = await r.blob();
+    const a = document.createElement('a'); a.href = URL.createObjectURL(b);
+    a.download = `india_power_full_${tod()}.xlsx`; a.click();
+    _xlStatus(`✓ Downloaded — full history with no row limits`, '#007744');
+    toast('Full Excel downloaded ✓','ok');
+  }catch(e){
+    _xlStatus('✗ Server offline — try the Pre-built Excel button', '#d0004a');
+    toast('Server offline','err');
+  }
+}
+
+// ── 2. Download date-range filtered Excel from live server ────────────────
+async function dlExcelRange(){
+  const from   = document.getElementById('xl-from')?.value;
+  const to     = document.getElementById('xl-to')?.value;
+  const sheets = _xlSelectedSheets();
+  if(!from && !to){ dlExcelFull(); return; }
+
+  const params = new URLSearchParams();
+  if(from)              params.set('from', from);
+  if(to)                params.set('to',   to);
+  if(sheets.length < XL_SHEETS.length) params.set('tables', sheets.join(','));
+  const url = `${SRV}/export/excel?${params}`;
+  const label = `${from||'start'} → ${to||'today'}`;
+  _xlStatus(`⏳ Exporting ${label} (${sheets.length} sheets)...`);
+
+  try{
+    const r = await fetch(url, {signal: AbortSignal.timeout(120000)});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const b = await r.blob();
+    const a = document.createElement('a'); a.href = URL.createObjectURL(b);
+    a.download = `india_power_${(from||'').replace(/-/g,'')}_${(to||tod()).replace(/-/g,'')}.xlsx`;
+    a.click();
+    _xlStatus(`✓ Downloaded — ${label}`, '#007744');
+    toast('Excel downloaded ✓','ok');
+  }catch(e){
+    _xlStatus('✗ Server offline — try the Pre-built Excel button', '#d0004a');
+    toast('Server offline. Use Pre-built Excel.','err');
+    dlHistoryXlsx();
+  }
+}
+
+// ── 3. Download pre-built history.xlsx from GitHub Pages ──────────────────
+function dlHistoryXlsx(){
+  const isGH = window.location.hostname.endsWith('github.io') ||
+               window.location.hostname.endsWith('githubusercontent.com');
+  // Try GitHub Pages path first, then relative path
+  const url = isGH ? './history.xlsx' : `${SRV}/export/excel`;
+  _xlStatus('⏳ Downloading pre-built history.xlsx...');
+  const a = document.createElement('a');
+  a.href = url; a.download = `india_power_history_${tod()}.xlsx`;
+  a.click();
+  _xlStatus('✓ Download started — file includes all data from latest daily push', '#007744');
+  toast('history.xlsx download started ✓','ok');
+}
+
+// ── 4. Legacy single-call function (kept for nav bar button) ──────────────
+async function dlExcel(){
+  initXlSheetPicks();
+  const isGH = window.location.hostname.endsWith('github.io');
+  if(isGH){ dlHistoryXlsx(); return; }
+  await dlExcelFull();
+}
+
 function dlStateCSV(){ dlCSV(stateData.map(s=>({
   State:s.state, Region:s.region,
   'Demand MW':s.demand_mw, 'Met MW':s.met_mw,
@@ -2282,6 +2506,7 @@ function toast(msg,t='ok'){const el=document.getElementById('toast');el.textCont
 
 // ── Demo data ─────────────────────────────────────────────────────────────
 function tod(){return new Date().toISOString().slice(0,10)}
+function gauss(m,s){const u=1-Math.random(),v=Math.random();return m+s*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
 
 function buildDemo(){
   // (same as Python scraper's build_demo but in JS)
@@ -2376,6 +2601,57 @@ function buildDemo(){
     _futuresTrend:[],
     _peakNational:Array.from({length:30},(_,i)=>{const d=new Date(now);d.setDate(d.getDate()-29+i);return{date:d.toISOString().slice(0,10),peak_demand_mw:natMet+1800+Math.round(Math.sin(i/4)*8000+Math.random()*4000)};}).filter(r=>r.peak_demand_mw>0),
     _peakYearly:stateData.map(s=>({state:s.state,peak_mw:Math.round(s.demand_mw*1.18+Math.random()*s.demand_mw*.15),date:new Date(now-Math.floor(Math.random()*90)*86400000).toISOString().slice(0,10)})),
+    _peakAllTime:{
+      national_all_time:{peak_mw:250280,peak_date:'2024-05-30',source:'Grid India/CEA',notes:'All-time record FY 2024-25'},
+      national_fy_series:[
+        {fy:'2024-25',peak_mw:250280,peak_met_mw:250280,peak_date:'2024-05-30',source:'Grid India'},
+        {fy:'2023-24',peak_mw:243271,peak_met_mw:243271,peak_date:'2024-05-23',source:'CEA Annual'},
+        {fy:'2022-23',peak_mw:229030,peak_met_mw:224066,peak_date:'2023-06-29',source:'CEA Annual'},
+        {fy:'2021-22',peak_mw:215888,peak_met_mw:209984,peak_date:'2022-04-29',source:'CEA Annual'},
+        {fy:'2020-21',peak_mw:200570,peak_met_mw:189606,peak_date:'2021-04-07',source:'CEA Annual'},
+        {fy:'2019-20',peak_mw:190200,peak_met_mw:183804,peak_date:'2019-07-11',source:'CEA Annual'},
+        {fy:'2018-19',peak_mw:177022,peak_met_mw:168529,peak_date:'2019-06-01',source:'CEA Annual'},
+        {fy:'2017-18',peak_mw:164066,peak_met_mw:158551,peak_date:'2018-06-01',source:'CEA Annual'},
+        {fy:'2016-17',peak_mw:159542,peak_met_mw:153366,peak_date:'2017-06-02',source:'CEA Annual'},
+        {fy:'2015-16',peak_mw:153366,peak_met_mw:148463,peak_date:'2016-07-18',source:'CEA Annual'},
+        {fy:'2014-15',peak_mw:148463,peak_met_mw:141193,peak_date:'2015-07-08',source:'CEA Annual'},
+        {fy:'2013-14',peak_mw:135918,peak_met_mw:130492,peak_date:'2014-06-07',source:'CEA Annual'},
+        {fy:'2012-13',peak_mw:130006,peak_met_mw:123294,peak_date:'2013-07-08',source:'CEA Annual'},
+        {fy:'2011-12',peak_mw:122287,peak_met_mw:116191,peak_date:'2012-07-30',source:'CEA Annual'},
+        {fy:'2010-11',peak_mw:121292,peak_met_mw:110256,peak_date:'2011-07-16',source:'CEA Annual'},
+        {fy:'2009-10',peak_mw:119166,peak_met_mw:104009,peak_date:'2010-01-28',source:'CEA Annual'},
+        {fy:'2008-09',peak_mw:109809,peak_met_mw: 96785,peak_date:'2009-09-03',source:'CEA Annual'},
+        {fy:'2007-08',peak_mw:108866,peak_met_mw: 90793,peak_date:'2008-07-25',source:'CEA Annual'},
+        {fy:'2006-07',peak_mw:100715,peak_met_mw: 86818,peak_date:'2007-06-30',source:'CEA Annual'},
+        {fy:'2005-06',peak_mw: 93255,peak_met_mw: 81000,peak_date:null,        source:'CEA Annual'},
+        {fy:'2000-01',peak_mw: 78441,peak_met_mw: 68249,peak_date:null,        source:'CEA Annual'},
+        {fy:'1995-96',peak_mw: 68130,peak_met_mw: 55000,peak_date:null,        source:'CEA Annual'},
+        {fy:'1990-91',peak_mw: 48669,peak_met_mw: 42000,peak_date:null,        source:'CEA Annual'},
+        {fy:'1985-86',peak_mw: 34059,peak_met_mw: 29000,peak_date:null,        source:'CEA Annual'},
+      ],
+      state_records:[
+        {state:'Uttar Pradesh', all_time_peak_mw:28500,peak_date:'2024-06-01',fy:'2024-25'},
+        {state:'Gujarat',       all_time_peak_mw:21500,peak_date:'2024-04-25',fy:'2024-25'},
+        {state:'Maharashtra',   all_time_peak_mw:26000,peak_date:'2024-04-30',fy:'2024-25'},
+        {state:'Tamil Nadu',    all_time_peak_mw:18200,peak_date:'2024-05-15',fy:'2024-25'},
+        {state:'Rajasthan',     all_time_peak_mw:17300,peak_date:'2024-06-01',fy:'2024-25'},
+        {state:'Madhya Pradesh',all_time_peak_mw:16500,peak_date:'2024-05-20',fy:'2024-25'},
+        {state:'Karnataka',     all_time_peak_mw:14200,peak_date:'2024-04-20',fy:'2024-25'},
+        {state:'Andhra Pradesh',all_time_peak_mw:14100,peak_date:'2024-05-18',fy:'2024-25'},
+        {state:'Telangana',     all_time_peak_mw:13600,peak_date:'2024-05-22',fy:'2024-25'},
+        {state:'West Bengal',   all_time_peak_mw:10500,peak_date:'2024-05-10',fy:'2024-25'},
+        {state:'Punjab',        all_time_peak_mw: 9500,peak_date:'2024-06-05',fy:'2024-25'},
+        {state:'Haryana',       all_time_peak_mw: 9200,peak_date:'2024-05-28',fy:'2024-25'},
+        {state:'Bihar',         all_time_peak_mw: 8600,peak_date:'2024-06-08',fy:'2024-25'},
+        {state:'Delhi',         all_time_peak_mw: 8302,peak_date:'2024-05-29',fy:'2024-25'},
+        {state:'Kerala',        all_time_peak_mw: 5600,peak_date:'2024-03-01',fy:'2024-25'},
+        {state:'Odisha',        all_time_peak_mw: 5500,peak_date:'2024-05-15',fy:'2024-25'},
+        {state:'Chhattisgarh',  all_time_peak_mw: 5200,peak_date:'2024-05-20',fy:'2024-25'},
+        {state:'Jharkhand',     all_time_peak_mw: 3800,peak_date:'2024-05-10',fy:'2024-25'},
+        {state:'Goa',           all_time_peak_mw:  700,peak_date:'2024-05-15',fy:'2024-25'},
+      ],
+      current_fy:'2025-26',
+    },
     _peakStates:stateData.flatMap(s=>Array.from({length:7},(_,i)=>{const d=new Date(now);d.setDate(d.getDate()-6+i);return{date:d.toISOString().slice(0,10),state:s.state,entity_name:s.state,peak_demand_mw:s.demand_mw*(0.85+Math.random()*.3)};})),
     _curtailment:Array.from({length:30},(_,i)=>{const d=new Date(now);d.setDate(d.getDate()-29+i);const sc=+(Math.random()*7).toFixed(2);const wc=+(Math.random()*4).toFixed(2);return{date:d.toISOString().slice(0,10),demand_mw:235000+Math.round(Math.random()*35000),vre_pct:+(22+Math.random()*12).toFixed(2),solar_curtail_mu:sc,wind_curtail_mu:wc,total_curtail_mu:+(sc+wc).toFixed(2),tras_curtail_mu:Math.random()<0.1?+(Math.random()*20).toFixed(2):0};}),
     _reCapacity:{total_re_mw:231500,solar_mw:173000,wind_mw:48500,solar_ground_mw:125000,solar_rooftop_mw:48000,large_hydro_mw:47000,small_hydro_mw:5000,bio_bagasse_mw:10000,bio_non_bagasse_mw:5000,waste_to_energy_mw:800},
@@ -2416,7 +2692,6 @@ function buildDemo(){
     _dbStats:{state_demand:{count:120},national_demand:{count:96},iex_dam_summary:{count:7}},
   };
 }
-function gauss(m,s){const u=1-Math.random(),v=Math.random();return m+s*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
 function buildFakeMCP(d){return Array.from({length:d},(_,i)=>{const dt=new Date();dt.setDate(dt.getDate()-d+i);return{date:dt.toISOString().slice(0,10),avg_mcp:+(4+(Math.random()-.4)*.8).toFixed(2),min_mcp:+(2.8+Math.random()*.3).toFixed(2),max_mcp:+(6.5+Math.random()*.5).toFixed(2)}});}
 function buildFakeFreq(h){return Array.from({length:Math.min(h,200)},(_,i)=>({hz:+(50+(Math.random()-.48)*.2).toFixed(3)}));}
 function buildFakeTrend(){return Array.from({length:24},(_,i)=>({scraped_at:new Date(Date.now()-i*3600000).toISOString(),demand_mw:188000+Math.round((Math.random()-.5)*5000),generation_mw:191000+Math.round((Math.random()-.5)*4000)})).reverse();}
@@ -3829,6 +4104,272 @@ function _showNoData(canvas, msg) {
   p.textContent = msg;
   wrap.style.position = 'relative';
   wrap.appendChild(p);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ALL-TIME HISTORICAL PEAK DEMAND RECORDS
+// ══════════════════════════════════════════════════════════════════════════════
+
+function renderAllTimePeak() {
+  const at  = data?._peakAllTime || {};
+  const nat = at.national_all_time   || {};
+  const fy  = at.national_fy_series  || [];
+  const sr  = at.state_records       || [];
+  const cfy = at.current_fy          || '';
+
+  // Get today's national peak from _peakNational
+  const peakNat  = data?._peakNational || [];
+  const today    = new Date().toISOString().slice(0,10);
+  const todayRow = peakNat.find(r => r.date === today) || peakNat[peakNat.length-1] || {};
+  const todayPk  = todayRow.peak_demand_mw || 0;
+
+  // This FY record
+  const fyRecord = fy.find(r => r.fy === cfy) || fy[0] || {};
+
+  // ── KPI cards ──────────────────────────────────────────────────────────
+  const el = id => document.getElementById(id);
+  const fmt = v => v ? (v/1000).toFixed(2)+' GW' : '—';
+
+  if(el('at-nat-peak'))      el('at-nat-peak').textContent     = fmt(nat.peak_mw);
+  if(el('at-nat-peak-date')) el('at-nat-peak-date').textContent=
+    nat.peak_date ? `📅 ${nat.peak_date}${nat.notes?' · '+nat.notes:''}` : nat.source||'CEA Annual';
+
+  if(el('at-fy-peak'))    el('at-fy-peak').textContent    = fmt(fyRecord.peak_mw);
+  if(el('at-fy-label'))   el('at-fy-label').textContent   = fyRecord.fy ? `FY ${fyRecord.fy}` : cfy;
+
+  if(el('at-today-peak')) el('at-today-peak').textContent = fmt(todayPk);
+  if(el('at-vs-record') && nat.peak_mw && todayPk) {
+    const pct = (todayPk / nat.peak_mw * 100).toFixed(1);
+    el('at-vs-record').textContent = `${pct}% of all-time record`;
+    el('at-today-peak').style.color = pct >= 95 ? '#d0004a' : pct >= 85 ? '#e85d00' : '#cc8800';
+  }
+
+  // YoY growth rate from last 5 years
+  if(el('at-yoy-growth') && fy.length >= 2) {
+    const recent = fy.filter(r => r.fy !== 'All Time').slice(0, 5);
+    if(recent.length >= 2) {
+      const growth = Math.pow(recent[0].peak_mw / recent[recent.length-1].peak_mw,
+                              1/(recent.length-1)) - 1;
+      el('at-yoy-growth').textContent = (growth*100).toFixed(1) + '%';
+    }
+  }
+
+  // ── FY Series chart ─────────────────────────────────────────────────────
+  const ctx1 = document.getElementById('ch-at-fy-series')?.getContext('2d');
+  if(ctx1) {
+    if(charts['at-fy-series']) charts['at-fy-series'].destroy();
+    const sorted = [...fy].filter(r=>r.fy!=='All Time').sort((a,b)=>a.fy<b.fy?-1:1);
+    const lbls   = sorted.map(r => r.fy.replace('-','–'));
+    const peaks  = sorted.map(r => r.peak_mw||0);
+    const mets   = sorted.map(r => r.peak_met_mw||null);
+    // Colour: red era (pre-2019 large deficit), green era (post-2019 fully met)
+    const defEra = sorted.map(r => r.peak_met_mw && r.peak_mw ?
+      (r.peak_mw - r.peak_met_mw) / r.peak_mw > 0.05 : false);
+
+    charts['at-fy-series'] = new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: lbls,
+        datasets: [
+          { label: 'Peak Demand MW', data: peaks,
+            backgroundColor: defEra.map(d => d ? 'rgba(208,0,74,.65)' : 'rgba(26,111,212,.60)'),
+            borderColor:      defEra.map(d => d ? '#d0004a' : '#1a6fd4'),
+            borderWidth: 1.5, borderRadius: 3, order: 2 },
+          { label: 'Peak Met MW', data: mets,
+            backgroundColor: 'rgba(0,119,68,.45)', borderColor: '#007744',
+            borderWidth: 1.5, borderRadius: 3, order: 1 },
+          { label: 'Today\'s Peak',
+            data: lbls.map((l,i) => i === sorted.length-1 ? todayPk : null),
+            type: 'scatter', pointStyle: 'star', pointRadius: 10,
+            backgroundColor: '#FFD700', borderColor: '#e85d00', borderWidth: 2, order: 0 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: true, position: 'top', labels: { boxWidth: 10 } },
+          tooltip: { ...TT, callbacks: {
+            label: c => {
+              const v = c.parsed.y;
+              if(!v) return '';
+              const pct = nat.peak_mw ? ` (${(v/nat.peak_mw*100).toFixed(1)}% of record)` : '';
+              return `${c.dataset.label}: ${v.toLocaleString()} MW${pct}`;
+            },
+            afterBody: items => {
+              const i = items[0]?.dataIndex;
+              if(i === undefined) return '';
+              const r = sorted[i]; if(!r) return '';
+              const lines = [];
+              if(r.peak_date) lines.push(`📅 Date: ${r.peak_date}`);
+              if(r.peak_mw && r.peak_met_mw)
+                lines.push(`Deficit: ${(r.peak_mw-r.peak_met_mw).toLocaleString()} MW (${((r.peak_mw-r.peak_met_mw)/r.peak_mw*100).toFixed(1)}%)`);
+              if(i > 0 && sorted[i-1]?.peak_mw)
+                lines.push(`YoY growth: +${((r.peak_mw/sorted[i-1].peak_mw-1)*100).toFixed(1)}%`);
+              return lines;
+            }
+          }}
+        },
+        scales: {
+          x: { grid:{display:false}, ticks:{maxRotation:45, font:{size:8}} },
+          y: { grid:{color:'rgba(220,230,245,.4)'},
+               title:{display:true,text:'MW'},
+               ticks:{callback:v=>(v/1000).toFixed(0)+'k'} }
+        }
+      }
+    });
+  }
+
+  // ── Daily trend vs records gauge chart ──────────────────────────────────
+  const ctx2 = document.getElementById('ch-at-daily-vs-record')?.getContext('2d');
+  if(ctx2) {
+    if(charts['at-daily-vs-record']) charts['at-daily-vs-record'].destroy();
+    const labels    = (peakNat.slice(-30)).map(r => r.date?.slice(5));
+    const dailyPks  = (peakNat.slice(-30)).map(r => r.peak_demand_mw||0);
+    const atLine    = labels.map(() => nat.peak_mw||0);
+    const fyLine    = labels.map(() => fyRecord.peak_mw||0);
+
+    charts['at-daily-vs-record'] = new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Daily Peak MW', data: dailyPks,
+            borderColor: '#1a6fd4', borderWidth: 2, pointRadius: 3,
+            fill: true, backgroundColor: 'rgba(26,111,212,0.07)', tension: 0.3 },
+          { label: `All-Time Record (${nat.peak_mw?.toLocaleString()||'—'} MW)`,
+            data: atLine, borderColor: '#d0004a', borderWidth: 2,
+            borderDash: [6,3], pointRadius: 0, fill: false },
+          { label: `This FY Record — ${fyRecord.fy||''} (${fyRecord.peak_mw?.toLocaleString()||'—'} MW)`,
+            data: fyLine, borderColor: '#e85d00', borderWidth: 1.5,
+            borderDash: [3,3], pointRadius: 0, fill: false },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: true, position: 'top', labels: { boxWidth: 10 } }, tooltip: TT },
+        scales: {
+          x: { grid:{display:false}, ticks:{maxRotation:45, font:{size:8}} },
+          y: { grid:{color:'rgba(220,230,245,.4)'},
+               title:{display:true,text:'MW'},
+               ticks:{callback:v=>(v/1000).toFixed(0)+'k'} }
+        }
+      }
+    });
+  }
+
+  // ── Demand vs Met historical ─────────────────────────────────────────────
+  const ctx3 = document.getElementById('ch-at-dem-vs-met')?.getContext('2d');
+  if(ctx3) {
+    if(charts['at-dem-vs-met']) charts['at-dem-vs-met'].destroy();
+    const sorted = [...fy].filter(r=>r.fy!=='All Time' && r.peak_met_mw).sort((a,b)=>a.fy<b.fy?-1:1);
+    const lbls   = sorted.map(r => r.fy.replace('-','–'));
+    const dem    = sorted.map(r => r.peak_mw||0);
+    const met    = sorted.map(r => r.peak_met_mw||0);
+    const def    = sorted.map(r => (r.peak_mw||0)-(r.peak_met_mw||0));
+
+    charts['at-dem-vs-met'] = new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: lbls,
+        datasets: [
+          { label: 'Peak Met MW',     data: met, backgroundColor: 'rgba(0,119,68,.6)',
+            borderColor: '#007744', borderWidth: 1, stack: 'a' },
+          { label: 'Unmet (Deficit)', data: def,
+            backgroundColor: def.map(v => v > 5000 ? 'rgba(208,0,74,.65)' : v > 1000 ? 'rgba(232,93,0,.55)' : 'rgba(220,230,245,.4)'),
+            borderColor: def.map(v => v > 5000 ? '#d0004a' : v > 1000 ? '#e85d00' : '#ccc'),
+            borderWidth: 1, stack: 'a' },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: true, position: 'top', labels: { boxWidth: 10 } },
+          tooltip: { ...TT, callbacks: {
+            afterBody: items => {
+              const i = items[0]?.dataIndex; if(i===undefined) return '';
+              const d = def[i]; const t = dem[i];
+              return d > 100 ? `Deficit: ${d.toLocaleString()} MW = ${(d/t*100).toFixed(1)}% unmet` : '✓ Demand fully met';
+            }
+          }}
+        },
+        scales: {
+          x: { stacked:true, grid:{display:false}, ticks:{maxRotation:45,font:{size:8}} },
+          y: { stacked:true, grid:{color:'rgba(220,230,245,.4)'},
+               title:{display:true,text:'MW'}, ticks:{callback:v=>(v/1000).toFixed(0)+'k'} }
+        }
+      }
+    });
+  }
+
+  // ── State all-time records table ──────────────────────────────────────────
+  renderAtStateTable();
+}
+
+function renderAtStateTable() {
+  const tbody = document.getElementById('at-state-tbody'); if(!tbody) return;
+  const at    = data?._peakAllTime || {};
+  const sr    = at.state_records || [];
+  const q     = (document.getElementById('at-state-search')?.value||'').toLowerCase();
+
+  // Merge with today's peaks from stateData
+  const todayByState = {};
+  stateData.forEach(s => {
+    if(s.peak_demand_mw_today) todayByState[s.state] = s.peak_demand_mw_today;
+    else if(s.demand_mw)        todayByState[s.state] = s.demand_mw;
+  });
+
+  const rows = sr.filter(r => !q || r.state?.toLowerCase().includes(q));
+
+  if(!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#aab;padding:20px;font-family:var(--fm);font-size:.72rem">
+      No historical records yet — they will appear after the scraper runs for a few days, or seed data will be shown after the next scrape cycle.</td></tr>`;
+    return;
+  }
+
+  const rCls = r => ['rN','rW','rS','rE','rNE'][['Northern','Western','Southern','Eastern','North-Eastern']
+    .indexOf(stateData.find(s=>s.state===r?.state)?.region||r?.region||'')] || 'rN';
+
+  tbody.innerHTML = rows.map((r, i) => {
+    const tp   = todayByState[r.state] || 0;
+    const pct  = r.all_time_peak_mw > 0 && tp > 0 ? (tp/r.all_time_peak_mw*100) : 0;
+    const gap  = r.all_time_peak_mw > 0 && tp > 0 ? r.all_time_peak_mw - tp : 0;
+    const pctC = pct >= 95 ? '#d0004a' : pct >= 80 ? '#e85d00' : pct >= 60 ? '#cc8800' : '#007744';
+    const region = stateData.find(s=>s.state===r.state)?.region || '—';
+    const rc   = ['rN','rW','rS','rE','rNE'][['Northern','Western','Southern','Eastern','North-Eastern'].indexOf(region)]||'rN';
+    return `<tr>
+      <td><b>${r.state}</b></td>
+      <td><span class="rb ${rc}">${region}</span></td>
+      <td class="num" style="color:#d0004a;font-weight:700">${r.all_time_peak_mw?.toLocaleString()||'—'}</td>
+      <td class="num" style="font-size:.65rem;color:#888">${(r.peak_date||'').slice(5)||'—'}</td>
+      <td class="num" style="font-size:.65rem;color:#5a7a9a">${r.fy||'—'}</td>
+      <td class="num" style="color:#cc8800;font-weight:600">${tp>0?tp.toLocaleString():'—'}</td>
+      <td class="num">
+        ${pct>0?`<div style="display:flex;align-items:center;gap:6px">
+          <div style="flex:1;height:5px;background:#e8eef8;border-radius:3px">
+            <div style="height:5px;width:${Math.min(pct,100).toFixed(0)}%;background:${pctC};border-radius:3px"></div>
+          </div>
+          <span style="color:${pctC};font-weight:600;font-size:.72rem">${pct.toFixed(1)}%</span>
+        </div>`:'—'}
+      </td>
+      <td class="num" style="color:#5a7a9a">${gap>0?('-'+gap.toLocaleString()+' MW'):'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function dlAtRecordsCSV() {
+  const at = data?._peakAllTime || {};
+  const sr = at.state_records || [];
+  if(!sr.length) { toast('No records data', 'warn'); return; }
+  const todayByState = {};
+  stateData.forEach(s => { todayByState[s.state] = s.peak_demand_mw_today || s.demand_mw || 0; });
+  const hdr = 'state,all_time_peak_mw,peak_date,fy,today_peak_mw,pct_of_record,gap_mw';
+  const body = sr.map(r => {
+    const tp  = todayByState[r.state] || 0;
+    const pct = r.all_time_peak_mw && tp ? (tp/r.all_time_peak_mw*100).toFixed(1) : '';
+    const gap = r.all_time_peak_mw && tp ? r.all_time_peak_mw - tp : '';
+    return `${r.state},${r.all_time_peak_mw||''},${r.peak_date||''},${r.fy||''},${tp||''},${pct},${gap}`;
+  }).join('\n');
+  const blob = new Blob([hdr+'\n'+body], {type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `india_peak_records_${tod()}.csv`; a.click();
 }
 
 // ══════════════════════════════════════════════════════════════════════════════

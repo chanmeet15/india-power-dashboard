@@ -1584,7 +1584,15 @@ window.addEventListener('error', function(e){
   if(loader && loader.style.display !== 'none'){
     if(!window._errorRecovering){
       window._errorRecovering = true;
-      try{ data = buildDemo(); applyData(); }catch(e2){}
+      // Previously: buildDemo() + applyData() inside a swallowed try/catch, so
+      // ANY script error anywhere silently replaced the dashboard with
+      // fabricated figures and no visible indication. Surface the fault instead.
+      try{
+        if(typeof showDataState === 'function'){
+          showDataState('error','Dashboard script error: '+(e.message||'unknown')+
+            '. No data is being shown — figures on this page cannot be trusted.');
+        }
+      }catch(e2){}
       loader.classList.add('out');
       setTimeout(()=>{ loader.style.display='none'; }, 600);
     }
@@ -1598,7 +1606,10 @@ if(window.location.protocol !== 'file:'){
   ml.rel='manifest'; ml.href='/manifest.json';
   document.head.appendChild(ml);
 }
-let MODE='demo', data=null, stateData=[], stateSort={col:'shortage_pct',dir:-1};
+// Default to LIVE: try the local scraper server first (localhost:8080), and fall
+// back to demo automatically if it isn't running. Previously this defaulted to
+// 'demo', so the dashboard showed fake data even with the server up.
+let MODE='live', data=null, stateData=[], stateSort={col:'shortage_pct',dir:-1};
 let damBlocks=[], damSort={col:'block',dir:1};
 let histDays=7, regDays=7;
 let charts={};
@@ -1636,13 +1647,48 @@ function pg(id){
 function setMode(m){ MODE=m; loadData(); }
 
 // ── Data loading ──────────────────────────────────────────────────────────
+// Full-width banner shown when real data could not be loaded. Replaces the old
+// behaviour of silently falling back to buildDemo(), which rendered synthetic
+// numbers (Delhi 5800, Maharashtra 21000, dates spun off today) that were
+// indistinguishable from live readings - the single worst failure mode for a
+// published dashboard. Synthetic data now appears ONLY via explicit demo mode.
+function showDataState(kind, msg){
+  let el = document.getElementById('data-state-banner');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'data-state-banner';
+    el.style.cssText = 'position:sticky;top:0;z-index:9999;padding:12px 18px;'+
+      'font:600 14px/1.45 "Exo 2",system-ui,sans-serif;text-align:center;'+
+      'letter-spacing:.02em;border-bottom:2px solid rgba(0,0,0,.25)';
+    document.body.prepend(el);
+  }
+  const skin = {
+    error: ['#7f1d1d','#fecaca','⚠'],
+    demo:  ['#78350f','#fde68a','▲'],
+    stale: ['#78350f','#fde68a','▲'],
+  }[kind] || ['#064e3b','#a7f3d0','✓'];
+  el.style.background = skin[0];
+  el.style.color      = skin[1];
+  el.textContent      = `${skin[2]}  ${msg}`;
+  el.style.display    = 'block';
+}
+
 async function loadData(){
   const isFile    = window.location.protocol === 'file:';
   const isGHPages = window.location.hostname.endsWith('github.io') ||
                     window.location.hostname.endsWith('githubusercontent.com');
 
-  // ── GitHub Pages: fetch static data.json snapshot ─────────────────────
-  if(isGHPages){
+  // ── Explicit demo mode: the ONLY path allowed to render synthetic data ──
+  if(MODE === 'demo'){
+    data = buildDemo();
+    applyData();
+    showDataState('demo','DEMO MODE — these are synthetic sample figures, '+
+                         'not real grid readings.');
+    return;
+  }
+
+  // ── GitHub Pages / any HTTP host: fetch the data.json snapshot ─────────
+  if(isGHPages || (!isFile && !SRV)){
     try{
       const ctrl = new AbortController();
       const tid  = setTimeout(()=>ctrl.abort(), 12000);
@@ -1652,24 +1698,18 @@ async function loadData(){
       data = await r.json();
       applyData();
       showSnapshotBanner(data);
+      flagStaleness(data);
     }catch(e){
-      data = buildDemo();
-      applyData();
+      showDataState('error','Could not load data.json ('+e.message+'). '+
+        'No data is being shown — this page is not displaying live figures.');
       showSnapshotBanner(null);
     }
     return;
   }
 
-  // ── Local file:// with no server: demo ────────────────────────────────
-  if(isFile && MODE !== 'live'){
-    data = buildDemo();
-    applyData();
-    return;
-  }
-
   // ── Live server (scraper_v4.py --serve 8080) ──────────────────────────
   try{
-    const url  = MODE==='live' ? `${SRV}/data` : `${SRV}/demo`;
+    const url  = `${SRV}/data`;
     const ctrl = new AbortController();
     const tid  = setTimeout(()=>ctrl.abort(), 8000);
     const r    = await fetch(url, {signal:ctrl.signal});
@@ -1679,11 +1719,25 @@ async function loadData(){
     if(!ct.includes('json')) throw new Error('Not JSON');
     data = await r.json();
     applyData();
+    flagStaleness(data);
     toast('Data refreshed ✓','ok');
   }catch(e){
-    data = buildDemo();
-    applyData();
-    if(MODE==='live') toast('Server offline — demo mode','err');
+    showDataState('error','Live server unreachable on '+(SRV||'this origin')+
+      ' ('+e.message+'). No data is being shown. Start it with '+
+      'start_live_server.cmd, or open the published GitHub Pages URL.');
+  }
+}
+
+// Loud, unmissable warning when the snapshot is old, so a frozen pipeline can
+// never again look like a working one (the Aug 3 -> Sep 2 failure was invisible).
+function flagStaleness(d){
+  if(!d) return;
+  const stamp = d.snapshot_date || (d.scraped_at||'').slice(0,10);
+  if(!stamp) return;
+  const ageDays = Math.floor((Date.now() - new Date(stamp).getTime())/86400000);
+  if(ageDays >= 2){
+    showDataState('stale',`Data is ${ageDays} days old (snapshot ${stamp}). `+
+      `The daily pipeline has not run successfully since then.`);
   }
 }
 

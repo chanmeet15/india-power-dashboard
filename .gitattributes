@@ -1,0 +1,11 @@
+# Normalise line endings so Windows CRLF checkouts don't make git see every
+# line of every file as changed. Without this, each daily push re-committed all
+# of index.html (~300 KB) instead of just the lines that actually differed.
+* text=auto eol=lf
+
+# Binary - never touch these
+*.xlsx binary
+*.db    binary
+*.png   binary
+*.jpg   binary
+*.ico   binary

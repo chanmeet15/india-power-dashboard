@@ -13,6 +13,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- Local snapshot. A script tag works from file://, where fetch('./data.json')
+     is blocked by CORS - that block is why this page showed "No data" on disk.
+     Regenerate with: python build_data_js.py -->
+<script src="./data.js" onerror="console.warn('data.js not found')"></script>
 <style>
 :root{
   --bg:#f0f4ff;--surface:#ffffff;--card:#ffffff;--card2:#f8faff;
@@ -285,8 +289,8 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
     <button class="btn bc" onclick="refresh()">⟳ Refresh</button>
     <button class="btn bg" onclick="dlExcel()">⬇ Excel</button>
     <select class="flt" id="mode-sel" onchange="setMode(this.value)" style="margin-left:2px">
-      <option value="demo">Demo</option>
-      <option value="live">Live Server</option>
+      <option value="live">Live / Snapshot</option>
+      <option value="demo">Demo (synthetic)</option>
     </select>
   </div>
 </nav>
@@ -947,7 +951,8 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
   </div>
 </div>
 
-<!-- ══ PAGE: RE CURTAILMENT ══════════════════════════════════════════════ -->\n<div id="page-curtailment" class="page">
+<!-- ══ PAGE: RE CURTAILMENT ══════════════════════════════════════════════ -->
+<div id="page-curtailment" class="page">
   <div class="sec">
     <div class="slbl">🌱 RE Curtailment &amp; VRE Penetration</div>
     <div class="sa">
@@ -1645,6 +1650,11 @@ function pg(id){
 }
 
 function setMode(m){ MODE=m; loadData(); }
+// Keep the selector in step with MODE. It used to sit on its first option
+// ('Demo') regardless, labelling real data as synthetic.
+document.addEventListener('DOMContentLoaded',()=>{
+  const s=document.getElementById('mode-sel'); if(s) s.value=MODE;
+});
 
 // ── Data loading ──────────────────────────────────────────────────────────
 // Full-width banner shown when real data could not be loaded. Replaces the old
@@ -1700,6 +1710,11 @@ async function loadData(){
       showSnapshotBanner(data);
       flagStaleness(data);
     }catch(e){
+      if(window.__PD_DATA){
+        data = window.__PD_DATA;
+        applyData(); showSnapshotBanner(data); flagStaleness(data);
+        return;
+      }
       showDataState('error','Could not load data.json ('+e.message+'). '+
         'No data is being shown — this page is not displaying live figures.');
       showSnapshotBanner(null);
@@ -1722,9 +1737,25 @@ async function loadData(){
     flagStaleness(data);
     toast('Data refreshed ✓','ok');
   }catch(e){
-    showDataState('error','Live server unreachable on '+(SRV||'this origin')+
-      ' ('+e.message+'). No data is being shown. Start it with '+
-      'start_live_server.cmd, or open the published GitHub Pages URL.');
+    // The live scraper server is optional. Before this fallback existed the
+    // page gave up here and showed an empty dashboard even though a perfectly
+    // good snapshot was sitting next to it on disk.
+    if(window.__PD_DATA){
+      data = window.__PD_DATA;
+      applyData(); showSnapshotBanner(data); flagStaleness(data);
+      return;
+    }
+    try{
+      const r = await fetch('./data.json', {cache:'no-cache'});
+      if(r.ok){
+        data = await r.json();
+        applyData(); showSnapshotBanner(data); flagStaleness(data);
+        return;
+      }
+    }catch(_){}
+    showDataState('error','No live server on '+(SRV||'this origin')+
+      ' and no local snapshot found. Run run_daily.bat to produce data.json, '+
+      'then python build_data_js.py.');
   }
 }
 
@@ -1775,11 +1806,47 @@ function applyData(){
   if(data?._storageData) renderStorageKpis(data._storageData);
   // Update annual peak KPIs whenever data refreshes (shown on states page)
   try{ renderAnnualPeakKpis(); }catch(e){}
+  try{ renderSourcesStrip(); }catch(e){ console.error('sources strip:',e); }
   updateSB();
   document.getElementById('sb-upd').textContent=
     'Updated: '+new Date(data.scraped_at||Date.now()).toLocaleTimeString('en-IN');
   document.getElementById('last-upd').textContent=
     new Date(data.scraped_at||Date.now()).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+
+// Renders the _sources block written by apply_live_snapshot.py, so no figure
+// on this page is shown without the site it was read from and when.
+function renderSourcesStrip(){
+  const src = data?._sources;
+  let el = document.getElementById('sources-strip');
+  if(!src?.fields?.length){ if(el) el.remove(); return; }
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'sources-strip';
+    el.style.cssText = 'margin:0 0 14px;padding:10px 14px;border:1px solid #b8d0ee;'+
+      'border-radius:8px;background:#f4f8fe;font:11px/1.6 "JetBrains Mono",monospace;'+
+      'color:#4a6a8a;overflow-x:auto';
+    const host = document.getElementById('page-live');
+    host?.insertBefore(el, host.firstChild);
+  }
+  const esc = s => String(s??'').replace(/[&<>"]/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const rows = src.fields.map(f=>{
+    const bad = /unavailable/i.test(f.status||'');
+    const der = /derived/i.test(f.status||'');
+    const col = bad ? '#b3261e' : der ? '#8a5a00' : '#0d7a4a';
+    return `<tr>
+      <td style="padding:2px 14px 2px 0;white-space:nowrap;color:#0d1f3c">${esc(f.field)}</td>
+      <td style="padding:2px 14px 2px 0;white-space:nowrap">
+        <a href="${esc(f.url)}" target="_blank" rel="noopener"
+           style="color:#1a6fd4;text-decoration:none">${esc(f.source)}</a></td>
+      <td style="padding:2px 14px 2px 0;white-space:nowrap">${esc(f.as_of)}</td>
+      <td style="padding:2px 0;white-space:nowrap;color:${col}">${esc(f.status)}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML = `<div style="font-weight:700;color:#0d1f3c;margin-bottom:6px">
+      DATA SOURCES — captured ${esc(src.captured_at_ist)}</div>
+    <table style="border-collapse:collapse">${rows}</table>`;
 }
 
 function mergeStateData(d){
@@ -1842,20 +1909,32 @@ function renderLive(){
   // KPIs
   const freq=nat.freq||pos.national?.freq;
   const fok=freq&&freq>=49.95&&freq<=50.05;
+  // No reading at all is 'NO DATA', never 'DEVIATION' - a missing source must
+  // not be shown as a grid condition.
+  const fhas=Number.isFinite(freq);
+  const hasGen=gen.length>0 && totalGen>1;
   document.getElementById('kpis-live').innerHTML=kpiHtml([
     {cls:'c',lbl:'DAM MCP',val:iex.mcp??'—',unit:'₹/kWh',sub:'Day-Ahead Market'},
     {cls:'p',lbl:'DAM MCV',val:iex.mcv_mwh?(iex.mcv_mwh/1000).toFixed(1)+'':'—',unit:'MU',sub:'Market Clearing Volume'},
-    {cls:fok?'g':'pk',lbl:'Grid Frequency',val:freq?.toFixed(3)??'—',unit:'Hz',
-     badge:{text:fok?'NOMINAL':'DEVIATION',cls:fok?'n':'d'}},
+    {cls:!fhas?'':fok?'g':'pk',lbl:'Grid Frequency',val:fhas?freq.toFixed(3):'—',unit:'Hz',
+     badge:{text:!fhas?'NO DATA':fok?'NOMINAL':'DEVIATION',cls:!fhas?'':fok?'n':'d'},
+     sub:fhas?'':'source unavailable'},
     {cls:'o',lbl:'National Demand',val:nat.demand_mw?.toLocaleString()??'—',unit:'MW',sub:'POSOCO'},
-    {cls:'t',lbl:'Renewables',val:totalGen?(renewMW/totalGen*100).toFixed(1)+'%':'—',unit:'',sub:`${renewMW.toLocaleString()} MW`},
+    {cls:'t',lbl:'Renewables',val:hasGen?(renewMW/totalGen*100).toFixed(1)+'%':'—',unit:'',
+     sub:hasGen?`${renewMW.toLocaleString()} MW`:'source unavailable'},
     {cls:'s',lbl:'Storage Dispatch',val:storageMW?(storageMW>0?'+':'')+storageMW.toLocaleString():'—',unit:'MW',sub:storageMW>0?'⬆ Discharging':storageMW<0?'⬇ Charging':'BESS + PSH'},
     {cls:'pk',lbl:'Total Deficit',val:stateData.reduce((a,s)=>a+(s.shortage_mw||0),0).toLocaleString(),unit:'MW',sub:'All India states'},
   ]);
 
   // Gauge
-  document.getElementById('gv').textContent=freq?.toFixed(3)??'—';
-  if(freq){
+  document.getElementById('gv').textContent=fhas?freq.toFixed(3):'—';
+  if(!fhas){
+    const st=document.getElementById('g-st');
+    if(st){ st.textContent='NO DATA'; st.className='g-st'; }
+    const gn=document.getElementById('gn');
+    if(gn) gn.style.transform='rotate(0deg)';
+  }
+  if(fhas){
     const a=Math.min(82,Math.max(-82,(freq-50)*180));
     document.getElementById('gn').style.transform=`rotate(${a}deg)`;
     const st=document.getElementById('g-st');
@@ -2093,24 +2172,106 @@ function renderDAMTable(blocks){
 }
 
 // ── HISTORY ───────────────────────────────────────────────────────────────
+// Replaces a version that fell back to buildFakeMCP()/buildFakeFreq()/
+// buildFakeTrend()/buildFakeRegTrend() whenever the local server was absent -
+// which, for a page opened from disk, was always. Those charts were invented
+// numbers drawn in the same style as real ones. Nothing here fabricates: the
+// stored history in data._history is used, and an empty chart says so.
+function histNote(canvasId, msg){
+  const c = document.getElementById(canvasId);
+  if(!c) return;
+  if(charts[canvasId]){ charts[canvasId].destroy(); delete charts[canvasId]; }
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.save();
+  ctx.font = '12px "JetBrains Mono",monospace';
+  ctx.fillStyle = '#8aa0b8';
+  ctx.textAlign = 'center';
+  ctx.fillText(msg, c.width/2, c.height/2);
+  ctx.restore();
+}
+
+function mkHistDemand(id, rows){
+  const ctx=document.getElementById(id)?.getContext('2d'); if(!ctx) return;
+  if(charts[id]) charts[id].destroy();
+  charts[id]=new Chart(ctx,{type:'line',
+    data:{labels:rows.map(r=>r.date),
+      datasets:[
+        {label:'Daily peak MW',data:rows.map(r=>r.demand_peak_mw??null),
+         borderColor:'#e85d00',borderWidth:2,pointRadius:0,tension:.3,fill:false,spanGaps:false},
+        {label:'Daily average MW',data:rows.map(r=>r.demand_avg_mw??null),
+         borderColor:'#1a6fd4',borderWidth:2,pointRadius:0,tension:.3,fill:false,spanGaps:false},
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},tooltip:TT},
+      scales:{y:{ticks:{callback:v=>(v/1000).toFixed(0)+' GW'}}}}});
+}
+
 async function loadHistCharts(){
-  let mcp,freq,reg;
+  let mcp=null, freq=null, reg=null;
+
+  // The local scraper server is a bonus, not a requirement.
   try{
+    const ctrl=new AbortController(); const tid=setTimeout(()=>ctrl.abort(),3000);
     const [r1,r2,r3]=await Promise.all([
-      fetch(`${SRV}/trend/mcp?days=${histDays}`),
-      fetch(`${SRV}/trend/freq?hours=${histDays*24}`),
-      fetch(`${SRV}/trend/regional?days=${histDays}`)
+      fetch(`${SRV}/trend/mcp?days=${histDays}`,{signal:ctrl.signal}),
+      fetch(`${SRV}/trend/freq?hours=${histDays*24}`,{signal:ctrl.signal}),
+      fetch(`${SRV}/trend/regional?days=${histDays}`,{signal:ctrl.signal})
     ]);
+    clearTimeout(tid);
     mcp=await r1.json(); freq=await r2.json(); reg=await r3.json();
-  }catch{
-    mcp=buildFakeMCP(histDays); freq=buildFakeFreq(histDays*24); reg=[];
-  }
-  mkMCPTrend('ch-mcp-h',mcp);
-  mkFreqDist('ch-freq-h',freq);
-  mkNatTrend('ch-dem-h',buildFakeTrend());
-  mkRegTrend('ch-reg-h',reg.length?reg:buildFakeRegTrend(histDays));
-  mkStateShortTrend('ch-st-h');
+  }catch{ /* fall through to the stored snapshot */ }
+
+  const hist  = data?._history;
+  const daily = (hist?.daily||[]).slice(-histDays);
+
+  if(!mcp?.length) mcp = (data?._mcpTrend||[]).slice(-histDays);
+  if(mcp?.length) mkMCPTrend('ch-mcp-h',mcp);
+  else histNote('ch-mcp-h','No stored price history yet');
+
+  // Grid frequency has no reachable source at all, so this stays empty rather
+  // than showing a distribution built from random numbers.
+  if(freq?.length) mkFreqDist('ch-freq-h',freq);
+  else histNote('ch-freq-h','No frequency history - no working source');
+
+  if(daily.length) mkHistDemand('ch-dem-h',daily);
+  else histNote('ch-dem-h','No stored demand history - run: python history_store.py --backfill 400');
+
+  if(reg?.length) mkRegTrend('ch-reg-h',reg);
+  else histNote('ch-reg-h','No stored regional history yet');
+
+  if(stateData?.length) mkStateShortTrend('ch-st-h');
+  else histNote('ch-st-h','No state data in this snapshot');
+
+  renderHistCoverage(hist);
   loadHistTbl();
+}
+
+// Says plainly how much history exists and which days the source itself has no
+// data for, so a short bar chart is never mistaken for a quiet week.
+function renderHistCoverage(hist){
+  let el=document.getElementById('hist-coverage');
+  const host=document.getElementById('page-history');
+  if(!host) return;
+  if(!el){
+    el=document.createElement('div');
+    el.id='hist-coverage';
+    el.style.cssText='margin:0 0 12px;padding:8px 12px;border:1px solid #b8d0ee;'+
+      'border-radius:8px;background:#f4f8fe;font:11px/1.6 "JetBrains Mono",monospace;color:#4a6a8a';
+    host.insertBefore(el,host.firstChild);
+  }
+  const c=hist?.coverage;
+  if(!c || !c.days_stored){
+    el.innerHTML='<b>No stored history.</b> Build it with '+
+      '<code>python history_store.py --backfill 400</code> — past days are fetched '+
+      'from the CEA/NPP archive, so missed days can still be recovered.';
+    return;
+  }
+  const gaps=(c.gaps||[]);
+  el.innerHTML=`<b>History:</b> ${c.days_stored} day(s) stored, ${c.first} to ${c.last}`+
+    (gaps.length?` &nbsp;·&nbsp; <span style="color:#8a5a00">${gaps.length} day(s) with no data at source`+
+      ` (${gaps.slice(-6).join(', ')}${gaps.length>6?', …':''}) — excluded from totals, never zero-filled</span>`
+     :' &nbsp;·&nbsp; <span style="color:#0d7a4a">no gaps</span>');
 }
 function setHistRange(d,btn){
   histDays=d;
@@ -2397,7 +2558,8 @@ function updateSB(){
     document.getElementById('sb-srv').textContent='Online ✓';
     document.getElementById('sb-srv').style.color='var(--green)';
   }).catch(()=>{
-    document.getElementById('sb-srv').textContent='Offline (demo)';
+    document.getElementById('sb-srv').textContent =
+      (data && data._sources) ? 'Offline — local snapshot' : 'Offline';
     document.getElementById('sb-srv').style.color='var(--muted)';
   });
 }

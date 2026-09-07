@@ -1630,6 +1630,7 @@ const RMAP={Northern:0,Western:1,Southern:2,Eastern:3,'North-Eastern':4};
 
 // ── Routing ───────────────────────────────────────────────────────────────
 function pg(id){
+  try{ clearNotes(id); }catch(e){}
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.getElementById('page-'+id).classList.add('on');
@@ -1807,6 +1808,7 @@ function applyData(){
   // Update annual peak KPIs whenever data refreshes (shown on states page)
   try{ renderAnnualPeakKpis(); }catch(e){}
   try{ renderSourcesStrip(); }catch(e){ console.error('sources strip:',e); }
+  try{ renderAttribution(); }catch(e){ console.error('attribution:',e); }
   updateSB();
   document.getElementById('sb-upd').textContent=
     'Updated: '+new Date(data.scraped_at||Date.now()).toLocaleTimeString('en-IN');
@@ -1849,6 +1851,59 @@ function renderSourcesStrip(){
     <table style="border-collapse:collapse">${rows}</table>`;
 }
 
+// Attribution block. Required in practice for any republished copy: it names
+// every upstream source, what each one feeds, and the terms they publish under -
+// including CEA's own footnote that its Daily Generation Report is "for
+// operational purpose only and not for commercial purpose". It also lists what
+// is NOT collected, so a reader cannot mistake a blank card for a zero reading.
+const NOT_COLLECTED = [
+  ['Grid frequency', 'Grid-India / NLDC / RLDC endpoints unreachable'],
+  ['NSE & MCX futures', 'exchange feed not collected'],
+  ['Futures open interest', 'no public source identified'],
+  ['RTM traded volume', 'not collected — only IEX day-ahead is real'],
+  ['Storage dispatch (BESS/PSH)', 'MERIT India unreachable'],
+];
+
+function renderAttribution(){
+  const src = data?._sources;
+  let el = document.getElementById('attribution');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'attribution';
+    el.style.cssText = 'margin:18px 0 8px;padding:14px 16px;border:1px solid #b8d0ee;'+
+      'border-radius:8px;background:#fbfdff;font:11px/1.7 "JetBrains Mono",monospace;'+
+      'color:#4a6a8a';
+    const host = document.getElementById('page-live');
+    host?.appendChild(el);
+  }
+  const esc = s => String(s??'').replace(/[&<>"]/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const missing = NOT_COLLECTED
+    .map(([a,b]) => `<li><b>${esc(a)}</b> — ${esc(b)}</li>`).join('');
+  el.innerHTML = `
+    <div style="font-weight:700;color:#0d1f3c;margin-bottom:6px">SOURCES, ATTRIBUTION &amp; TERMS</div>
+    <p style="margin:0 0 8px">Figures are reproduced from the public feeds named in the
+      DATA SOURCES panel above — chiefly the
+      <a href="https://npp.gov.in/" target="_blank" rel="noopener">National Power Portal</a> /
+      <a href="https://cea.nic.in/" target="_blank" rel="noopener">Central Electricity Authority</a>,
+      <a href="https://vidyutpravah.in/" target="_blank" rel="noopener">Vidyut PRAVAH</a>
+      (Ministry of Power), <a href="https://grid-india.in/" target="_blank" rel="noopener">Grid-India</a>
+      and the <a href="https://www.iexindia.com/" target="_blank" rel="noopener">Indian Energy Exchange</a>.
+      Each figure on this page carries its source and capture time.</p>
+    <p style="margin:0 0 8px"><b>This is an unofficial mirror.</b> It is not affiliated with,
+      endorsed by, or operated by CEA, the Ministry of Power, Grid-India or IEX.
+      Figures are presented as published upstream and are not independently verified.
+      Nothing here is an official record.</p>
+    <p style="margin:0 0 8px;color:#8a5a00"><b>CEA notice, quoted from the Daily Generation
+      Report:</b> &ldquo;Data published in this report is for operational purpose only and not
+      for commercial purpose.&rdquo; Other upstream sources assert their own copyright and
+      terms of use.</p>
+    <div style="font-weight:700;color:#0d1f3c;margin:10px 0 4px">NOT COLLECTED — shown blank, never estimated</div>
+    <ul style="margin:0 0 6px;padding-left:18px">${missing}</ul>
+    <p style="margin:6px 0 0;color:#8aa0b8">Snapshot captured ${esc(src?.captured_at_ist || data?.scraped_at || '—')}.
+      Blank cards mean no data was available, not a zero reading.</p>`;
+}
+
 function mergeStateData(d){
   // Prefer vidyut_pravah states for real-time demand, supplement with CEA for energy/peak
   const vp  = (d.vidyut_pravah?.states || d._stateData || []);
@@ -1872,18 +1927,33 @@ function mergeStateData(d){
   });
 
   // Also inject today's peak from _peakStates (daily MAX from peak_demand table)
+  // Guarded: the peak tables were found on 2026-09-07 to contain 37 rows where
+  // the YEAR had been captured as a demand value (Tamil Nadu "2026 MW") and two
+  // whose state name was scraped page text ("18,577MWSURPLUS POWERAT POWER
+  // EXCHANGE..."). The bad rows are deleted, but a render-time sanity check
+  // means a future parser bug cannot put nonsense back on the page.
+  const knownState = new Set((d._stateData || []).map(s => s.state));
+  const plausiblePeak = v =>
+    typeof v === 'number' && isFinite(v) && v > 300 && v < 400000 &&
+    !(v >= 2000 && v <= 2035 && Number.isInteger(v));   // that is a year, not MW
+  const sanePeakRow = r => {
+    const st = r.state || r.entity_name;
+    return st && st.length <= 28 && (!knownState.size || knownState.has(st)) &&
+           plausiblePeak(r.peak_mw ?? r.peak_demand_mw);
+  };
   const peakStates = d._peakStates || [];
   const today = new Date().toISOString().slice(0,10);
   const todayPeaks = {};
-  peakStates.filter(r => r.date === today || r.date >= today.slice(0,7))
+  peakStates.filter(sanePeakRow)
+    .filter(r => r.date === today || r.date >= today.slice(0,7))
     .forEach(r => {
       const st = r.state || r.entity_name;
       if(st && (r.peak_demand_mw||0) > (todayPeaks[st]||0))
         todayPeaks[st] = r.peak_demand_mw;
     });
-  // Also inject yearly peak from _peakYearly
+  // Also inject yearly peak from _peakYearly.
   const yearlyPeaks = {};
-  (d._peakYearly || []).forEach(r => {
+  (d._peakYearly || []).filter(sanePeakRow).forEach(r => {
     const st = r.state || r.entity_name;
     if(st) yearlyPeaks[st] = { peak_mw: r.peak_mw, date: r.date };
   });
@@ -2025,6 +2095,7 @@ function renderNational(){
   if(d._freqTrend?.length) mkFreqLine('ch-freq-nat',d._freqTrend,true);
   if(gen.length){ mkGenmix('ch-gen-nat',gen); mkPeakBar('ch-peak-nat',nat); }
   if(d._nationalTrend?.length) mkNatTrend('ch-nat-trend',d._nationalTrend);
+  else if(!synthOK()) histNote('ch-nat-trend','No intraday demand series in this snapshot');
   else mkNatTrend('ch-nat-trend', buildFakeTrend());
   // ── Peak demand charts (were never being called — fixed) ──────────────
   renderPeakDemandCharts();
@@ -2177,18 +2248,50 @@ function renderDAMTable(blocks){
 // which, for a page opened from disk, was always. Those charts were invented
 // numbers drawn in the same style as real ones. Nothing here fabricates: the
 // stored history in data._history is used, and an empty chart says so.
+// Synthetic numbers are allowed in exactly one place: explicit demo mode.
+// Several renderers used to invent data whenever their source was empty -
+// futures prices, open interest, curtailment, storage dispatch, Goa drawal -
+// and drew it in the same style as measured data with no warning. An audit on
+// 2026-09-07 found the Futures page was entirely fictional: _futuresData and
+// _futuresTrend are empty, and Open Interest had no source at all, ever.
+function synthOK(){ return MODE === 'demo'; }
+
+// Draws an explicit "nothing here" message in place of a chart.
+// It used to fillText onto the canvas, but Chart.js sets the canvas backing
+// width independently of its CSS width, so the message was clipped mid-word
+// ("...feed not availal"). An HTML sibling sizes itself correctly and can be
+// selected and read by a screen reader.
 function histNote(canvasId, msg){
   const c = document.getElementById(canvasId);
   if(!c) return;
-  if(charts[canvasId]){ charts[canvasId].destroy(); delete charts[canvasId]; }
-  const ctx = c.getContext('2d');
-  ctx.clearRect(0,0,c.width,c.height);
-  ctx.save();
-  ctx.font = '12px "JetBrains Mono",monospace';
-  ctx.fillStyle = '#8aa0b8';
-  ctx.textAlign = 'center';
-  ctx.fillText(msg, c.width/2, c.height/2);
-  ctx.restore();
+  for(const [k, ch] of Object.entries(charts||{})){
+    if(ch && ch.canvas === c){ ch.destroy(); delete charts[k]; }
+  }
+  c.style.display = 'none';
+  let n = document.getElementById(canvasId + '-note');
+  if(!n){
+    n = document.createElement('div');
+    n.id = canvasId + '-note';
+    n.className = 'chart-note';
+    n.style.cssText = 'display:flex;align-items:center;justify-content:center;'+
+      'min-height:150px;height:100%;padding:18px;text-align:center;color:#8aa0b8;'+
+      'font:12px/1.7 "JetBrains Mono",monospace';
+    c.parentNode.insertBefore(n, c.nextSibling);
+  }
+  n.textContent = msg;
+  n.style.display = 'flex';
+}
+
+// A note is sticky until real data turns up, so clear them when a page is
+// (re)rendered; anything still missing writes its note again immediately.
+function clearNotes(pageId){
+  const host = document.getElementById('page-' + pageId);
+  if(!host) return;
+  host.querySelectorAll('.chart-note').forEach(n => {
+    const c = document.getElementById(n.id.replace(/-note$/,''));
+    if(c) c.style.display = '';
+    n.style.display = 'none';
+  });
 }
 
 function mkHistDemand(id, rows){
@@ -3229,10 +3332,39 @@ function mkSupGapGauge(covPct, deficit, demand) {
   `;
 }
 
-// Intraday stacked area (simulated 96 blocks)
+// Intraday stacked area by fuel.
+// This used to take the single current generation-mix reading and invent a
+// 24-hour shape around it - a sine curve for solar, a random band for wind, a
+// load factor with noise for everything else - and draw it as an intraday
+// profile. NPP publishes the real per-fuel series (~4-minute resolution), which
+// sources_live now stores as _genTrend, so the real curve is plotted when it is
+// there and nothing is drawn when it is not.
 function mkSupAreaChart(gen, demand) {
   const ctx = document.getElementById('ch-sup-area')?.getContext('2d'); if(!ctx) return;
   if(charts['sup-area']) charts['sup-area'].destroy();
+
+  const gt = data?._genTrend;
+  if(gt && gt.times && gt.times.length && gt.series){
+    const order = Object.keys(gt.series);
+    charts['sup-area'] = new Chart(ctx, {type:'line',
+      data:{labels: gt.times,
+        datasets: order.map(name => {
+          const meta = srcColor(name);
+          return {label:name, data:gt.series[name], borderColor:meta.c,
+                  backgroundColor:meta.c+'55', borderWidth:1.2, pointRadius:0,
+                  tension:.3, fill:true};
+        })},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},tooltip:TT},
+        scales:{x:{stacked:true,grid:{display:false},ticks:{maxTicksLimit:12}},
+                y:{stacked:true,grid:{color:'rgba(220,230,245,.5)'},
+                   ticks:{callback:v=>(v/1000).toFixed(0)+' GW'}}}}});
+    return;
+  }
+  if(!synthOK()){
+    histNote('ch-sup-area','No intraday generation series in this snapshot');
+    return;
+  }
   // Build 24hr profile: scale each source by a realistic load curve
   const hours = Array.from({length:24},(_,i)=>i);
   const labels = hours.map(h=>`${String(h).padStart(2,'0')}:00`);
@@ -3913,13 +4045,15 @@ function openSLDCModal(stateName, idx){
     const ctxC=document.getElementById('modal-ch-c')?.getContext('2d');
     if(ctxC){
       if(charts['modal-c']) charts['modal-c'].destroy();
+      // 'State Est.' is a stated model of the DAM price, and is labelled Est.
+      // 'RTM Est.' used to be DAM x (0.97 + random) - a coin toss dressed as a
+      // second market. RTM is not collected from anywhere, so it is dropped.
       const impliedPrice=spot*(0.92+(dem/500000)*0.16);
-      const rtmSpot=spot*(0.97+Math.random()*.06);
       charts['modal-c']=new Chart(ctxC,{type:'bar',
-        data:{labels:['IEX DAM','RTM Est.','State Est.'],
-          datasets:[{data:[spot,+rtmSpot.toFixed(0),+impliedPrice.toFixed(0)],
-            backgroundColor:['rgba(26,111,212,.6)','rgba(204,136,0,.6)','rgba(119,0,204,.55)'],
-            borderColor:['#1a6fd4','#cc8800','#7700cc'],borderWidth:2,borderRadius:5}]},
+        data:{labels:['IEX DAM','State Est. (modelled)'],
+          datasets:[{data:[spot,+impliedPrice.toFixed(0)],
+            backgroundColor:['rgba(26,111,212,.6)','rgba(119,0,204,.55)'],
+            borderColor:['#1a6fd4','#7700cc'],borderWidth:2,borderRadius:5}]},
         options:{responsive:false,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>`₹${c.parsed.y.toLocaleString()}/MWh`}}},
           scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:'rgba(220,230,245,.5)'},
             ticks:{callback:v=>'₹'+v.toLocaleString()},title:{display:true,text:'₹/MWh',font:{size:9}}}}}}
@@ -4034,8 +4168,11 @@ function mkFuturesTrendChart(trend){
   const days=[...new Set(trend.map(r=>r.day))].sort();
   const nseData=days.map(d=>{const r=trend.find(x=>x.day===d&&x.exchange==='NSE');return r?.avg_price||null;});
   const mcxData=days.map(d=>{const r=trend.find(x=>x.day===d&&x.exchange==='MCX');return r?.avg_price||null;});
-  // Fallback demo trend if empty
   if(!days.length){
+    if(!synthOK()){
+      histNote('ch-futures-trend','No futures history — NSE/MCX feed not available');
+      return;
+    }
     const now=new Date();
     for(let i=29;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10));nseData.push(4350+Math.round((Math.random()-.45)*80));mcxData.push(4340+Math.round((Math.random()-.45)*80));}
   }
@@ -4053,9 +4190,14 @@ function mkFuturesVolChart(trend){
   const ctx=document.getElementById('ch-futures-vol')?.getContext('2d'); if(!ctx) return;
   if(charts['fut-vol']) charts['fut-vol'].destroy();
   let days=[...new Set(trend.map(r=>r.day))].sort();
+  if(!days.length && !synthOK()){
+    histNote('ch-futures-vol','No futures volume — NSE/MCX feed not available');
+    return;
+  }
   if(!days.length){const now=new Date();for(let i=29;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10));}}
-  const nseVol=days.map(d=>{const r=trend.find(x=>x.day===d&&x.exchange==='NSE');return r?.total_volume||Math.round(3000+Math.random()*5000);});
-  const mcxVol=days.map(d=>{const r=trend.find(x=>x.day===d&&x.exchange==='MCX');return r?.total_volume||Math.round(1500+Math.random()*3000);});
+  const fb = (lo,hi) => synthOK() ? Math.round(lo+Math.random()*hi) : null;
+  const nseVol=days.map(d=>{const r=trend.find(x=>x.day===d&&x.exchange==='NSE');return r?.total_volume ?? fb(3000,5000);});
+  const mcxVol=days.map(d=>{const r=trend.find(x=>x.day===d&&x.exchange==='MCX');return r?.total_volume ?? fb(1500,3000);});
   charts['fut-vol']=new Chart(ctx,{type:'bar',
     data:{labels:days,datasets:[
       {label:'NSE lots',data:nseVol,backgroundColor:'rgba(26,111,212,.5)',borderColor:'#1a6fd4',borderWidth:1},
@@ -4071,11 +4213,16 @@ function mkFuturesSpreadChart(trend, d){
   const ctx=document.getElementById('ch-futures-spread')?.getContext('2d'); if(!ctx) return;
   if(charts['fut-spread']) charts['fut-spread'].destroy();
   let days=[...new Set(trend.map(r=>r.day))].sort();
+  if(!days.length && !synthOK()){
+    histNote('ch-futures-spread','No futures basis — needs an NSE/MCX price series');
+    return;
+  }
   if(!days.length){const now=new Date();for(let i=29;i>=0;i--){const n=new Date(now);n.setDate(n.getDate()-i);days.push(n.toISOString().slice(0,10));}}
   const spotMWh=(d?.iex_dam?.mcp||4.28)*1000;
   const spread=days.map((day,i)=>{
     const r=trend.find(x=>x.day===day&&x.exchange==='NSE');
-    const fp=r?.avg_price||(4368+Math.round((Math.random()-.45)*60));
+    const fp = r?.avg_price ?? (synthOK() ? 4368+Math.round((Math.random()-.45)*60) : null);
+    if(fp===null) return null;
     return +(fp-spotMWh+(i-days.length/2)*2).toFixed(0);
   });
   charts['fut-spread']=new Chart(ctx,{type:'bar',
@@ -4093,6 +4240,12 @@ function mkFuturesOIChart(trend){
   const ctx=document.getElementById('ch-futures-oi')?.getContext('2d'); if(!ctx) return;
   if(charts['fut-oi']) charts['fut-oi'].destroy();
   let days=[...new Set(trend.map(r=>r.day))].sort();
+  // Open Interest was never scraped from anywhere - this series was a formula,
+  // 3000 + i*120 + noise, drawn as if it were exchange data. Nothing to show.
+  if(!synthOK()){
+    histNote('ch-futures-oi','Open Interest is not collected from any source');
+    return;
+  }
   if(!days.length){const now=new Date();for(let i=29;i>=0;i--){const n=new Date(now);n.setDate(n.getDate()-i);days.push(n.toISOString().slice(0,10));}}
   const oi=days.map((_,i)=>3000+i*120+Math.round(Math.random()*500));
   charts['fut-oi']=new Chart(ctx,{type:'line',
@@ -4971,6 +5124,10 @@ function renderGoaDemandTrend(hist) {
 
   const rows = (hist.sldc_trend || []).slice(-goaRange);
   const hasTrend = rows.length > 0;
+  if(!hasTrend && !synthOK()){
+    histNote('ch-goa-dem-trend','No Goa demand history — SLDC feed not parsing');
+    return;
+  }
   const labels = hasTrend ? rows.map(r => (r.day||'').slice(5)) : buildDemoGoaDays(goaRange).map(r => r.d);
   const demData = hasTrend ? rows.map(r => +(r.avg_dem||0).toFixed(0))
                            : buildDemoGoaDays(goaRange).map(r => r.dem);
@@ -5029,8 +5186,11 @@ function renderGoaREChart(goa) {
           backgroundColor: labels.map((_,i) => (colors[i%colors.length])+'bb'),
           borderColor: labels.map((_,i) => colors[i%colors.length]),
           borderWidth: 1.5, borderRadius: 5 },
-        { label: 'Est. Today Gen (MW)',
-          data: capacity.map(c => Math.round(c * (0.2 + Math.random() * 0.25))),
+        // Was capacity x (0.2 + random*0.25) - an invented capacity factor
+        // presented as today's generation. No per-technology RE generation is
+        // collected, so the series is left empty rather than guessed.
+        { label: 'Today Gen (MW) — not collected',
+          data: capacity.map(() => null),
           backgroundColor: labels.map((_,i) => (colors[i%colors.length])+'44'),
           borderColor: labels.map((_,i) => colors[i%colors.length]),
           borderWidth: 1 }
@@ -5058,6 +5218,10 @@ function renderGoaFreqChart(hist) {
   const hasTr = rows.length > 0;
   const days  = hasTr ? rows.map(r => (r.day||'').slice(5))
                       : buildDemoGoaDays(goaRange).map(r => r.d);
+  if(!hasTr && !synthOK()){
+    histNote('ch-goa-freq','No Goa frequency history — SLDC feed not parsing');
+    return;
+  }
   const freqs = hasTr ? rows.map(r => +(r.avg_freq||50.02).toFixed(3))
                       : buildDemoGoaDays(goaRange).map(() => +(50 + (Math.random()-.48)*.1).toFixed(3));
   const nominal = days.map(() => 50.00);
@@ -5098,6 +5262,10 @@ function renderGoaPeakChart(hist) {
 
   const rows  = (hist.peak_trend || hist.sldc_trend || []).slice(-goaRange);
   const hasTr = rows.length > 0;
+  if(!hasTr && !synthOK()){
+    histNote('ch-goa-peak','No Goa peak history — SLDC feed not parsing');
+    return;
+  }
   const days  = hasTr ? rows.map(r => (r.date||r.day||'').slice(5))
                       : buildDemoGoaDays(goaRange).map(r => r.d);
   const peaks = hasTr ? rows.map(r => +(r.peak_demand_mw||r.max_dem||0))
@@ -5140,6 +5308,10 @@ function renderGoaEnergyChart(hist) {
   const rows  = (hist.state_demand || []).slice(-goaRange);
   const hasTr = rows.length > 0;
   const days  = hasTr ? rows.map(r => (r.date||'').slice(5)) : buildDemoGoaDays(goaRange).map(r=>r.d);
+  if(!hasTr && !synthOK()){
+    histNote('ch-goa-energy','No Goa energy history — SLDC feed not parsing');
+    return;
+  }
   const req   = hasTr ? rows.map(r => +(r.req_mu||0).toFixed(2))
                       : buildDemoGoaDays(goaRange).map(() => +(13+Math.random()*2).toFixed(2));
   const avail = hasTr ? rows.map(r => +(r.avail_mu||0).toFixed(2))
@@ -5219,6 +5391,10 @@ function renderGoaDrawalChart(goa) {
   const raw   = (goa.wrldc_drawal || []).slice(0, 48).reverse();
   const hasTr = raw.length > 0;
   const labels   = hasTr ? raw.map(r => (r.ts||'').slice(11,16)) : Array.from({length:12},(_,i)=>`${String(i*2).padStart(2,'0')}:00`);
+  if(!hasTr && !synthOK()){
+    histNote('ch-goa-drawal','No WRLDC drawal data for Goa');
+    return;
+  }
   const sched    = hasTr ? raw.map(r => r.scheduled_mw||0) : Array.from({length:12},()=>Math.round(400+Math.random()*150));
   const actual   = hasTr ? raw.map(r => r.actual_mw||0)    : sched.map(v => Math.round(v*(0.95+Math.random()*.1)));
   const devs     = actual.map((a,i) => +(a - sched[i]).toFixed(0));
@@ -5349,7 +5525,11 @@ function renderCurtailment() {
   const rows = raw.filter(r => r.date >= cutoff).sort((a,b) => a.date < b.date ? -1 : 1);
 
   if (!rows.length) {
-    // Show demo data if no live data
+    if (!synthOK()) {
+      ['ch-curt-stacked','ch-curt-split'].forEach(
+        c => histNote(c, `No curtailment data in the last ${curtRange} days`));
+      return;
+    }
     renderCurtailmentDemo();
     return;
   }
@@ -5638,6 +5818,10 @@ function renderStorageTrendChart(sd) {
   const byDay = {};
   raw.forEach(r => { if(!byDay[r.day]) byDay[r.day]={bess:0,psh:0}; if(r.type==='BESS') byDay[r.day].bess+=r.avg_dispatch||0; else byDay[r.day].psh+=r.avg_dispatch||0; });
   const days = hasTr ? Object.keys(byDay).sort().slice(-30) : Array.from({length:14},(_,i)=>{const d=new Date();d.setDate(d.getDate()-13+i);return d.toISOString().slice(0,10);});
+  if(!hasTr && !synthOK()){
+    histNote('ch-stor-trend','No storage dispatch data — MERIT feed unavailable');
+    return;
+  }
   const bess = hasTr ? days.map(d=>+(byDay[d]?.bess||0).toFixed(0)) : days.map(()=>Math.round((Math.random()-.3)*800));
   const psh  = hasTr ? days.map(d=>+(byDay[d]?.psh||0).toFixed(0))  : days.map(()=>Math.round((Math.random()-.4)*600));
   charts['stor-trend'] = new Chart(ctx, {

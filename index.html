@@ -256,6 +256,18 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
   nav{padding:0 12px;gap:8px}.page{padding:12px 12px 52px}.brand span{display:none}}
 @keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:fu .4s ease both}
+
+/* EAL-style trend tiles: value, change vs the previous day, 7-day sparkline */
+.eal-grid{display:grid;gap:12px;margin:0 0 16px;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.eal-tile{background:#fff;border:1px solid #dce6f5;border-radius:10px;padding:12px 14px}
+.eal-lbl{font:600 .6rem var(--fm);letter-spacing:.06em;text-transform:uppercase;
+  color:#5a7a9a;margin-bottom:6px}
+.eal-val{font:700 1.5rem/1.1 'Exo 2',system-ui,sans-serif}
+.eal-unit{font:600 .62rem var(--fm);color:#8aa0b8;margin-left:5px}
+.eal-sub{font:.6rem var(--fm);margin-top:4px}
+.eal-foot{font:.55rem var(--fm);color:#a8bcd0;margin-top:2px}
+@media (max-width:640px){.eal-val{font-size:1.25rem}}
 </style>
 </head>
 <body>
@@ -309,6 +321,43 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
 
 
 <div id="page-live" class="page on">
+  <div class="sec"><div class="slbl">Trends — stored daily history</div></div>
+  <div id="eal-tiles" class="eal-grid"></div>
+  <div class="card" style="margin:0 0 18px;padding:14px 16px">
+    <div style="font:700 .72rem var(--fm);color:var(--ink);margin-bottom:8px">
+      LONG-RUN ANALYSIS</div>
+    <div id="eal-analysis"></div>
+  </div>
+
+  <div class="g2 mb">
+    <div class="card">
+      <div class="ct"><div class="dot dc"></div>Daily Peak Demand &amp; Renewable Share</div>
+      <div class="cs">Stored daily history · full 24-hour curves only</div>
+      <div style="height:230px"><canvas id="ch-eal-daily"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct"><div class="dot dc"></div>Energy Met — Mean per Day, by Month</div>
+      <div class="cs">Complete days only · hover for the month total and its day count</div>
+      <div style="height:230px"><canvas id="ch-eal-month"></canvas></div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="slbl">Grid operations — Grid-India / NLDC daily reports</div></div>
+  <div id="ops-tiles" class="eal-grid"></div>
+
+  <div class="g2 mb">
+    <div class="card">
+      <div class="ct"><div class="dot dc"></div>Grid Frequency — 96 Blocks</div>
+      <div class="cs" id="cs-freq">Grid-India Daily PSP report</div>
+      <div style="height:230px"><canvas id="ch-freq"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct"><div class="dot dc"></div>Ancillary Services Despatched — SRAS &amp; TRAS</div>
+      <div class="cs">Grid-India Daily AS/SCUC report · up positive, down negative</div>
+      <div style="height:230px"><canvas id="ch-anc"></canvas></div>
+    </div>
+  </div>
+
   <div class="sec"><div class="slbl">All Sources — Snapshot</div>
     <div class="sa" id="last-upd" style="font-family:var(--fm);font-size:.6rem;color:var(--muted)">—</div></div>
 
@@ -1809,6 +1858,7 @@ function applyData(){
   try{ renderAnnualPeakKpis(); }catch(e){}
   try{ renderSourcesStrip(); }catch(e){ console.error('sources strip:',e); }
   try{ renderAttribution(); }catch(e){ console.error('attribution:',e); }
+  try{ ealTiles(); ealAnalysis(); ealCharts(); opsCharts(); }catch(e){ console.error('eal tiles:',e); }
   updateSB();
   document.getElementById('sb-upd').textContent=
     'Updated: '+new Date(data.scraped_at||Date.now()).toLocaleTimeString('en-IN');
@@ -1857,11 +1907,15 @@ function renderSourcesStrip(){
 // operational purpose only and not for commercial purpose". It also lists what
 // is NOT collected, so a reader cannot mistake a blank card for a zero reading.
 const NOT_COLLECTED = [
-  ['Grid frequency', 'Grid-India / NLDC / RLDC endpoints unreachable'],
+  ['Ancillary charges (₹)',
+   'in the Grid-India Monthly Ancillary PDFs; despatch volumes are collected, '+
+   'the money is not parsed yet'],
+  ['DAM average price history',
+   'accumulating from 2026-09-07 forward; no trustworthy archive to backfill'],
   ['NSE & MCX futures', 'exchange feed not collected'],
   ['Futures open interest', 'no public source identified'],
   ['RTM traded volume', 'not collected — only IEX day-ahead is real'],
-  ['Storage dispatch (BESS/PSH)', 'MERIT India unreachable'],
+  ['Storage dispatch (BESS/PSH)', 'MERIT India — live from the next run'],
 ];
 
 function renderAttribution(){
@@ -1902,6 +1956,381 @@ function renderAttribution(){
     <ul style="margin:0 0 6px;padding-left:18px">${missing}</ul>
     <p style="margin:6px 0 0;color:#8aa0b8">Snapshot captured ${esc(src?.captured_at_ist || data?.scraped_at || '—')}.
       Blank cards mean no data was available, not a zero reading.</p>`;
+}
+
+
+// ── EAL-style trend tiles ─────────────────────────────────────────────────
+// Each headline metric with its change since the previous day and a 7-day
+// sparkline, in the style of IIT Kanpur's Energy Analytics Lab. Everything here
+// is computed from _history (real stored days) — a metric with fewer than two
+// days of history shows the value and says so rather than inventing a delta.
+// How many hours of demand curve a stored day actually rests on.
+// A day first written while it was still running holds a real but PARTIAL
+// energy figure, and comparing it against a whole day reads as a collapse in
+// demand that never happened. Rows written before coverage_h existed are still
+// classifiable: energy = average x hours, so the hours divide back out.
+const MIN_COVERAGE_H = 23;
+function coverageH(r){
+  if(!r) return null;
+  if(r.coverage_h !== null && r.coverage_h !== undefined) return r.coverage_h;
+  if(r.demand_avg_mw && r.demand_energy_mu) return r.demand_energy_mu * 1000 / r.demand_avg_mw;
+  return null;
+}
+function dayComplete(r){ const c = coverageH(r); return c !== null && c >= MIN_COVERAGE_H; }
+
+function sparkline(vals, w, hgt, colour){
+  const pts = vals.filter(v => v !== null && v !== undefined && isFinite(v));
+  if(pts.length < 2) return '';
+  const min = Math.min(...pts), max = Math.max(...pts), span = (max - min) || 1;
+  const step = w / (pts.length - 1);
+  const d = pts.map((v,i) => `${i===0?'M':'L'}${(i*step).toFixed(1)},${(hgt-((v-min)/span)*hgt).toFixed(1)}`).join(' ');
+  const last = `${((pts.length-1)*step).toFixed(1)},${(hgt-((pts.at(-1)-min)/span)*hgt).toFixed(1)}`;
+  return `<svg width="${w}" height="${hgt}" viewBox="0 0 ${w} ${hgt}" aria-hidden="true"
+            style="display:block;margin-top:6px;overflow:visible">
+      <path d="${d}" fill="none" stroke="${colour}" stroke-width="1.6"
+            stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${last.split(',')[0]}" cy="${last.split(',')[1]}" r="2.2" fill="${colour}"/>
+    </svg>`;
+}
+
+function ealTiles(){
+  const daily = (data?._history?.daily || []);
+  const host = document.getElementById('eal-tiles');
+  if(!host) return;
+  if(daily.length < 2){
+    host.innerHTML = '<div style="padding:14px;color:#8aa0b8;font:12px/1.6 '+
+      '\'JetBrains Mono\',monospace">Not enough stored history yet for trend tiles — '+
+      'run: python history_store.py --backfill 400</div>';
+    return;
+  }
+  // Today is only part-way through, and so are any past days the scraper first
+  // wrote mid-day and never re-fetched. Both hold partial energy. Splitting on
+  // the DATE only caught today and still compared a 17-hour 6 Sep against a
+  // full 5 Sep as "energy met -29%"; splitting on actual curve coverage catches
+  // every one of them.
+  const complete = daily.filter(dayComplete);
+  const partial  = daily.length && !dayComplete(daily.at(-1)) ? daily.at(-1) : null;
+  if(complete.length < 2){
+    host.innerHTML = '<div style="padding:14px;color:#8aa0b8;font:12px/1.6 '+
+      '\'JetBrains Mono\',monospace">Only ' + complete.length +
+      ' day(s) with a full 24-hour curve stored — trend tiles need at least two. '+
+      'Run: python history_store.py --backfill 400</div>';
+    return;
+  }
+  const last = complete.at(-1), prev = complete.at(-2);
+  const tail = n => complete.slice(-n);
+  // Peak-so-far is meaningful mid-day; a partial-day average or total is not.
+  const PARTIAL_OK = new Set(['demand_peak_mw']);
+
+  const metrics = [
+    {k:'demand_peak_mw',   lbl:'Daily peak demand',  unit:'MW',  col:'#e85d00',
+     fmt:v=>Math.round(v).toLocaleString()},
+    {k:'demand_avg_mw',    lbl:'Average demand',     unit:'MW',  col:'#1a6fd4',
+     fmt:v=>Math.round(v).toLocaleString()},
+    {k:'demand_energy_mu', lbl:'Energy met',         unit:'MU',  col:'#00aa55',
+     fmt:v=>v.toFixed(0)},
+    {k:'re_share_pct',     lbl:'Renewable share',    unit:'%',   col:'#7700cc',
+     fmt:v=>v.toFixed(1)},
+    {k:'iex_avg_mcp',      lbl:'DAM avg price',      unit:'₹/MWh', col:'#cc8800',
+     fmt:v=>Math.round(v).toLocaleString()},
+  ];
+
+  const esc = s => String(s??'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  host.innerHTML = metrics.map(m => {
+    const cur = last[m.k], pre = prev[m.k];
+    if(cur === null || cur === undefined){
+      return `<div class="eal-tile"><div class="eal-lbl">${m.lbl}</div>
+        <div class="eal-val" style="color:#8aa0b8">—</div>
+        <div class="eal-sub">not collected</div></div>`;
+    }
+    let delta = '';
+    if(pre !== null && pre !== undefined && pre !== 0){
+      const pc = (cur - pre) / Math.abs(pre) * 100;
+      const up = pc >= 0;
+      delta = `<span style="color:${up?'#0d7a4a':'#b3261e'}">${up?'▲':'▼'} ${Math.abs(pc).toFixed(1)}%</span>
+               <span style="color:#8aa0b8"> vs prev day</span>`;
+    } else {
+      delta = '<span style="color:#8aa0b8">no prior day</span>';
+    }
+    const pv = partial ? partial[m.k] : null;
+    const ph = partial ? coverageH(partial) : null;
+    const todayLine = (pv !== null && pv !== undefined && PARTIAL_OK.has(m.k))
+      ? `<div class="eal-foot" style="color:#5a7a9a">${esc(partial.date)} so far ${m.fmt(pv)} ${m.unit}</div>`
+      : (partial ? `<div class="eal-foot">${esc(partial.date)} still partial${
+            ph ? ` (${ph.toFixed(0)}h of 24 captured)` : ''}</div>` : '');
+    return `<div class="eal-tile">
+      <div class="eal-lbl">${m.lbl}</div>
+      <div class="eal-val" style="color:${m.col}">${m.fmt(cur)}<span class="eal-unit">${m.unit}</span></div>
+      <div class="eal-sub">${delta}</div>
+      ${sparkline(tail(7).map(r=>r[m.k]), 150, 26, m.col)}
+      <div class="eal-foot">${Math.min(7, complete.length)} complete days to ${esc(last.date)}</div>
+      ${todayLine}
+    </div>`;
+  }).join('');
+}
+
+// Two long-run charts, in the manner of IIT Kanpur's Energy Analytics Lab:
+// the daily peak against renewable share, and energy met by month. Both are
+// drawn only from stored days with a full 24-hour curve, and the monthly bars
+// carry their day count so a month still filling up cannot be mistaken for a
+// finished one.
+let _ealCharts = [];
+function ealCharts(){
+  _ealCharts.forEach(c => { try{ c.destroy(); }catch(e){} });
+  _ealCharts = [];
+  if(typeof Chart === 'undefined') return;
+  const all = (data?._history?.daily || []).filter(dayComplete);
+  const d1 = document.getElementById('ch-eal-daily');
+  if(d1 && all.length >= 2){
+    const rows = all.slice(-60);
+    _ealCharts.push(new Chart(d1, {
+      data: {
+        labels: rows.map(r => r.date.slice(5)),
+        datasets: [
+          {type:'line', label:'Peak demand (MW)', yAxisID:'y',
+           data: rows.map(r => r.demand_peak_mw ?? null),
+           borderColor:'#e85d00', backgroundColor:'rgba(232,93,0,.08)',
+           borderWidth:1.8, pointRadius:0, tension:.25, fill:true, spanGaps:true},
+          {type:'line', label:'Renewable share (%)', yAxisID:'y1',
+           data: rows.map(r => r.re_share_pct ?? null),
+           borderColor:'#0d7a4a', borderWidth:1.4, borderDash:[4,3],
+           pointRadius:0, tension:.25, fill:false, spanGaps:true},
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+        plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},
+                 tooltip:{callbacks:{afterBody:it =>
+                   'source: ' + ((all.slice(-60)[it[0].dataIndex]||{}).source || 'NPP chart API')}}},
+        scales:{
+          x:{ticks:{maxTicksLimit:10,font:{size:9}},grid:{display:false}},
+          y:{position:'left',title:{display:true,text:'MW',font:{size:9}},
+             ticks:{font:{size:9},callback:v=>(v/1000).toFixed(0)+'k'}},
+          y1:{position:'right',min:0,max:60,title:{display:true,text:'% RE',font:{size:9}},
+              ticks:{font:{size:9}},grid:{drawOnChartArea:false}},
+        }
+      }
+    }));
+  } else if(d1){
+    d1.parentElement.innerHTML = '<div style="padding:20px;color:#8aa0b8;'+
+      'font:11px var(--fm)">No complete stored days yet.</div>';
+  }
+
+  const monthly = (data?._history?.monthly || []);
+  const d2 = document.getElementById('ch-eal-month');
+  if(d2 && monthly.length){
+    const ms = monthly.slice(-14);
+    // Plotted PER DAY, not as a monthly total. No month in this archive has all
+    // its days — some were never published at source, others were captured
+    // mid-day — so a bar of raw totals says more about how many days survived
+    // than about the grid, and every month would read as "low". Mean daily
+    // energy is comparable no matter how many days are behind it; the total and
+    // the day count are in the tooltip. Months resting on fewer than half their
+    // days are drawn hollow.
+    const dayCount = ms.map(m => m.energy_days || 0);
+    const thin = ms.map((m,i) => dayCount[i] < daysInMonth(m.period) / 2);
+    _ealCharts.push(new Chart(d2, {
+      type:'bar',
+      data:{ labels: ms.map(m=>m.period),
+        datasets:[{label:'Energy met (MU/day)',
+          data: ms.map((m,i) => (m.demand_energy_mu && dayCount[i])
+                                ? m.demand_energy_mu / dayCount[i] : null),
+          backgroundColor: ms.map((m,i)=> thin[i] ? 'rgba(0,170,85,.18)' : 'rgba(0,170,85,.75)'),
+          borderColor:'#00aa55',
+          borderWidth: ms.map((m,i)=> thin[i] ? 1.4 : 0)}]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false},
+          tooltip:{callbacks:{afterBody:it=>{
+            const i = it[0].dataIndex, m = ms[i], n = daysInMonth(m.period);
+            return [`${Math.round(m.demand_energy_mu||0).toLocaleString()} MU over `
+                  + `${dayCount[i]} complete day(s) of ${n}`,
+                    dayCount[i] < n ? 'the month total is a floor, not the month'
+                                    : 'whole month stored'];
+          }}}},
+        scales:{ x:{ticks:{font:{size:9}},grid:{display:false}},
+                 y:{title:{display:true,text:'MU per day',font:{size:9}},
+                    ticks:{font:{size:9},callback:v=>Math.round(v).toLocaleString()}}}}
+    }));
+  } else if(d2){
+    d2.parentElement.innerHTML = '<div style="padding:20px;color:#8aa0b8;'+
+      'font:11px var(--fm)">No monthly history yet.</div>';
+  }
+}
+function daysInMonth(period){
+  const m = /^(\d{4})-(\d{2})$/.exec(period || '');
+  if(!m) return 31;
+  return new Date(+m[1], +m[2], 0).getDate();
+}
+
+// Grid-India's own daily reports: frequency, and the ancillary services that
+// hold it there. Neither has an API - both are parsed out of the published
+// files by psp_report.py and ancillary.py - so both lag live figures by about
+// a day, which the subtitles say plainly rather than implying real time.
+let _opsCharts = [];
+function opsCharts(){
+  _opsCharts.forEach(c => { try{ c.destroy(); }catch(e){} });
+  _opsCharts = [];
+  const psp = data?._psp || {};
+  const anc = data?._ancillary || {};
+  const esc = s => String(s??'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+  // ── tiles ───────────────────────────────────────────────────────────────
+  const host = document.getElementById('ops-tiles');
+  const pd = (psp.daily || []).at(-1) || null;
+  const ad = (anc.daily || []).at(-1) || null;
+  if(host){
+    const tile = (lbl, val, unit, sub, col) => `<div class="eal-tile">
+        <div class="eal-lbl">${esc(lbl)}</div>
+        <div class="eal-val" style="color:${val===null?'#8aa0b8':col}">${
+          val===null?'—':esc(val)}<span class="eal-unit">${esc(unit)}</span></div>
+        <div class="eal-foot">${esc(sub)}</div></div>`;
+    const t = [];
+    if(pd){
+      const band = pd.freq_49_9_50_05_pct;
+      t.push(tile('Time in 49.9–50.05 Hz',
+                  band===null||band===undefined?null:band.toFixed(2), '%',
+                  `${pd.date} · Grid-India PSP`, band>=90?'#0d7a4a':band>=70?'#e85d00':'#b3261e'));
+      t.push(tile('Frequency variation index',
+                  pd.fvi===null||pd.fvi===undefined?null:pd.fvi.toFixed(3), 'FVI',
+                  `${pd.date} · lower is tighter`, '#1a6fd4'));
+    }
+    if(ad){
+      t.push(tile('SRAS despatched (up)',
+                  ad.sras_up_mwh===null||ad.sras_up_mwh===undefined?null
+                    :Math.round(ad.sras_up_mwh).toLocaleString(), 'MWh',
+                  `${ad.date} · secondary / AGC`, '#7700cc'));
+      t.push(tile('TRAS despatched (up)',
+                  ad.tras_up_mwh===null||ad.tras_up_mwh===undefined?null
+                    :Math.round(ad.tras_up_mwh).toLocaleString(), 'MWh',
+                  `${ad.date} · tertiary reserves`, '#cc8800'));
+      t.push(tile('SRAS + TRAS (down)',
+                  ad.total_down_mwh===null||ad.total_down_mwh===undefined?null
+                    :Math.round(ad.total_down_mwh).toLocaleString(), 'MWh',
+                  `${ad.date} · generation backed down`, '#1a6fd4'));
+    }
+    host.innerHTML = t.join('') || '<div style="padding:14px;color:#8aa0b8;'+
+      'font:12px var(--fm)">No Grid-India reports ingested yet — run fetch_reports.cmd, '+
+      'then: python psp_report.py --ingest and python ancillary.py --ingest</div>';
+  }
+
+  if(typeof Chart === 'undefined') return;
+
+  // ── frequency: one day, 96 blocks, with the statutory band shaded ───────
+  const fc = document.getElementById('ch-freq');
+  const blocks = psp.blocks || [];
+  const cs = document.getElementById('cs-freq');
+  if(cs) cs.textContent = psp.block_date
+    ? `Grid-India Daily PSP report · ${psp.block_date} · published the morning after`
+    : 'Grid-India Daily PSP report';
+  if(fc && blocks.length){
+    const band = {
+      id: 'freqBand',
+      beforeDatasetsDraw(chart){
+        const {ctx, chartArea, scales:{y}} = chart;
+        if(!chartArea) return;
+        const yTop = y.getPixelForValue(50.05), yBot = y.getPixelForValue(49.9);
+        ctx.save();
+        ctx.fillStyle = 'rgba(13,122,74,.10)';
+        ctx.fillRect(chartArea.left, yTop, chartArea.right-chartArea.left, yBot-yTop);
+        ctx.restore();
+      }
+    };
+    _opsCharts.push(new Chart(fc, {
+      type:'line',
+      data:{ labels: blocks.map(b => b.time),
+        datasets:[{label:'Frequency (Hz)',
+          data: blocks.map(b => b.frequency_hz ?? null),
+          borderColor:'#0d7a4a', borderWidth:1.5, pointRadius:0,
+          tension:.2, spanGaps:true}]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},
+          tooltip:{callbacks:{afterBody: it => {
+            const b = blocks[it[0].dataIndex] || {};
+            return [`demand met ${Math.round(b.demand_met_mw||0).toLocaleString()} MW`,
+                    `storage ${Math.round(b.storage_mw||0).toLocaleString()} MW`];
+          }}}},
+        scales:{ x:{ticks:{maxTicksLimit:12,font:{size:9}},grid:{display:false}},
+                 y:{title:{display:true,text:'Hz',font:{size:9}},
+                    ticks:{font:{size:9}},
+                    suggestedMin:49.6, suggestedMax:50.3}}},
+      plugins:[band]
+    }));
+  } else if(fc){
+    fc.parentElement.innerHTML = '<div style="padding:20px;color:#8aa0b8;'+
+      'font:11px var(--fm)">No PSP report ingested yet.</div>';
+  }
+
+  // ── SRAS / TRAS, stacked up and down ───────────────────────────────────
+  const ac = document.getElementById('ch-anc');
+  const ad2 = (anc.daily || []).slice(-30);
+  if(ac && ad2.length){
+    const mk = (lbl, key, colour) => ({label:lbl, data: ad2.map(r => r[key] ?? null),
+                                       backgroundColor: colour, stack:'as'});
+    _opsCharts.push(new Chart(ac, {
+      type:'bar',
+      data:{ labels: ad2.map(r => r.date.slice(5)),
+        datasets:[ mk('SRAS up','sras_up_mwh','rgba(119,0,204,.8)'),
+                   mk('TRAS up','tras_up_mwh','rgba(204,136,0,.8)'),
+                   mk('SRAS down','sras_down_mwh','rgba(119,0,204,.35)'),
+                   mk('TRAS down','tras_down_mwh','rgba(204,136,0,.35)') ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},
+          tooltip:{callbacks:{label: it =>
+            `${it.dataset.label}: ${Math.round(it.parsed.y).toLocaleString()} MWh`}}},
+        scales:{ x:{stacked:true,ticks:{maxTicksLimit:10,font:{size:9}},grid:{display:false}},
+                 y:{stacked:true,title:{display:true,text:'MWh',font:{size:9}},
+                    ticks:{font:{size:9},callback:v=>(v/1000).toFixed(0)+'k'}}}}
+    }));
+  } else if(ac){
+    ac.parentElement.innerHTML = '<div style="padding:20px;color:#8aa0b8;'+
+      'font:11px var(--fm)">No ancillary report ingested yet.</div>';
+  }
+}
+
+// Longer-run analysis straight from the stored series.
+function ealAnalysis(){
+  const el = document.getElementById('eal-analysis');
+  let daily = (data?._history?.daily || []);
+  const monthly = (data?._history?.monthly || []);
+  if(!el) return;
+  if(daily.length < 7){ el.innerHTML = ''; return; }
+  daily = daily.filter(dayComplete);   // full 24-hour curves only
+  if(daily.length < 7){ el.innerHTML = ''; return; }
+  const nums = k => daily.map(r=>r[k]).filter(v=>v!==null&&v!==undefined&&isFinite(v));
+  const mean = a => a.reduce((x,y)=>x+y,0)/(a.length||1);
+  const peaks = nums('demand_peak_mw');
+  const allTime = Math.max(...peaks);
+  const allTimeRow = daily.find(r=>r.demand_peak_mw===allTime);
+  const last30 = daily.slice(-30).map(r=>r.demand_peak_mw).filter(Boolean);
+  const prev30 = daily.slice(-60,-30).map(r=>r.demand_peak_mw).filter(Boolean);
+  const mom = (prev30.length && last30.length)
+      ? ((mean(last30)-mean(prev30))/mean(prev30)*100) : null;
+  const cov = data?._history?.coverage || {};
+  const esc = s => String(s??'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  el.innerHTML = `
+    <table style="border-collapse:collapse;font:11px/1.8 'JetBrains Mono',monospace;color:#4a6a8a">
+      <tr><td style="padding-right:22px">Highest daily peak on record</td>
+          <td style="color:#0d1f3c"><b>${Math.round(allTime).toLocaleString()} MW</b>
+          &nbsp;<span style="color:#8aa0b8">${esc(allTimeRow?.date)}</span></td></tr>
+      <tr><td style="padding-right:22px">Mean daily peak, last 30 days</td>
+          <td style="color:#0d1f3c"><b>${Math.round(mean(last30)).toLocaleString()} MW</b></td></tr>
+      <tr><td style="padding-right:22px">vs the 30 days before that</td>
+          <td>${mom===null?'<span style="color:#8aa0b8">not enough history</span>'
+              :`<b style="color:${mom>=0?'#0d7a4a':'#b3261e'}">${mom>=0?'+':''}${mom.toFixed(1)}%</b>`}</td></tr>
+      <tr><td style="padding-right:22px">Days stored</td>
+          <td style="color:#0d1f3c"><b>${cov.days_stored ?? daily.length}</b>
+          &nbsp;<span style="color:#8aa0b8">${esc(cov.first)} → ${esc(cov.last)}${
+            cov.gaps?.length ? ` · ${cov.gaps.length} day(s) with no data at source` : ''}</span></td></tr>
+      <tr><td style="padding-right:22px">…of which a full 24-hour curve</td>
+          <td style="color:#0d1f3c"><b>${daily.length}</b>
+          &nbsp;<span style="color:#8aa0b8">only these count towards energy and
+          average figures; short days still contribute their peak</span></td></tr>
+      <tr><td style="padding-right:22px">Months covered</td>
+          <td style="color:#0d1f3c"><b>${monthly.length}</b>
+          &nbsp;<span style="color:#8aa0b8">${monthly.map(m=>m.period).slice(-4).join(', ')}</span></td></tr>
+    </table>`;
 }
 
 function mergeStateData(d){

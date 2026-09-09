@@ -290,13 +290,16 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
     <button class="tab"     onclick="pg('supply')">⚡ Source-wise Supply</button>
     <button class="tab"     onclick="pg('curtailment')">🌱 RE Curtailment</button>
     <button class="tab"     onclick="pg('goa')">🌴 Goa State</button>
-    <button class="tab"     onclick="pg('futures')">📈 Elec Futures</button>
     <button class="tab"     onclick="pg('prices')">💹 Prices</button>
     <button class="tab"     onclick="pg('history')">🕐 History</button>
     <button class="tab"     onclick="pg('database')">🗄 Database</button>
   </div>
   <div class="nr">
-    <button onclick="fetch('/api/logout',{method:'POST'}).then(()=>location.href='/logout')" style="font-family:var(--fm);font-size:.6rem;padding:4px 10px;border:1px solid #b8d0ee;border-radius:6px;background:#fff;color:#5a7a9a;cursor:pointer;margin-right:8px" title="Sign out">⎋ Logout</button><div class="pill"><div class="blink"></div>LIVE</div>
+    <!-- The Logout button was removed 2026-09-08. It POSTed to /api/logout,
+         which does not exist, so it threw on every click - and on a page
+         published to GitHub Pages with no login at all, a sign-out control
+         implies an access control that is not there. -->
+    <div class="pill"><div class="blink"></div>LIVE</div>
     <div id="clk"></div>
     <button class="btn bc" onclick="refresh()">⟳ Refresh</button>
     <button class="btn bg" onclick="dlExcel()">⬇ Excel</button>
@@ -408,7 +411,7 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
     </div>
     <div class="card">
       <div class="ct"><div class="dot dp"></div>Regional Interchange</div>
-      <div class="cs">POSOCO NLDC · 5 regions · MW (+ export)</div>
+      <div class="cs" id="cs-reg">Grid-India PSP · net energy exchanged, MU (+ import)</div>
       <div class="cw h220"><canvas id="ch-reg-live"></canvas></div>
     </div>
   </div>
@@ -510,7 +513,7 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
       <table class="t" id="reg-tbl">
         <thead><tr>
           <th>Region</th><th class="num">Demand MW</th><th class="num">Gen MW</th>
-          <th class="num">Interchange MW</th><th class="num">Deficit MW</th><th class="num">Balance %</th>
+          <th class="num" title="Net energy exchanged with the rest of the grid over the day, Grid-India PSP. Positive = net import.">Interchange MU</th><th class="num">Deficit MW</th><th class="num">Balance %</th>
         </tr></thead>
         <tbody id="reg-tbody"></tbody>
       </table>
@@ -537,6 +540,8 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
       <button class="btn bo" onclick="dlStateCSV()">⬇ State CSV</button>
     </div>
   </div>
+
+  <div class="card" id="state-detail" style="display:none;margin-bottom:12px;padding:14px 16px"></div>
 
   <!-- Shortage legend -->
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;font-family:var(--fm);font-size:.6rem">
@@ -1334,76 +1339,13 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
 </div>
 
 <!-- ══ PAGE: FUTURES ═══════════════════════════════════════════════════════ -->
-<div id="page-futures" class="page">
-  <div class="sec">
-    <div class="slbl">Electricity Derivatives — NSE & MCX Futures</div>
-    <div class="sa">
-      <button class="btn bc" onclick="dlFuturesCSV()">⬇ CSV</button>
-    </div>
-  </div>
+<!-- The Electricity Futures page was removed 2026-09-08. Its five panels
+     (NSE ELECMBL / MCX ELEC contracts, price trend, volume, basis vs IEX
+     spot, open interest) had no data source and never had one: neither
+     exchange offers a free public feed for these contracts and both block
+     scraping. Rather than publish five empty charts on a commercial page,
+     the tab is gone. Restore from git if a feed becomes available. -->
 
-  <!-- Futures KPIs -->
-  <div class="kpis" id="futures-kpis" style="grid-template-columns:repeat(auto-fit,minmax(175px,1fr));margin-bottom:20px"></div>
-
-  <!-- About box -->
-  <div class="card mb" style="background:linear-gradient(135deg,#f0f8ff,#fff);border-left:4px solid #0088cc">
-    <div class="ct" style="color:#0055aa">ℹ️ About NSE &amp; MCX Electricity Futures</div>
-    <div style="font-family:var(--fm);font-size:.68rem;color:#3d5a78;line-height:1.9;margin-top:8px">
-      <b>NSE ELECMBL</b> — Monthly Electricity Futures launched <b>14 July 2025</b>. Cash-settled against IEX Day-Ahead Market VWAP. Unit: <b>50,000 kWh per lot</b>. Quoted in <b>₹/MWh</b>.<br>
-      <b>MCX ELEC</b> — MCX Electricity Futures launched <b>10 July 2025</b>. Settled against IEX DAM UMCP. Unit: <b>50 MWh per lot</b>. Tick size: ₹1/MWh.<br>
-      Both contracts trade from 9:00 AM to 11:30 PM IST. SEBI-approved. Zero exchange fees on NSE until Dec 2025.
-    </div>
-  </div>
-
-  <!-- Contract table -->
-  <div class="card mb">
-    <div class="ct"><div class="dot dc"></div>Active Electricity Futures Contracts</div>
-    <div class="cs">NSE ELECMBL + MCX ELEC · ₹/MWh · real-time or end-of-day</div>
-    <div class="tw">
-      <table class="t" id="futures-tbl">
-        <thead><tr>
-          <th>Exchange</th><th>Symbol</th><th>Expiry</th>
-          <th class="num">LTP ₹/MWh</th>
-          <th class="num">Open</th><th class="num">High</th><th class="num">Low</th>
-          <th class="num">Prev Close</th><th class="num">Change</th><th class="num">Change %</th>
-          <th class="num">Volume Lots</th><th class="num">OI</th>
-          <th class="num">Turnover ₹Cr</th><th class="num">VWAP</th>
-        </tr></thead>
-        <tbody id="futures-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Price trend chart -->
-  <div class="g2 mb">
-    <div class="card">
-      <div class="ct"><div class="dot dc"></div>Futures Price Trend — NSE vs MCX</div>
-      <div class="cs">₹/MWh · daily closing price history</div>
-      <div class="cw h260"><canvas id="ch-futures-trend"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="ct"><div class="dot dp"></div>Trading Volume — Lots per Day</div>
-      <div class="cs">NSE + MCX combined daily volume</div>
-      <div class="cw h260"><canvas id="ch-futures-vol"></canvas></div>
-    </div>
-  </div>
-
-  <!-- Futures vs spot comparison -->
-  <div class="card mb">
-    <div class="ct"><div class="dot do"></div>Futures Price vs IEX DAM Spot — Spread Analysis</div>
-    <div class="cs">Basis = Futures price − IEX DAM MCP · ₹/MWh · positive = contango, negative = backwardation</div>
-    <div class="cw h220"><canvas id="ch-futures-spread"></canvas></div>
-  </div>
-
-  <!-- Open Interest chart -->
-  <div class="card">
-    <div class="ct"><div class="dot dt2"></div>Open Interest Trend</div>
-    <div class="cs">NSE ELECMBL OI · number of open contracts</div>
-    <div class="cw h220"><canvas id="ch-futures-oi"></canvas></div>
-  </div>
-</div>
-
-<!-- ══ PAGE: PRICES ══════════════════════════════════════════════════════ -->
 <div id="page-prices" class="page">
   <div class="sec"><div class="slbl">IEX Market Prices</div></div>
   <div class="kpis" id="kpis-prices"></div>
@@ -1589,7 +1531,11 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
       <div id="xl-list" style="font-family:var(--fm);font-size:.65rem;color:var(--muted);line-height:2.3"></div>
     </div>
   </div>
-  <div class="card">
+  <!-- The Table Explorer queries the local scraper server. On the published
+       site there is no server to query - GitHub Pages cannot reach the laptop -
+       so it is hidden there rather than shown permanently empty. It appears
+       automatically when the page is opened with the local server running. -->
+  <div class="card" id="db-explorer-card" style="display:none">
     <div class="sec" style="margin-bottom:8px">
       <div class="ct"><div class="dot dp"></div>Table Explorer</div>
       <div class="frow">
@@ -1620,7 +1566,6 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
   <div class="sbi"><div class="sbd" id="sb-cea"></div><span id="sb-cea-t">CEA</span></div>
   <div class="sbi"><div class="sbd" id="sb-mer"></div><span id="sb-mer-t">MERIT</span></div>
   <div class="sbi"><div class="sbd" id="sb-stor"></div><span id="sb-stor-t">Storage</span></div>
-  <div class="sbi"><div class="sbd" id="sb-fut"></div><span id="sb-fut-t">NSE/MCX</span></div>
   <div style="flex:1"></div>
   <div id="sb-upd" style="color:var(--dim)">—</div>
   <div style="color:var(--dim)">|</div>
@@ -1694,7 +1639,6 @@ function pg(id){
   if(id==='database') {loadDbStats();loadDbTbl();initXlSheetPicks();}
   if(id==='supply')   renderSupply();
   if(id==='sldc')     renderSLDC();
-  if(id==='futures')  renderFutures();
   if(id==='curtailment') renderCurtailment();
   if(id==='goa')         renderGoa();
 }
@@ -1832,16 +1776,136 @@ function showSnapshotBanner(d){
   const ts   = d.snapshot_date || (d.scraped_at||'').slice(0,10) || '—';
   const time = d.snapshot_time || (d.scraped_at||'').slice(11,16) || '';
   if(tsEl) tsEl.textContent = `${ts}${time?' at '+time+' IST':''}`;
-  if(ageEl && d.snapshot_date){
-    const hrs = Math.round((Date.now()-new Date(d.snapshot_date))/3600000);
-    ageEl.textContent = hrs<1?'⏱ Updated <1 hr ago':hrs<24?`⏱ Updated ${hrs}h ago`:`⏱ Updated ${Math.round(hrs/24)}d ago`;
+  if(ageEl){
+    // new Date('2026-09-08') is parsed as MIDNIGHT UTC, so the age was measured
+    // from the start of the day and ignored snapshot_time entirely: a snapshot
+    // taken at 17:07 IST read as "16h ago" at 21:00 the same evening when it
+    // was four hours old. scraped_at is a full ISO timestamp with an offset and
+    // is the right thing to measure from; snapshot_date + snapshot_time, read
+    // as IST, is the fallback.
+    let when = null;
+    if(d.scraped_at) when = new Date(d.scraped_at);
+    if((!when || isNaN(when)) && d.snapshot_date){
+      const hm = /^(\d{1,2}):(\d{2})/.exec(d.snapshot_time||'');
+      when = new Date(`${d.snapshot_date}T${hm?`${hm[1].padStart(2,'0')}:${hm[2]}`:'00:00'}:00+05:30`);
+    }
+    if(when && !isNaN(when)){
+      const mins = Math.round((Date.now()-when)/60000);
+      const hrs  = mins/60;
+      ageEl.textContent = mins<60 ? `⏱ Updated ${Math.max(0,mins)} min ago`
+                        : hrs<24  ? `⏱ Updated ${Math.round(hrs)}h ago`
+                                  : `⏱ Updated ${Math.round(hrs/24)}d ago`;
+      // Past a day the snapshot is not "the grid today" any more, so say so.
+      ageEl.style.color = hrs>=24 ? 'var(--pink)' : '';
+    } else {
+      ageEl.textContent = '';
+    }
   }
 }
 
 async function refresh(){ toast('Refreshing...','ok'); await loadData(); }
 
+// Several charts were written against live feeds that never materialised
+// (_freqTrend has been an empty array on every run since the NLDC endpoints
+// went dark; Goa's SLDC history likewise). Those charts are fine - they had
+// nothing to draw. Grid-India's PSP report now supplies the same quantities,
+// so rather than rewrite each chart, the series it reads are filled in here,
+// once, from PSP. Anything PSP does not cover is left empty on purpose so the
+// chart keeps saying so instead of inventing a line.
+// A series can be present and still hold nothing: Goa's sldc_trend arrives as
+// six rows of nulls, which passed a plain `.length` check and then drew six
+// zeros - a flat line that reads as "Goa used no power" rather than "not
+// measured". Anything without at least one usable number counts as empty.
+function hasValues(rows, ...keys){
+  return Array.isArray(rows) && rows.some(r => keys.some(k => {
+    const v = r?.[k];
+    return typeof v === 'number' ? isFinite(v) : (v != null && v !== '');
+  }));
+}
+
+function applyPspFallbacks(d){
+  if(!d) return;
+  const psp = d._psp || {};
+  const blocks = psp.blocks || [];
+  const daily  = psp.daily  || [];
+  const series = psp.state_series || [];
+
+  // Frequency: 96 real blocks for the last published day.
+  if((!d._freqTrend || !d._freqTrend.length) && blocks.length){
+    d._freqTrend = blocks
+      .filter(b => Number.isFinite(b.frequency_hz))
+      .map(b => ({t: b.time, hz: b.frequency_hz}));
+    d._freqTrendSource = `Grid-India PSP · ${psp.block_date||''}`;
+  }
+
+  // Per-region daily demand, which no live feed keeps a history of.
+  if(!d._regionalTrend && daily.length){
+    d._regionalTrend = daily.map(r => ({
+      date: r.date,
+      NR: r.demand_met_mw_nr, WR: r.demand_met_mw_wr, SR: r.demand_met_mw_sr,
+      ER: r.demand_met_mw_er, NER: r.demand_met_mw_ner,
+    })).filter(r => Number.isFinite(r.NR));
+  }
+
+  // Goa: peak, energy and the drawal schedule, day by day.
+  const goaRows = series.filter(r => r.state === 'Goa');
+  if(goaRows.length){
+    d._goaHistory = d._goaHistory || {};
+    const h = d._goaHistory;
+    if(!hasValues(h.peak_trend,'peak_demand_mw','max_dem')){
+      h.peak_trend = goaRows.map(r => ({date: r.date,
+        peak_demand_mw: r.max_demand_mw, energy_mu: r.energy_met_mu}));
+    }
+    if(!hasValues(h.sldc_trend,'avg_dem','max_dem','demand_mw')){
+      // These key names are the ones the Goa charts already read (`day`,
+      // `avg_dem`, `max_dem`, `avg_freq`). PSP gives a day's peak and energy,
+      // not a half-hourly curve, so the daily average is energy/24 - which is
+      // exactly what "average MW over the day" means, not a guess.
+      h.sldc_trend = goaRows.map(r => ({
+        date: r.date, day: r.date,
+        max_dem: r.max_demand_mw,
+        avg_dem: Number.isFinite(r.energy_met_mu) ? +(r.energy_met_mu*1000/24).toFixed(0) : null,
+        avg_gen: Number.isFinite(r.drawal_schedule_mu) ? +(r.drawal_schedule_mu*1000/24).toFixed(0) : null,
+        demand_mw: r.max_demand_mw, energy_mu: r.energy_met_mu,
+        scheduled_mu: r.drawal_schedule_mu, od_ud_mu: r.od_ud_mu}));
+    }
+    // These charts read specific key names; match them rather than rewriting
+    // three charts. `state_demand` is requirement vs availability, which for a
+    // state with no generation of its own is energy met vs what was scheduled.
+    if(!hasValues(h.state_demand,'req_mu','avail_mu')){
+      h.state_demand = goaRows.map(r => ({date: r.date,
+        req_mu: r.energy_met_mu, avail_mu: r.drawal_schedule_mu}));
+    }
+    h.psp_latest = goaRows[goaRows.length-1];
+    h.psp_source = 'Grid-India PSP';
+  }
+  // Per-state daily peaks. The live scrape had produced 23 rows on a single
+  // day; PSP has every state for every published day, which is what the state
+  // peak charts were built to show. PSP rows are added only for
+  // (date, state) pairs the live scrape does not already have.
+  if(series.length){
+    const have = new Set((d._peakStates||[]).map(r => r.date + '|' + r.state));
+    const add = series
+      .filter(r => Number.isFinite(r.max_demand_mw) && !have.has(r.date + '|' + r.state))
+      .map(r => ({date: r.date, state: r.state, peak_demand_mw: r.max_demand_mw,
+                  energy_met_mu: r.energy_met_mu, source: 'Grid-India PSP'}));
+    d._peakStates = (d._peakStates||[]).concat(add);
+  }
+
+  // Goa frequency history: the all-India daily profile is the nearest real
+  // thing - Goa has no separate published frequency - so it is labelled as
+  // all-India rather than passed off as a Goa measurement.
+  if(daily.length){
+    d._freqDaily = daily.filter(r => Number.isFinite(r.freq_49_9_50_05_pct))
+      .map(r => ({date: r.date, in_band_pct: r.freq_49_9_50_05_pct,
+                  below_49_9_pct: r.freq_below_49_9_pct,
+                  above_50_05_pct: r.freq_above_50_05_pct, fvi: r.fvi}));
+  }
+}
+
 function applyData(){
   if(!data) return;
+  try{ applyPspFallbacks(data); }catch(e){ console.error('psp fallbacks:',e); }
   stateData = mergeStateData(data);
   try{ renderLive(); }catch(e){ console.error('renderLive error:',e); }
   // update active page
@@ -1849,7 +1913,6 @@ function applyData(){
   if(active && active!=='live') pg(active);
   // pre-populate SLDC and futures data
   if(data._sldcData?.length && document.getElementById('page-sldc').classList.contains('on')) renderSLDC();
-  if(data._futuresData?.length && document.getElementById('page-futures').classList.contains('on')) renderFutures();
   if(document.getElementById('page-curtailment').classList.contains('on')) renderCurtailment();
   if(document.getElementById('page-goa').classList.contains('on')) renderGoa();
   // Always update storage KPIs if storage elements are present
@@ -2403,10 +2466,28 @@ function renderLive(){
   const gen=d.merit?.generation_table||[];
   const totalGen=gen.reduce((a,r)=>a+r.generation_mw,0)||1;
   const renewMW =gen.filter(r=>/solar|wind|hydro|res|other|bio/i.test(r.source)&&!/pump|psh|bess|battery|storage/i.test(r.source)).reduce((a,r)=>a+r.generation_mw,0);
-  const storageMW=gen.filter(r=>/bess|battery|pumped|psh|storage/i.test(r.source)).reduce((a,r)=>a+r.generation_mw,0);
+  // Storage was read ONLY out of the MERIT generation table, which does not
+  // carry a storage row, so the tile was permanently blank even though
+  // sources_live has been writing a real MERIT storage figure to _storageLive
+  // on every run. Try that, then the MERIT mix, then the generation table.
+  const storageTbl=gen.filter(r=>/bess|battery|pumped|psh|storage/i.test(r.source)).reduce((a,r)=>a+r.generation_mw,0);
+  const storageLive=d._storageLive||{};
+  const storageMW=Number.isFinite(storageLive.storage_mw)?storageLive.storage_mw
+                 :Number.isFinite(d._meritMix?.storage_mw)?d._meritMix.storage_mw
+                 :storageTbl;
 
   // KPIs
-  const freq=nat.freq||pos.national?.freq;
+  // Frequency: no Indian source publishes it live to the public - every NLDC
+  // and RLDC endpoint is unreachable - so the tile sat on "NO DATA" forever.
+  // Grid-India's Daily PSP report DOES carry it, block by block, published the
+  // morning after. A real reading from yesterday beats a permanent dash, as
+  // long as the tile says which day it is rather than implying "now".
+  const psp=d._psp||{};
+  const liveFreq=nat.freq||pos.national?.freq;
+  const pspFreq=psp.latest_frequency_hz;
+  const freq=Number.isFinite(liveFreq)?liveFreq:pspFreq;
+  const freqIsLive=Number.isFinite(liveFreq);
+  const freqWhen=freqIsLive?'live':(psp.block_date||null);
   const fok=freq&&freq>=49.95&&freq<=50.05;
   // No reading at all is 'NO DATA', never 'DEVIATION' - a missing source must
   // not be shown as a grid condition.
@@ -2416,12 +2497,17 @@ function renderLive(){
     {cls:'c',lbl:'DAM MCP',val:iex.mcp??'—',unit:'₹/kWh',sub:'Day-Ahead Market'},
     {cls:'p',lbl:'DAM MCV',val:iex.mcv_mwh?(iex.mcv_mwh/1000).toFixed(1)+'':'—',unit:'MU',sub:'Market Clearing Volume'},
     {cls:!fhas?'':fok?'g':'pk',lbl:'Grid Frequency',val:fhas?freq.toFixed(3):'—',unit:'Hz',
-     badge:{text:!fhas?'NO DATA':fok?'NOMINAL':'DEVIATION',cls:!fhas?'':fok?'n':'d'},
-     sub:fhas?'':'source unavailable'},
+     badge:{text:!fhas?'NO DATA':freqIsLive?(fok?'NOMINAL':'DEVIATION'):'PSP '+(psp.block_date||''),
+            cls:!fhas?'':fok?'n':'d'},
+     sub:!fhas?'no source publishes this live'
+        :freqIsLive?'live'
+        :`Grid-India PSP · last block ${psp.latest_block_time||''} on ${freqWhen}`},
     {cls:'o',lbl:'National Demand',val:nat.demand_mw?.toLocaleString()??'—',unit:'MW',sub:'POSOCO'},
     {cls:'t',lbl:'Renewables',val:hasGen?(renewMW/totalGen*100).toFixed(1)+'%':'—',unit:'',
      sub:hasGen?`${renewMW.toLocaleString()} MW`:'source unavailable'},
-    {cls:'s',lbl:'Storage Dispatch',val:storageMW?(storageMW>0?'+':'')+storageMW.toLocaleString():'—',unit:'MW',sub:storageMW>0?'⬆ Discharging':storageMW<0?'⬇ Charging':'BESS + PSH'},
+    {cls:'s',lbl:'Storage Dispatch',val:Number.isFinite(storageMW)&&storageMW!==0?(storageMW>0?'+':'')+Math.round(storageMW).toLocaleString():'—',unit:'MW',
+     sub:!Number.isFinite(storageMW)||storageMW===0?'BESS + PSH — no reading'
+        :`${storageMW>0?'⬆ Discharging':'⬇ Charging'} · PSP + BESS combined · ${storageLive.source||'MERIT India'}`},
     {cls:'pk',lbl:'Total Deficit',val:stateData.reduce((a,s)=>a+(s.shortage_mw||0),0).toLocaleString(),unit:'MW',sub:'All India states'},
   ]);
 
@@ -2440,6 +2526,7 @@ function renderLive(){
     if(fok){st.textContent='NOMINAL';st.className='g-st gn';}
     else if(freq>50.05){st.textContent='HIGH';st.className='g-st gh';}
     else{st.textContent='LOW';st.className='g-st gl';}
+    if(!freqIsLive) st.textContent += ' · ' + (freqWhen||'');
   }
 
   // DAM chart
@@ -2454,9 +2541,18 @@ function renderLive(){
   // National balance bars
   renderNatBal(nat);
 
-  // Regional interchange
+  // Regional interchange. The live regional scrape carries demand, generation
+  // and shortage but NO interchange field at all, so this chart was drawing a
+  // row of zeros. Section E of the PSP report is the only real source: a daily
+  // energy balance per region in MU, positive for a net import. It is a day's
+  // energy, not an instantaneous MW figure, and the chart says so.
   const regs=pos.regional||d._regionalData||[];
-  if(regs.length) mkRegInterchange('ch-reg-live',regs);
+  const pspExch=(d._psp?.regional_exchange)||[];
+  if(pspExch.length) mkRegExchange('ch-reg-live',pspExch,d._psp?.block_date);
+  else if(regs.length && regs.some(r=>Number.isFinite(r.interchange_mw)))
+    mkRegInterchange('ch-reg-live',regs);
+  else noteInto('ch-reg-live','Regional interchange is not published live. '
+    +'It comes from the Grid-India PSP report — run: python psp_report.py --ingest');
 
   // Top deficit states
   renderTopDeficit();
@@ -2510,16 +2606,27 @@ function renderNational(){
   const nat=d._national||d.posoco?.national||{};
   const gen=d.merit?.generation_table||[];
   const totalGen=gen.reduce((a,r)=>a+r.generation_mw,0)||1;
-  const storageMW=gen.filter(r=>/bess|battery|pumped|psh|storage/i.test(r.source)).reduce((a,r)=>a+r.generation_mw,0);
-  const freq=nat.freq;
+  // Same two fallbacks as the Live page - see renderLive() for why.
+  const storageMW=Number.isFinite(d._storageLive?.storage_mw)?d._storageLive.storage_mw
+                 :Number.isFinite(d._meritMix?.storage_mw)?d._meritMix.storage_mw
+                 :gen.filter(r=>/bess|battery|pumped|psh|storage/i.test(r.source)).reduce((a,r)=>a+r.generation_mw,0);
+  const psp=d._psp||{};
+  const freqIsLive=Number.isFinite(nat.freq);
+  const freq=freqIsLive?nat.freq:psp.latest_frequency_hz;
   document.getElementById('kpis-nat').innerHTML=kpiHtml([
     {cls:'o',lbl:'National Demand',val:nat.demand_mw?.toLocaleString()??'—',unit:'MW'},
     {cls:'g',lbl:'Generation',val:nat.generation_mw?.toLocaleString()??'—',unit:'MW'},
-    {cls:'c',lbl:'Grid Frequency',val:freq?.toFixed(3)??'—',unit:'Hz',badge:{text:freq&&freq>=49.95&&freq<=50.05?'NOMINAL':'CHECK',cls:freq&&freq>=49.95&&freq<=50.05?'n':'d'}},
+    {cls:'c',lbl:'Grid Frequency',val:Number.isFinite(freq)?freq.toFixed(3):'—',unit:'Hz',
+     badge:{text:!Number.isFinite(freq)?'NO DATA':freqIsLive?(freq>=49.95&&freq<=50.05?'NOMINAL':'CHECK'):'PSP '+(psp.block_date||''),
+            cls:Number.isFinite(freq)&&freq>=49.95&&freq<=50.05?'n':'d'},
+     sub:!Number.isFinite(freq)?'no source publishes this live'
+        :freqIsLive?'live':`Grid-India PSP · ${psp.block_date||''}`},
     {cls:'pk',lbl:'Deficit',val:nat.deficit_mw?.toLocaleString()??'—',unit:'MW'},
     {cls:'y',lbl:'Total Gen MW',val:totalGen.toLocaleString(),unit:'MW',sub:'All sources'},
     {cls:'t',lbl:'Surplus',val:nat.surplus_mw?.toLocaleString()??'—',unit:'MW'},
-    {cls:'s',lbl:'Storage Dispatch',val:storageMW?(storageMW>0?'+':'')+storageMW.toLocaleString():'—',unit:'MW',sub:storageMW>0?'⬆ Discharging':storageMW<0?'⬇ Charging':'BESS + PSH'},
+    {cls:'s',lbl:'Storage Dispatch',val:Number.isFinite(storageMW)&&storageMW!==0?(storageMW>0?'+':'')+Math.round(storageMW).toLocaleString():'—',unit:'MW',
+     sub:!Number.isFinite(storageMW)||storageMW===0?'BESS + PSH — no reading'
+        :`${storageMW>0?'⬆ Discharging':'⬇ Charging'} · PSP + BESS combined`},
   ]);
   if(d._freqTrend?.length) mkFreqLine('ch-freq-nat',d._freqTrend,true);
   if(gen.length){ mkGenmix('ch-gen-nat',gen); mkPeakBar('ch-peak-nat',nat); }
@@ -2531,6 +2638,13 @@ function renderNational(){
 }
 
 // ── REGIONAL PAGE ─────────────────────────────────────────────────────────
+function renderRegionalTrendChart(){
+  const rows = (data?._regionalTrend||[]).slice(-45);
+  if(rows.length) mkRegDaily('ch-reg-trend',rows);
+  else noteInto('ch-reg-trend','No regional history. It comes from the Grid-India '
+    +'PSP report — run: python psp_report.py --ingest');
+}
+
 function renderRegional(){
   const d=data; if(!d) return;
   const regs=d.posoco?.regional||d._regionalData||[];
@@ -2548,8 +2662,16 @@ function renderRegional(){
 
   mkRegCompare('ch-reg-compare',regs);
   mkRegBalance('ch-reg-balance',regs);
+  renderRegionalTrendChart();
 
-  // Regional table
+  // Regional table. The live feed has no interchange field, so this column was
+  // printing 0 for every region; PSP section E has the real daily balance in MU.
+  const RSHORT={Northern:'NR',Western:'WR',Southern:'SR',Eastern:'ER','North-Eastern':'NER'};
+  const regExch={};
+  ((data?._psp?.regional_exchange)||[]).forEach(e=>{
+    const full=Object.keys(RSHORT).find(k=>RSHORT[k]===e.region);
+    if(full) regExch[full]=e.actual_mu;
+  });
   document.getElementById('reg-tbody').innerHTML=regs.map((r,i)=>{
     const dem=r.demand_mw||0, gen=r.generation_mw||0;
     const bal=gen-dem, balPct=dem?(bal/dem*100).toFixed(1):0;
@@ -2558,7 +2680,8 @@ function renderRegional(){
       <td><span class="rb ${['rN','rW','rS','rE','rNE'][i]}">${r.region}</span></td>
       <td class="num">${dem.toLocaleString()}</td>
       <td class="num">${gen.toLocaleString()}</td>
-      <td class="num ${r.interchange_mw>0?'lo':'hi'}">${(r.interchange_mw||0).toLocaleString()}</td>
+      <td class="num ${(regExch[r.region]??0)>0?'lo':'hi'}">${
+        regExch[r.region]!=null ? regExch[r.region].toFixed(1)+' MU' : '—'}</td>
       <td class="num ${(r.deficit_mw||0)>0?'hi':'lo'}">${(r.deficit_mw||0).toLocaleString()}</td>
       <td class="num ${bal>=0?'lo':'hi'}">${balPct}%</td>
     </tr>`;
@@ -2566,7 +2689,15 @@ function renderRegional(){
 }
 
 // ── STATES PAGE ───────────────────────────────────────────────────────────
-function renderStates(){ filterStates(); renderAnnualPeakKpis(); renderAnnualPeakCharts(); renderAllTimePeak(); }
+// renderPeakDemandCharts() draws three charts and fills the state selector that
+// all live on THIS page, but it was only ever called at the end of
+// renderNational(). Opening States directly - which is what anyone clicking the
+// tab does - left them blank; they appeared only if you happened to visit
+// National first.
+function renderStates(){
+  filterStates(); renderAnnualPeakKpis(); renderAnnualPeakCharts(); renderAllTimePeak();
+  try{ renderPeakDemandCharts(); }catch(e){ console.error('peak charts:',e); }
+}
 
 function filterStates(){
   const q=(document.getElementById('state-search')?.value||'').toLowerCase();
@@ -2624,10 +2755,65 @@ function sortStates(col){
   filterStates();
 }
 
+// Two different things are known about a state and they are not the same
+// vintage, so the panel keeps them apart rather than blending them:
+//   * Vidyut PRAVAH - the instantaneous demand at the moment of the snapshot.
+//   * Grid-India PSP - the finished previous day, and the firmer of the two:
+//     max demand, energy met, the drawal SCHEDULE, over/under-drawal against
+//     it, and energy shortage. This is the table a distribution licensee
+//     actually argues from, and it was being thrown away.
+function pspStateRow(name){
+  const rows=(data?._psp?.states)||[];
+  const norm=x=>String(x||'').toLowerCase().replace(/[^a-z]/g,'');
+  return rows.find(r=>norm(r.state)===norm(name))
+      || rows.find(r=>norm(r.state).startsWith(norm(name)))
+      || null;
+}
+
 function showStateDetail(name){
   const s=stateData.find(x=>x.state===name); if(!s) return;
   const sh=s.shortage_pct||0;
-  const col=sh<=0?'var(--green)':sh<1?'var(--teal)':sh<3?'var(--yellow)':sh<7?'var(--orange)':'var(--pink)';
+  const p=pspStateRow(name);
+  const el=document.getElementById('state-detail');
+  const esc=x=>String(x??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const n=(v,d=0)=>Number.isFinite(v)?v.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d}):'—';
+  if(el){
+    el.style.display='block';
+    el.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <div style="font:700 .9rem 'Exo 2',system-ui,sans-serif;color:var(--ink)">${esc(name)}
+          <span style="font:.6rem var(--fm);color:var(--muted)">· ${esc(s.region||'')}</span></div>
+        <button class="btn bo" onclick="document.getElementById('state-detail').style.display='none'">close</button>
+      </div>
+      <div class="g2" style="margin-top:10px;gap:14px">
+        <div>
+          <div style="font:600 .58rem var(--fm);letter-spacing:.06em;text-transform:uppercase;color:#5a7a9a;margin-bottom:6px">
+            Now — Vidyut PRAVAH</div>
+          <table style="border-collapse:collapse;font:11px/1.8 var(--fm);color:#4a6a8a">
+            <tr><td style="padding-right:18px">Demand</td><td style="color:#0d1f3c"><b>${n(s.demand_mw)} MW</b></td></tr>
+            <tr><td>Met</td><td style="color:#0d1f3c"><b>${n(s.met_mw??s.demand_mw)} MW</b></td></tr>
+            <tr><td>Shortage</td><td style="color:#0d1f3c"><b>${sh.toFixed(2)}%</b> · ${n(s.shortage_mw)} MW</td></tr>
+            <tr><td>As of</td><td>${esc((s.scraped_at||'').replace('T',' ').slice(0,16))}</td></tr>
+          </table>
+        </div>
+        <div>
+          <div style="font:600 .58rem var(--fm);letter-spacing:.06em;text-transform:uppercase;color:#5a7a9a;margin-bottom:6px">
+            ${p?`Full day ${esc(p.date)} — Grid-India PSP`:'Full day — Grid-India PSP'}</div>
+          ${p?`<table style="border-collapse:collapse;font:11px/1.8 var(--fm);color:#4a6a8a">
+            <tr><td style="padding-right:18px">Max demand met</td><td style="color:#0d1f3c"><b>${n(p.max_demand_mw)} MW</b></td></tr>
+            <tr><td>Energy met</td><td style="color:#0d1f3c"><b>${n(p.energy_met_mu,2)} MU</b></td></tr>
+            <tr><td>Drawal schedule</td><td style="color:#0d1f3c">${n(p.drawal_schedule_mu,2)} MU</td></tr>
+            <tr><td>Over/under-drawal</td><td style="color:${(p.od_ud_mu||0)>0?'#b3261e':'#0d7a4a'}"><b>${n(p.od_ud_mu,2)} MU</b></td></tr>
+            <tr><td>Max OD / UD</td><td style="color:#0d1f3c">${n(p.max_od_mw)} / ${n(p.max_ud_mw)} MW</td></tr>
+            <tr><td>Shortage at peak</td><td style="color:#0d1f3c">${n(p.shortage_at_peak_mw)} MW</td></tr>
+            <tr><td>Energy shortage</td><td style="color:#0d1f3c">${n(p.energy_shortage_mu,3)} MU</td></tr>
+          </table>`
+          :`<div style="font:11px/1.7 var(--fm);color:#8aa0b8">Not in the latest PSP report.
+             Run: python psp_report.py --ingest</div>`}
+        </div>
+      </div>`;
+    el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
   toast(`${name}: Demand ${(s.demand_mw||0).toLocaleString()} MW · Shortage ${sh.toFixed(2)}%`,'ok');
 }
 
@@ -2638,9 +2824,12 @@ function renderPrices(){
   document.getElementById('kpis-prices').innerHTML=kpiHtml([
     {cls:'c',lbl:'MCP',val:iex.mcp??'—',unit:'₹/kWh',sub:'Market Clearing Price'},
     {cls:'p',lbl:'MCV',val:iex.mcv_mwh?(iex.mcv_mwh/1000).toFixed(1)+'':'—',unit:'MU',sub:'Market Clearing Volume'},
-    {cls:'g',lbl:'Purchase Bid',val:iex.purchase_bid_mwh?(iex.purchase_bid_mwh/1000).toFixed(1)+'':'—',unit:'MU'},
-    {cls:'o',lbl:'Sell Bid',val:iex.sell_bid_mwh?(iex.sell_bid_mwh/1000).toFixed(1)+'':'—',unit:'MU'},
-    {cls:'y',lbl:'Bid/Offer Ratio',val:iex.purchase_bid_mwh&&iex.sell_bid_mwh?(iex.purchase_bid_mwh/iex.sell_bid_mwh).toFixed(2):'—',unit:'x'},
+    // The scraper writes purchase_mwh / sell_mwh; these tiles were reading
+    // purchase_bid_mwh / sell_bid_mwh, which nothing has ever set, so all
+    // three showed a dash while the numbers sat in the snapshot.
+    {cls:'g',lbl:'Purchase Bid',val:(iex.purchase_mwh??iex.purchase_bid_mwh)?(((iex.purchase_mwh??iex.purchase_bid_mwh))/1000).toFixed(1):'—',unit:'MU'},
+    {cls:'o',lbl:'Sell Bid',val:(iex.sell_mwh??iex.sell_bid_mwh)?(((iex.sell_mwh??iex.sell_bid_mwh))/1000).toFixed(1):'—',unit:'MU'},
+    {cls:'y',lbl:'Bid/Offer Ratio',val:(iex.purchase_mwh??iex.purchase_bid_mwh)&&(iex.sell_mwh??iex.sell_bid_mwh)?(((iex.purchase_mwh??iex.purchase_bid_mwh)/(iex.sell_mwh??iex.sell_bid_mwh))).toFixed(2):'—',unit:'x'},
     {cls:'pk',lbl:'Blocks',val:iex.blocks?.length??'—',unit:'',sub:'15-min intervals'},
   ]);
   if(iex.blocks?.length){
@@ -2648,7 +2837,15 @@ function renderPrices(){
     mkSpreadChart('ch-spread',iex);
     renderDAMTable(iex.blocks);
   }
-  if(d._rtmData?.length) mkRTM('ch-rtm2',d._rtmData);
+  if(d._rtmData?.length){
+    mkRTM('ch-rtm2',d._rtmData);
+    const cs=document.getElementById('ch-rtm2')?.closest('.card')?.querySelector('.cs');
+    if(cs) cs.textContent=`IEX Real-Time Market · ₹/kWh · ${d._rtmData.length} block(s)`
+      + (d.iex_rtm?.date?` · delivery ${d.iex_rtm.date}`:'');
+  } else {
+    noteInto('ch-rtm2','No RTM snapshot in this run — sources_live.py collects it '
+      +'from the IEX real-time market page on the next scrape.');
+  }
   if(d._monthlyVolume) mkVolBar('ch-vol2',d._monthlyVolume);
 }
 
@@ -2761,15 +2958,19 @@ async function loadHistCharts(){
   if(mcp?.length) mkMCPTrend('ch-mcp-h',mcp);
   else histNote('ch-mcp-h','No stored price history yet');
 
-  // Grid frequency has no reachable source at all, so this stays empty rather
-  // than showing a distribution built from random numbers.
+  // Grid frequency has no live source, but Grid-India's PSP report publishes
+  // the day's distribution directly - the share of the day spent in each band -
+  // which is exactly what this chart wants, and better than binning raw
+  // readings ourselves.
   if(freq?.length) mkFreqDist('ch-freq-h',freq);
-  else histNote('ch-freq-h','No frequency history - no working source');
+  else if(data?._freqDaily?.length) mkFreqBands('ch-freq-h',data._freqDaily.slice(-histDays));
+  else histNote('ch-freq-h','No frequency history — run: python psp_report.py --ingest');
 
   if(daily.length) mkHistDemand('ch-dem-h',daily);
   else histNote('ch-dem-h','No stored demand history - run: python history_store.py --backfill 400');
 
   if(reg?.length) mkRegTrend('ch-reg-h',reg);
+  else if(data?._regionalTrend?.length) mkRegDaily('ch-reg-h',data._regionalTrend.slice(-histDays));
   else histNote('ch-reg-h','No stored regional history yet');
 
   if(stateData?.length) mkStateShortTrend('ch-st-h');
@@ -2814,7 +3015,18 @@ function setHistRange(d,btn){
 async function loadHistTbl(){
   histTblCurrent=document.getElementById('hist-tbl-sel')?.value||'national_demand';
   let rows=[];
+  // The local server is normally not running, so this table was permanently
+  // empty. The stored daily history is already in the snapshot and is the same
+  // material, so it is shown when the fetch finds nothing.
   try{const r=await fetch(`${SRV}/history?table=${histTblCurrent}&days=${histDays}`);const d=await r.json();rows=d.rows||[];}catch{}
+  if(!rows.length){
+    const daily=(data?._history?.daily||[]).slice(-histDays).slice().reverse();
+    rows = daily.map(r=>({
+      date:r.date, peak_mw:r.demand_peak_mw, min_mw:r.demand_min_mw,
+      avg_mw:r.demand_avg_mw, energy_mu:r.demand_energy_mu,
+      re_share_pct:r.re_share_pct, coverage_h:r.coverage_h, source:r.source,
+    }));
+  }
   renderGenTable('hist-tbl',rows);
 }
 
@@ -2898,6 +3110,86 @@ function mkFreqLine(id,data,tall=false){
       scales:{x:{ticks:{maxTicksLimit:tall?10:5},grid:{display:false}},
               y:{min:49.5,max:50.5,grid:{color:'rgba(23,45,74,.5)'},
                  ticks:{callback:v=>v.toFixed(2)}}}}});
+}
+// A short message where a chart would be, instead of an empty canvas that
+// looks like a broken page.
+function noteInto(id,msg){
+  const c=document.getElementById(id);
+  if(!c||!c.parentElement) return;
+  c.parentElement.innerHTML='<div style="padding:18px;color:#8aa0b8;'
+    +'font:11px/1.7 var(--fm)">'+String(msg).replace(/[&<>]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[x]))+'</div>';
+}
+
+// Share of each day spent in each frequency band, as published. Stacked to
+// 100%, so the green layer is literally "how much of the day the grid was
+// where it is supposed to be".
+function mkFreqBands(id,rows){
+  const ctx=document.getElementById(id)?.getContext('2d'); if(!ctx) return;
+  if(charts[id]) charts[id].destroy();
+  charts[id]=new Chart(ctx,{type:'bar',
+    data:{labels:rows.map(r=>r.date.slice(5)),
+      datasets:[
+        {label:'below 49.9 Hz',data:rows.map(r=>r.below_49_9_pct??null),
+         backgroundColor:'rgba(179,38,30,.75)',stack:'f'},
+        {label:'49.9 – 50.05 Hz',data:rows.map(r=>r.in_band_pct??null),
+         backgroundColor:'rgba(13,122,74,.75)',stack:'f'},
+        {label:'above 50.05 Hz',data:rows.map(r=>r.above_50_05_pct??null),
+         backgroundColor:'rgba(232,93,0,.75)',stack:'f'}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},
+        tooltip:{callbacks:{
+          label:it=>`${it.dataset.label}: ${(it.parsed.y??0).toFixed(2)}% of the day`,
+          afterBody:it=>{const r=rows[it[0].dataIndex]||{};
+            return r.fvi!=null?[`FVI ${r.fvi}`,'Grid-India PSP']:['Grid-India PSP'];}}}},
+      scales:{x:{stacked:true,ticks:{maxTicksLimit:12,font:{size:9}},grid:{display:false}},
+              y:{stacked:true,max:100,title:{display:true,text:'% of the day',font:{size:9}},
+                 ticks:{font:{size:9}}}}}});
+}
+
+// Daily demand met per region, from the PSP report. No live feed keeps a
+// regional history, so this is the only place it exists.
+function mkRegDaily(id,rows){
+  const ctx=document.getElementById(id)?.getContext('2d'); if(!ctx) return;
+  if(charts[id]) charts[id].destroy();
+  const cols={NR:'#e85d00',WR:'#1a6fd4',SR:'#00aa55',ER:'#7700cc',NER:'#cc8800'};
+  charts[id]=new Chart(ctx,{type:'line',
+    data:{labels:rows.map(r=>r.date.slice(5)),
+      datasets:Object.keys(cols).map(k=>({label:REG_FULL[k],data:rows.map(r=>r[k]??null),
+        borderColor:cols[k],borderWidth:1.6,pointRadius:0,tension:.25,spanGaps:true,fill:false}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},tooltip:TT},
+      scales:{x:{ticks:{maxTicksLimit:12,font:{size:9}},grid:{display:false}},
+              y:{title:{display:true,text:'MW demand met',font:{size:9}},
+                 ticks:{font:{size:9},callback:v=>(v/1000).toFixed(0)+'k'}}}}});
+}
+
+const REG_FULL={NR:'Northern',WR:'Western',SR:'Southern',ER:'Eastern',NER:'North-Eastern'};
+function mkRegExchange(id,rows,date){
+  const ctx=document.getElementById(id)?.getContext('2d'); if(!ctx) return;
+  if(charts[id]) charts[id].destroy();
+  const rs=rows.filter(r=>r.region!=='TOTAL');
+  const vals=rs.map(r=>r.actual_mu||0);
+  const cols=vals.map(v=>v>=0?'rgba(0,170,85,.7)':'rgba(208,0,74,.7)');
+  charts[id]=new Chart(ctx,{type:'bar',
+    data:{labels:rs.map(r=>REG_FULL[r.region]||r.region),
+      datasets:[{label:'Net actual (MU)',data:vals,
+        backgroundColor:cols,borderColor:cols.map(c=>c.replace('.7','1')),borderWidth:1}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{
+          label:it=>`${it.parsed.x>=0?'net import':'net export'} ${Math.abs(it.parsed.x).toFixed(1)} MU`,
+          afterBody:it=>{
+            const r=rs[it[0].dataIndex]||{};
+            return [`scheduled ${(r.schedule_mu??0).toFixed(1)} MU`,
+                    `over/under-drawal ${(r.od_ud_mu??0).toFixed(1)} MU`,
+                    date?`Grid-India PSP, ${date}`:''].filter(Boolean);
+          }}}},
+      scales:{x:{grid:{color:'rgba(23,45,74,.5)'},
+                 title:{display:true,text:'MU for the day — positive = net import',
+                        font:{size:9}}},
+              y:{grid:{display:false}}}}});
 }
 function mkRegInterchange(id,regs){
   const ctx=document.getElementById(id)?.getContext('2d'); if(!ctx) return;
@@ -3084,11 +3376,11 @@ function updateSB(){
   set('mer',data.merit?.status==='ok','MERIT');
   const storOk = data?._storageData?.status==='ok' || (data?.merit?.generation_table||[]).some(r=>/bess|storage|pumped/i.test(r.source));
   set('stor',storOk,'Storage '+(storOk?'✓':'—'));
-  const fok=data?.nse_futures?.status==='ok'||data?._futuresData?.length>0;
-  set('fut',fok,'NSE/MCX Futures');
   fetch(`${SRV}/dbstats`).then(()=>{
     document.getElementById('sb-srv').textContent='Online ✓';
     document.getElementById('sb-srv').style.color='var(--green)';
+    const ex=document.getElementById('db-explorer-card');
+    if(ex) ex.style.display='';
   }).catch(()=>{
     document.getElementById('sb-srv').textContent =
       (data && data._sources) ? 'Offline — local snapshot' : 'Offline';
@@ -3895,7 +4187,11 @@ function renderSupplyRegional() {
 
   // Side-by-side bars
   const ctx1 = document.getElementById('ch-sup-reg-bars')?.getContext('2d');
-  if(!ctx) return; if(!ctx1) return;
+  // `ctx` was never declared in this function - a leftover from a copied
+  // guard. Referencing it threw "ctx is not defined" the instant anyone
+  // clicked the Regional sub-tab, killing all three charts on it. Nothing
+  // showed in the default view, which is why it went unnoticed.
+  if(!ctx1) return;
   if(charts['sup-reg-bars']) charts['sup-reg-bars'].destroy();
   charts['sup-reg-bars'] = new Chart(ctx1, {
     type:'bar',
@@ -4709,9 +5005,24 @@ function renderAnnualPeakKpis() {
   const yearStart = new Date().getFullYear() + '-01-01';
   const today = new Date().toISOString().slice(0,10);
 
-  // Today's peak
+  // "Today" is not always available: the PSP report lands the next morning and
+  // a live scrape may not have run yet. Showing a dash on a card labelled
+  // "Today's National Peak" reads as a broken feed, when in fact the most
+  // recent finished day is right there - so fall back to it and RELABEL the
+  // card with the date it belongs to.
   const todayRow = peakNat.find(r => r.date === today);
-  const todayPeak = todayRow?.peak_demand_mw || 0;
+  const sortedNat = [...peakNat].filter(r => r.peak_demand_mw > 0).sort((a,b)=>a.date<b.date?-1:1);
+  const latestRow = todayRow || sortedNat[sortedNat.length-1] || null;
+  const todayPeak = latestRow?.peak_demand_mw || 0;
+  const peakTitle = document.querySelector('#nat-peak-today')?.previousElementSibling;
+  const peakSub   = document.querySelector('#nat-peak-today')?.nextElementSibling;
+  if(latestRow && !todayRow){
+    if(peakTitle) peakTitle.innerHTML = '<div class="dot do"></div>Latest National Peak';
+    if(peakSub)   peakSub.textContent = `MW · ${latestRow.date}`;
+  } else if(todayRow){
+    if(peakTitle) peakTitle.innerHTML = '<div class="dot do"></div>Today\'s National Peak';
+    if(peakSub)   peakSub.textContent = 'MW · highest today';
+  }
 
   // Annual high (max of this year)
   const yearRows = peakNat.filter(r => r.date >= yearStart);
@@ -5232,9 +5543,17 @@ function renderPeakDemandCharts(){
   {
     const ctx=document.getElementById('ch-peak-ratio')?.getContext('2d'); if(!ctx) return;
     if(charts['peak-ratio']) charts['peak-ratio'].destroy();
+    // The daily average was being rebuilt from raw scrape rows, which only
+    // exist for the last day or two, so there was almost never a day with both
+    // a peak and an average and the chart stayed empty. daily_history already
+    // stores demand_avg_mw next to demand_peak_mw for every complete day.
     const avgByDay={};
+    (data?._history?.daily||[]).forEach(r=>{
+      if(r.date && Number.isFinite(r.demand_avg_mw) && (r.coverage_h==null||r.coverage_h>=23))
+        avgByDay[r.date]={sum:r.demand_avg_mw,n:1};
+    });
     natTrend.forEach(r=>{
-      const d=(r.scraped_at||'').slice(0,10); if(!d) return;
+      const d=(r.scraped_at||'').slice(0,10); if(!d || avgByDay[d]) return;
       if(!avgByDay[d]) avgByDay[d]={sum:0,n:0};
       avgByDay[d].sum+=(r.demand_mw||0); avgByDay[d].n+=1;
     });
@@ -5295,9 +5614,26 @@ function renderPeakDemandCharts(){
   {
     const ctx=document.getElementById('ch-state-peak-today')?.getContext('2d'); if(!ctx) return;
     if(charts['state-peak-today']) charts['state-peak-today'].destroy();
-    // Use today's peak from peakStates or current state data
+    // "Today" is rarely available per state: the PSP report lands the next
+    // morning. Filtering strictly on today's date left this chart empty every
+    // day until a live scrape happened to catch a state peak. Use the most
+    // recent date that actually has rows, and say which day it is.
+    // Picking simply the LATEST date gives whichever day a live scrape last
+    // touched - often six states out of forty - and a "top 20" chart built from
+    // six entries is worse than useless. Among the last week, take the day with
+    // the most states, breaking ties towards the more recent. That lands on the
+    // last full PSP day rather than today's thin scrape.
     const today=new Date().toISOString().slice(0,10);
-    let stateToday=peakStates.filter(r=>r.date===today);
+    const dates=[...new Set(peakStates.map(r=>r.date).filter(Boolean))].sort();
+    const recent=dates.slice(-7);
+    const counts=recent.map(d=>({d,n:peakStates.filter(r=>r.date===d).length}));
+    const best=counts.reduce((a,c)=>(c.n>=a.n?c:a),{d:dates[dates.length-1],n:0});
+    const useDate=best.d;
+    let stateToday=peakStates.filter(r=>r.date===useDate);
+    if(useDate && useDate!==today){
+      const cs=document.getElementById('ch-state-peak-today')?.closest('.card')?.querySelector('.cs');
+      if(cs) cs.textContent=`Highest demand per state · ${useDate} · Grid-India PSP · top 20`;
+    }
     if(!stateToday.length){
       // fallback: use current SLDC/state demand as proxy for today's peak
       const sd=data?._stateData||data?._sldcData||[];
@@ -5445,11 +5781,22 @@ function renderGoa() {
   const sd = stateData.find(s => s.state === 'Goa') || {};
   const sldc = (data?._sldcData||[]).find(s => s.state === 'Goa') || {};
 
+  // Goa's own SLDC feed does not parse, so peak, energy and drawal were blank
+  // dashes on a page about Goa. Grid-India's PSP state table has all three for
+  // the last published day, and the labels below say which day that is rather
+  // than implying these are live readings.
+  const gp    = data?._goaHistory?.psp_latest || null;
   const dem   = goa.demand_mw      || sldc.demand_mw      || sd.demand_mw     || 0;
   const gen   = goa.generation_mw  || sldc.generation_mw  || sd.met_mw        || 0;
-  const freq  = goa.freq_hz        || sldc.freq_hz        || 0;
-  const peak  = goa.peak_demand_mw || sldc.peak_demand_mw || sd.peak_demand_mw || 0;
-  const engy  = goa.energy_today_mu|| sldc.energy_today_mu|| 0;
+  // No Goa-specific frequency is published anywhere. The all-India profile is
+  // the honest nearest thing and is labelled as such, never as a Goa reading.
+  const freq  = goa.freq_hz        || sldc.freq_hz        || data?._psp?.latest_frequency_hz || 0;
+  const freqIsGoa = !!(goa.freq_hz || sldc.freq_hz);
+  const peak  = goa.peak_demand_mw || sldc.peak_demand_mw || sd.peak_demand_mw
+                || gp?.max_demand_mw || 0;
+  const peakIsLive = !!(goa.peak_demand_mw || sldc.peak_demand_mw || sd.peak_demand_mw);
+  const engy  = goa.energy_today_mu|| sldc.energy_today_mu|| gp?.energy_met_mu || 0;
+  const engyIsLive = !!(goa.energy_today_mu || sldc.energy_today_mu);
   const def   = Math.max(0, dem - gen);
   const sur   = Math.max(0, gen - dem);
   const cov   = dem ? Math.min(100, gen / dem * 100) : 0;
@@ -5465,9 +5812,15 @@ function renderGoa() {
   document.getElementById('goa-deficit-lbl').textContent = def > 0 ? 'MW deficit' : 'MW surplus';
   document.getElementById('goa-freq').textContent    = freq ? freq.toFixed(3) + ' Hz' : '—';
   document.getElementById('goa-freq').style.color    = fok ? '#007744' : freq ? '#e85d00' : '#334';
-  document.getElementById('goa-freq-status').textContent = fok ? '✓ Nominal' : freq ? '⚠ Check' : 'Hz';
+  document.getElementById('goa-freq-status').textContent =
+    !freq ? 'Hz' : freqIsGoa ? (fok ? '✓ Nominal' : '⚠ Check')
+                             : `all-India · PSP ${data?._psp?.block_date||''}`;
   document.getElementById('goa-peak').textContent    = peak ? peak.toLocaleString() + ' MW' : '—';
   document.getElementById('goa-energy').textContent  = engy ? engy.toFixed(1) + ' MU' : '—';
+  const pkLbl = document.getElementById('goa-peak')?.nextElementSibling;
+  if(pkLbl && peak && !peakIsLive) pkLbl.textContent = `MW · PSP ${gp?.date||''}`;
+  const enLbl = document.getElementById('goa-energy')?.nextElementSibling;
+  if(enLbl && engy && !engyIsLive) enLbl.textContent = `MU · PSP ${gp?.date||''}`;
   document.getElementById('goa-coverage').textContent = cov ? cov.toFixed(1) + '%' : '—';
   document.getElementById('goa-coverage').style.color =
     cov >= 99 ? '#007744' : cov >= 95 ? '#007a7a' : cov >= 85 ? '#cc8800' : '#d0004a';
@@ -5477,6 +5830,13 @@ function renderGoa() {
     const dev = drawal.deviation_mw || 0;
     document.getElementById('goa-drawal-dev').textContent =
       `Sched: ${(drawal.scheduled_mw||0).toLocaleString()} · Dev: ${dev > 0 ? '+' : ''}${dev.toFixed(0)} MW`;
+  } else if (gp && Number.isFinite(gp.drawal_schedule_mu)) {
+    // The WRLDC MW feed is not available, but the PSP report gives the same
+    // relationship as a day's energy: what was scheduled and what was drawn.
+    document.getElementById('goa-drawal').textContent = gp.drawal_schedule_mu.toFixed(2) + ' MU';
+    const od = gp.od_ud_mu || 0;
+    document.getElementById('goa-drawal-dev').textContent =
+      `Scheduled · drawn ${od >= 0 ? '+' : ''}${od.toFixed(2)} MU · PSP ${gp.date}`;
   }
 
   // ── Charts ──────────────────────────────────────────────────────────────
@@ -5819,13 +6179,33 @@ function renderGoaDrawalChart(goa) {
 
   const raw   = (goa.wrldc_drawal || []).slice(0, 48).reverse();
   const hasTr = raw.length > 0;
-  const labels   = hasTr ? raw.map(r => (r.ts||'').slice(11,16)) : Array.from({length:12},(_,i)=>`${String(i*2).padStart(2,'0')}:00`);
-  if(!hasTr && !synthOK()){
+  // WRLDC's MW-level drawal feed is not reachable. Grid-India's PSP report has
+  // the same relationship a day at a time - what Goa was scheduled to draw and
+  // what it actually drew - in MU. Different unit and cadence, so the card is
+  // relabelled rather than passing daily energy off as MW readings.
+  const psp = (data?._goaHistory?.sldc_trend||[])
+    .filter(r => Number.isFinite(r.scheduled_mu) && Number.isFinite(r.energy_mu))
+    .slice(-goaRange);
+  const usePsp = !hasTr && psp.length > 0;
+  if(usePsp){
+    const card = document.getElementById('ch-goa-drawal')?.closest('.card');
+    const ct = card?.querySelector('.ct'); const cs = card?.querySelector('.cs');
+    if(ct) ct.innerHTML = '<div class="dot dp"></div>Scheduled vs Actual Drawal — Daily';
+    if(cs) cs.textContent = 'Grid-India PSP · MU per day · schedule vs energy actually met';
+  }
+  if(!hasTr && !usePsp && !synthOK()){
     histNote('ch-goa-drawal','No WRLDC drawal data for Goa');
     return;
   }
-  const sched    = hasTr ? raw.map(r => r.scheduled_mw||0) : Array.from({length:12},()=>Math.round(400+Math.random()*150));
-  const actual   = hasTr ? raw.map(r => r.actual_mw||0)    : sched.map(v => Math.round(v*(0.95+Math.random()*.1)));
+  const labels   = hasTr ? raw.map(r => (r.ts||'').slice(11,16))
+                 : usePsp ? psp.map(r => (r.date||'').slice(5))
+                 : Array.from({length:12},(_,i)=>`${String(i*2).padStart(2,'0')}:00`);
+  const sched    = hasTr ? raw.map(r => r.scheduled_mw||0)
+                 : usePsp ? psp.map(r => +(r.scheduled_mu||0).toFixed(2))
+                 : Array.from({length:12},()=>Math.round(400+Math.random()*150));
+  const actual   = hasTr ? raw.map(r => r.actual_mw||0)
+                 : usePsp ? psp.map(r => +(r.energy_mu||0).toFixed(2))
+                 : sched.map(v => Math.round(v*(0.95+Math.random()*.1)));
   const devs     = actual.map((a,i) => +(a - sched[i]).toFixed(0));
 
   charts['goa-drawal'] = new Chart(ctx, {
@@ -5967,8 +6347,44 @@ function renderCurtailment() {
   const solar  = rows.map(r => +(r.solar_curtail_mu||0).toFixed(2));
   const wind   = rows.map(r => +(r.wind_curtail_mu||0).toFixed(2));
   const total  = rows.map(r => +(r.total_curtail_mu||0).toFixed(2));
-  const tras   = rows.map(r => +(r.tras_curtail_mu||0).toFixed(2));
-  const vrePct = rows.map(r => +(r.vre_pct||0).toFixed(2));
+  // Neither of these two columns is ever populated in the curtailment CSV:
+  // vre_pct and tras_curtail_mu are null on every row, so both charts drew a
+  // flat zero line, which reads as "nothing happened" rather than "not
+  // measured". Two real sources cover them.
+  //
+  // VRE share: the PSP report's RES share of generation, by date.
+  // TRAS: Grid-India's Daily AS report gives TRAS DOWN despatch. That is the
+  // backing-down of generation, which is the mechanism behind RE curtailment -
+  // but it is NOT itself a curtailment figure, and it is in MWh not MU, so the
+  // series is labelled for what it actually is and never added to the
+  // curtailment totals.
+  const resByDate = Object.fromEntries(
+    (data?._psp?.daily||[]).map(r => [r.date, r.res_share_pct]));
+  const trasByDate = Object.fromEntries(
+    (data?._ancillary?.daily||[]).map(r => [r.date, r.tras_down_mwh]));
+  const tras   = rows.map(r => r.tras_curtail_mu != null ? +(r.tras_curtail_mu).toFixed(2)
+                       : (trasByDate[r.date] != null ? +(Math.abs(trasByDate[r.date])/1000).toFixed(2) : null));
+  const trasIsDespatch = rows.every(r => r.tras_curtail_mu == null) &&
+                         rows.some(r => trasByDate[r.date] != null);
+  const vrePct = rows.map(r => r.vre_pct != null ? +(r.vre_pct).toFixed(2)
+                       : (resByDate[r.date] != null ? +(resByDate[r.date]).toFixed(2) : null));
+  const vreIsPsp = rows.every(r => r.vre_pct == null) &&
+                   rows.some(r => resByDate[r.date] != null);
+  // Relabel the two cards so nobody reads a despatch series as curtailment.
+  (function(){
+    const t = document.getElementById('ch-tras')?.closest('.card');
+    if(t && trasIsDespatch){
+      const ct = t.querySelector('.ct'); const cs = t.querySelector('.cs');
+      if(ct) ct.innerHTML = '<div class="dot dp"></div>TRAS Down Despatch';
+      if(cs) cs.textContent = 'Grid-India Daily AS report · generation backed down, GWh '
+        + '· the mechanism behind curtailment, not a curtailment figure';
+    }
+    const v = document.getElementById('ch-vre-pct')?.closest('.card');
+    if(v && vreIsPsp){
+      const cs = v.querySelector('.cs');
+      if(cs) cs.textContent = 'RES share of generation · Grid-India PSP report';
+    }
+  })();
 
   // KPI cards
   const latest = rows[rows.length - 1];
@@ -6106,7 +6522,7 @@ function renderCurtailment() {
     }
   }
 
-  // RE Capacity from Akshay Urja
+  // RE Capacity from NPP / CEA
   const rc = data?._reCapacity || {};
   renderReCapacity(rc);
 
@@ -6135,6 +6551,20 @@ function renderReCapacity(rc) {
   document.getElementById('re-total').textContent  = fmt(rc.total_re_mw);
   document.getElementById('re-solar').textContent  = fmt(rc.solar_mw);
   document.getElementById('re-wind').textContent   = fmt(rc.wind_mw);
+  // NPP publishes one combined RES figure and no solar/wind split. cea_capacity.py
+  // fills it from CEA's monthly Installed Capacity report, which lags a month or
+  // two - so the card names the month rather than implying it is current. Until
+  // that report has been ingested the tiles say why they are blank.
+  const sLbl = document.getElementById('re-solar')?.nextElementSibling;
+  const wLbl = document.getElementById('re-wind')?.nextElementSibling;
+  if(rc.split_month){
+    if(sLbl) sLbl.textContent = `Ground + rooftop · CEA ${rc.split_month}`;
+    if(wLbl) wLbl.textContent = `MW installed · CEA ${rc.split_month}`;
+  } else {
+    const msg = 'NPP reports RES combined — run: python cea_capacity.py --fetch --ingest';
+    if(sLbl && !rc.solar_mw) sLbl.textContent = msg;
+    if(wLbl && !rc.wind_mw)  wLbl.textContent = msg;
+  }
   const hydro = (rc.small_hydro_mw||0) + (rc.large_hydro_mw||0);
   document.getElementById('re-hydro').textContent  = hydro ? (hydro/1000).toFixed(1)+' GW' : '—';
 
@@ -6185,10 +6615,19 @@ function renderStorageKpis(sd) {
   // Latest dispatch
   const dispatch = sd.latest_dispatch || [];
   const totDisp = dispatch.reduce((a,r) => a + (r.dispatch_mw||0), 0);
+  // latest_dispatch is empty on every run - MERIT does not expose a per-project
+  // dispatch table - but sources_live does capture the all-India storage figure
+  // and writes it to _storageLive. Use it rather than showing a dash.
+  const liveDisp = data?._storageLive?.storage_mw;
+  const disp = dispatch.length ? totDisp : (Number.isFinite(liveDisp) ? liveDisp : 0);
   if(el('stor-dispatch')) {
-    el('stor-dispatch').textContent = totDisp ? (totDisp>0?'+':'')+totDisp.toFixed(0)+' MW' : '—';
-    el('stor-dispatch').style.color = totDisp > 0 ? '#007744' : totDisp < 0 ? '#6600cc' : '#334';
-    if(el('stor-dispatch-lbl')) el('stor-dispatch-lbl').textContent =
+    el('stor-dispatch').textContent = disp ? (disp>0?'+':'')+disp.toFixed(0)+' MW' : '—';
+    if(!dispatch.length && Number.isFinite(liveDisp) && el('stor-dispatch-lbl')){
+      el('stor-dispatch-lbl').textContent =
+        (disp>0?'MW discharging ↑':disp<0?'MW charging ↓':'MW') + ' · all-India, MERIT';
+    }
+    el('stor-dispatch').style.color = disp > 0 ? '#007744' : disp < 0 ? '#6600cc' : '#334';
+    if(dispatch.length && el('stor-dispatch-lbl')) el('stor-dispatch-lbl').textContent =
       totDisp > 0 ? 'MW discharging ↑' : totDisp < 0 ? 'MW charging ↓' : 'MW (+ = discharging)';
   }
 
@@ -6241,6 +6680,35 @@ function renderStorageTrendChart(sd) {
   const ctx = document.getElementById('ch-stor-trend')?.getContext('2d');
   if (!ctx) return;
   if (charts['stor-trend']) charts['stor-trend'].destroy();
+  // MERIT publishes only an instantaneous storage figure, so dispatch_trend is
+  // empty on every run. The PSP report's 96 blocks give a real daily mean, max
+  // and charging figure for every stored day.
+  const pspStor = (data?._psp?.storage_daily)||[];
+  if(!(sd.dispatch_trend||[]).length && pspStor.length){
+    const rows = pspStor.slice(-30);
+    if(charts['stor-trend']) charts['stor-trend'].destroy();
+    charts['stor-trend'] = new Chart(ctx, {
+      type:'bar',
+      data:{labels:rows.map(r=>r.date.slice(5)),
+        datasets:[
+          {label:'Mean discharge (MW)',data:rows.map(r=>r.avg_mw??null),
+           backgroundColor:'rgba(102,0,204,.6)',borderColor:'#6600cc',borderWidth:1},
+          {label:'Mean charging (MW)',data:rows.map(r=>r.avg_charge_mw!=null?-r.avg_charge_mw:null),
+           backgroundColor:'rgba(0,119,187,.5)',borderColor:'#0077bb',borderWidth:1},
+          {label:'Peak discharge (MW)',data:rows.map(r=>r.max_mw??null),type:'line',
+           borderColor:'#d0004a',borderWidth:1.4,borderDash:[4,3],pointRadius:0,fill:false},
+        ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{labels:{boxWidth:10,font:{size:10}}},
+          tooltip:{callbacks:{afterBody:()=>'Grid-India PSP · PSP + BESS combined'}}},
+        scales:{x:{ticks:{maxTicksLimit:12,font:{size:9}},grid:{display:false}},
+                y:{title:{display:true,text:'MW',font:{size:9}},ticks:{font:{size:9}}}}}
+    });
+    const cs=document.getElementById('ch-stor-trend')?.closest('.card')?.querySelector('.cs');
+    if(cs) cs.textContent='Daily mean from the 96-block PSP series · discharge positive, charging negative';
+    return;
+  }
   const raw = sd.dispatch_trend || [];
   const hasTr = raw.length > 0;
   // Group by day, sum dispatch types

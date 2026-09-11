@@ -1938,11 +1938,17 @@ function renderSourcesStrip(){
   if(!el){
     el = document.createElement('div');
     el.id = 'sources-strip';
-    el.style.cssText = 'margin:0 0 14px;padding:10px 14px;border:1px solid #b8d0ee;'+
+    el.style.cssText = 'margin:22px 0 0;padding:10px 14px;border:1px solid #b8d0ee;'+
       'border-radius:8px;background:#f4f8fe;font:11px/1.6 "JetBrains Mono",monospace;'+
       'color:#4a6a8a;overflow-x:auto';
     const host = document.getElementById('page-live');
-    host?.insertBefore(el, host.firstChild);
+    // Bottom of the page, directly above the attribution panel -- which refers
+    // to this one as "above", so the two stay adjacent and that wording stays
+    // true. It used to be the FIRST thing on the Live page, which put a wall of
+    // provenance between the reader and the numbers they came for. Provenance
+    // has to be present and checkable; it does not have to be the headline.
+    const attrib = document.getElementById('attribution');
+    if(attrib) host?.insertBefore(el, attrib); else host?.appendChild(el);
   }
   const esc = s => String(s??'').replace(/[&<>"]/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));

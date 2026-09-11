@@ -1975,16 +1975,30 @@ function renderSourcesStrip(){
 // including CEA's own footnote that its Daily Generation Report is "for
 // operational purpose only and not for commercial purpose". It also lists what
 // is NOT collected, so a reader cannot mistake a blank card for a zero reading.
+// Each row is [label, why, stillMissing]. stillMissing(d) decides whether the
+// row is true TODAY. This was a flat constant, and it drifted: it went on
+// claiming RTM traded volume was "not collected" and storage dispatch was
+// "live from the next run" on a page whose own DATA SOURCES panel, right below
+// it, reported both as ok. A hardcoded "we don't have this" is the same bug as
+// the hardcoded "UNAVAILABLE" that used to sit on the frequency row - it
+// outlives the gap it describes and quietly makes the page a liar. Anything
+// listed here must be checkable against the data, not asserted.
 const NOT_COLLECTED = [
   ['Ancillary charges (₹)',
    'in the Grid-India Monthly Ancillary PDFs; despatch volumes are collected, '+
-   'the money is not parsed yet'],
+   'the money is not parsed yet',
+   d => !d?._ancillary?.charges],
   ['DAM average price history',
-   'accumulating from 2026-09-07 forward; no trustworthy archive to backfill'],
-  ['NSE & MCX futures', 'exchange feed not collected'],
-  ['Futures open interest', 'no public source identified'],
-  ['RTM traded volume', 'not collected — only IEX day-ahead is real'],
-  ['Storage dispatch (BESS/PSH)', 'MERIT India — live from the next run'],
+   'accumulating from 2026-09-07 forward; no trustworthy archive to backfill',
+   () => true],
+  ['NSE & MCX futures', 'exchange feed not collected',
+   d => !d?._futuresData?.length],
+  ['Futures open interest', 'no public source identified',
+   d => !d?._futuresData?.length],
+  ['RTM traded volume', 'not collected — only IEX day-ahead is real',
+   d => !(d?.iex_rtm?.mcv_mwh > 0)],
+  ['Storage dispatch (BESS/PSH)', 'MERIT India — live from the next run',
+   d => !d?._storageData?.dispatch_trend?.length],
 ];
 
 function renderAttribution(){
@@ -2002,6 +2016,8 @@ function renderAttribution(){
   const esc = s => String(s??'').replace(/[&<>"]/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const missing = NOT_COLLECTED
+    .filter(([,,stillMissing]) => { try{ return stillMissing(data); }
+                                    catch(e){ return true; } })
     .map(([a,b]) => `<li><b>${esc(a)}</b> — ${esc(b)}</li>`).join('');
   el.innerHTML = `
     <div style="font-weight:700;color:#0d1f3c;margin-bottom:6px">SOURCES, ATTRIBUTION &amp; TERMS</div>

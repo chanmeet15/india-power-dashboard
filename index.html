@@ -1943,9 +1943,15 @@ function applyPspFallbacks(d){
     ['nuclear_mw','Nuclear'],['hydro_mw','Hydro'],['solar_mw','Solar'],
     ['wind_mw','Wind'],['others_mw','Other RES'],['storage_mw','Storage']];
   const meritRows = (d.merit && d.merit.generation_table) || [];
-  const meritOK = meritRows.length > 1 && meritRows.every(r =>
+  const meritSane = meritRows.length > 1 && meritRows.every(r =>
     typeof r.source === 'string' && r.source.length < 40 &&
     !/demand|\d{3}/i.test(r.source));
+  // MERIT publishes a single combined "Renewable (RES)" figure. The Supply
+  // page's RE breakdown and fossil-vs-clean charts need solar and wind apart,
+  // which only PSP has - so a sane MERIT table is still not enough to take
+  // over the mix unless it carries that split.
+  const meritSplit = meritRows.some(r => /solar|wind/i.test(r.source||''));
+  const meritOK = meritSane && meritSplit;
   if(!meritOK && blocks.length){
     const mean = k => {
       const v = blocks.map(b => b[k]).filter(Number.isFinite);
@@ -1964,8 +1970,28 @@ function applyPspFallbacks(d){
           deficit_mw: (Number.isFinite(tg) && tg < dm) ? dm - tg : null,
           surplus_mw: (Number.isFinite(tg) && tg > dm) ? tg - dm : null});
         d._nationalSource = `day average \u00b7 PSP ${psp.block_date||''}`;
+        // Kept separately so the Supply page can compare PSP generation with
+        // PSP demand. The live tiles may later switch to MERIT's instantaneous
+        // reading, and pairing that with a day-average generation would invent
+        // a surplus out of two different time bases.
+        d._pspDemandAvg = dm;
+        d._pspDemandDate = psp.block_date || '';
       }
     }
+  }
+
+  // MERIT gives an instantaneous all-India reading. Where PSP only has a day
+  // average from yesterday, that is the better number for the live tiles - so
+  // it wins for demand met and storage dispatch, and says it is MERIT.
+  const mDem = d.merit && d.merit.demand_met_mw;
+  if(Number.isFinite(mDem)){
+    d._national = Object.assign({}, d._national||{}, {demand_mw: mDem});
+    d._nationalSource = 'MERIT India · real-time';
+  }
+  const mStor = (meritRows.find(r => /storage|bess|pump/i.test(r.source||'')) || {}).generation_mw;
+  if(Number.isFinite(mStor) && !Number.isFinite(d._storageLive && d._storageLive.storage_mw)){
+    d._storageLive = Object.assign({}, d._storageLive||{},
+      {storage_mw: mStor, source: 'MERIT India'});
   }
 
   // ── All-time peak record ────────────────────────────────────────────────
@@ -3950,15 +3976,23 @@ function srcCat(name) { return srcColor(name).cat; }
 function renderSupplyNational() {
   const gen = data?.merit?.generation_table || [];
   const totalGen = gen.reduce((a,r) => a+r.generation_mw, 0);
-  const demand = data?._national?.demand_mw || data?.posoco?.national?.demand_mw || totalGen * 1.01;
+  // Match the demand basis to the generation basis. When the mix comes from
+  // the PSP day average, the demand must be the PSP day average too - not
+  // MERIT's real-time reading, which would show a surplus that is only a
+  // difference of time bases.
+  const pspBasis = !!(data?._genMixSource && Number.isFinite(data?._pspDemandAvg));
+  const demand = pspBasis ? data._pspDemandAvg
+               : (data?._national?.demand_mw || data?.posoco?.national?.demand_mw || totalGen * 1.01);
   const deficit = Math.max(0, demand - totalGen);
   const surplus = Math.max(0, totalGen - demand);
   const covPct = demand ? Math.min(100, totalGen / demand * 100) : 100;
 
   // KPIs
   document.getElementById('sup-kpis').innerHTML = kpiHtml([
-    { cls:'o',  lbl:'Total Demand',    val: demand.toLocaleString(),    unit:'MW', sub:'National requirement' },
-    { cls:'g',  lbl:'Total Supply',    val: totalGen.toLocaleString(),  unit:'MW', sub:'All sources combined' },
+    { cls:'o',  lbl:'Total Demand',    val: demand.toLocaleString(),    unit:'MW',
+      sub: pspBasis ? `day average \u00b7 PSP ${data._pspDemandDate||''}` : 'National requirement' },
+    { cls:'g',  lbl:'Total Supply',    val: totalGen.toLocaleString(),  unit:'MW',
+      sub: data?._genMixSource || 'All sources combined' },
     { cls:deficit>0?'pk':'t', lbl:'Deficit / Surplus', val: deficit>0 ? deficit.toLocaleString() : surplus.toLocaleString(), unit:'MW', badge:{ text: deficit>0?'DEFICIT':'SURPLUS', cls: deficit>0?'d':'u' }},
     { cls:'c',  lbl:'Coverage',        val: covPct.toFixed(1)+'%',      unit:'', sub: deficit>0?'Unmet demand':'Fully met' },
     { cls:'y',  lbl:'Fossil Share',    val: _pct(gen, ['Thermal','Coal','Gas','Diesel'], totalGen), unit:'%', sub:'Thermal+Gas+Diesel' },

@@ -4969,94 +4969,207 @@
   "ts": "2026-09-12T18:52:18.169933",
   "sources": [
    {
-    "source": "NTPC Mouda",
+    "source": "KSTPS-WR",
     "type": "Thermal",
-    "capacity_mw": 180,
-    "agency": "Central"
+    "capacity_mw": 212.0,
+    "agency": "Central ISGS",
+    "plant_mw": 2100.0
    },
    {
-    "source": "NTPC Korba",
+    "source": "RAMAGUNDAM STPS STG-1&2",
     "type": "Thermal",
-    "capacity_mw": 92,
-    "agency": "Central"
+    "capacity_mw": 96.0,
+    "agency": "Central ISGS",
+    "plant_mw": 2100.0
    },
    {
-    "source": "NTPC Sipat",
+    "source": "VTPS 1",
     "type": "Thermal",
-    "capacity_mw": 120,
-    "agency": "Central"
+    "capacity_mw": 37.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1260.0
    },
    {
-    "source": "NTPC Gas (Kayamkulam/Gandhar)",
+    "source": "SIPAT_1",
+    "type": "Thermal",
+    "capacity_mw": 24.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1980.0
+   },
+   {
+    "source": "RGPPL",
     "type": "Gas",
-    "capacity_mw": 25,
-    "agency": "Central"
+    "capacity_mw": 20.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1967.0
    },
    {
-    "source": "Tata Power (Trombay)",
+    "source": "KHARGONE - I",
     "type": "Thermal",
-    "capacity_mw": 48,
-    "agency": "IPP"
+    "capacity_mw": 18.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1320.0
    },
    {
-    "source": "NPC (Tarapur)",
+    "source": "MAUDA-II",
+    "type": "Thermal",
+    "capacity_mw": 17.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1320.0
+   },
+   {
+    "source": "KAPS",
     "type": "Nuclear",
-    "capacity_mw": 25,
-    "agency": "Central"
+    "capacity_mw": 16.0,
+    "agency": "Central ISGS",
+    "plant_mw": 440.0
    },
    {
-    "source": "Sardar Sarovar",
-    "type": "Hydro",
-    "capacity_mw": 30,
-    "agency": "Central"
+    "source": "GADARWARA-I",
+    "type": "Thermal",
+    "capacity_mw": 15.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1600.0
    },
    {
-    "source": "Koyna (MSEB)",
-    "type": "Hydro",
-    "capacity_mw": 20,
-    "agency": "State"
+    "source": "NTPC SOLAPUR",
+    "type": "Thermal",
+    "capacity_mw": 15.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1320.0
    },
    {
-    "source": "Indira Sagar",
-    "type": "Hydro",
-    "capacity_mw": 18,
-    "agency": "Central"
+    "source": "VTPS 2",
+    "type": "Thermal",
+    "capacity_mw": 14.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1000.0
    },
    {
-    "source": "Salal / Uri / Chamera",
-    "type": "Hydro",
-    "capacity_mw": 22,
-    "agency": "Central"
+    "source": "GOA ENERGY PVT. LTD.",
+    "type": "Thermal",
+    "capacity_mw": 13.0,
+    "agency": "State Generation",
+    "plant_mw": 13.0
    },
    {
-    "source": "Goa Solar (GEDCL Rooftop)",
-    "type": "Solar",
-    "capacity_mw": 85,
-    "agency": "State"
+    "source": "MAUDA-I",
+    "type": "Thermal",
+    "capacity_mw": 13.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1000.0
    },
    {
-    "source": "Goa Wind",
-    "type": "Wind",
-    "capacity_mw": 5,
-    "agency": "State"
+    "source": "SESA STERLITE LTD.",
+    "type": "Thermal",
+    "capacity_mw": 13.0,
+    "agency": "State Generation",
+    "plant_mw": 13.0
    },
    {
-    "source": "Waste to Energy (Saligao)",
-    "type": "WtE",
-    "capacity_mw": 8,
-    "agency": "State"
+    "source": "TAPS 3&4",
+    "type": "Nuclear",
+    "capacity_mw": 13.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1080.0
    },
    {
-    "source": "IEX DAM/RTM",
-    "type": "Exchange",
-    "capacity_mw": null,
-    "agency": "Exchange"
+    "source": "VSTPS 4",
+    "type": "Thermal",
+    "capacity_mw": 13.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1000.0
    },
    {
-    "source": "Bilateral (Short-term)",
-    "type": "Bilateral",
-    "capacity_mw": null,
-    "agency": "Market"
+    "source": "VSTPS 3",
+    "type": "Thermal",
+    "capacity_mw": 12.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1000.0
+   },
+   {
+    "source": "SIPAT 2-WR",
+    "type": "Thermal",
+    "capacity_mw": 11.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1000.0
+   },
+   {
+    "source": "GANDHAR RLNG",
+    "type": "Gas",
+    "capacity_mw": 7.0,
+    "agency": "Central ISGS",
+    "plant_mw": 657.0
+   },
+   {
+    "source": "KSTPS 3-WR",
+    "type": "Thermal",
+    "capacity_mw": 6.0,
+    "agency": "Central ISGS",
+    "plant_mw": 500.0
+   },
+   {
+    "source": "VSTPS -5",
+    "type": "Thermal",
+    "capacity_mw": 6.0,
+    "agency": "Central ISGS",
+    "plant_mw": 500.0
+   },
+   {
+    "source": "GANDHAR",
+    "type": "Gas",
+    "capacity_mw": 5.0,
+    "agency": "Central ISGS",
+    "plant_mw": 657.0
+   },
+   {
+    "source": "LARA-1",
+    "type": "Thermal",
+    "capacity_mw": 4.0,
+    "agency": "Central ISGS",
+    "plant_mw": 1600.0
+   },
+   {
+    "source": "KAWAS GAS",
+    "type": "Gas",
+    "capacity_mw": 3.0,
+    "agency": "Central ISGS",
+    "plant_mw": 656.0
+   },
+   {
+    "source": "KAWAS LIQUID",
+    "type": "Gas",
+    "capacity_mw": 3.0,
+    "agency": "Central ISGS",
+    "plant_mw": 656.0
+   },
+   {
+    "source": "KAWAS NAPM",
+    "type": "Gas",
+    "capacity_mw": 3.0,
+    "agency": "Central ISGS",
+    "plant_mw": 656.0
+   },
+   {
+    "source": "KAWAS RLNG",
+    "type": "Gas",
+    "capacity_mw": 3.0,
+    "agency": "Central ISGS",
+    "plant_mw": 656.0
+   },
+   {
+    "source": "GAN_ NAPM",
+    "type": "Gas",
+    "capacity_mw": 1.0,
+    "agency": "Central ISGS",
+    "plant_mw": 657.0
+   },
+   {
+    "source": "GOA SPONGE PVT. LTD.",
+    "type": "Thermal",
+    "capacity_mw": 1.0,
+    "agency": "State Generation",
+    "plant_mw": 1.0
    }
   ],
   "demand_mw": null,
@@ -5129,7 +5242,10 @@
    }
   ],
   "state_supply_history": [],
-  "wrldc_drawal": []
+  "wrldc_drawal": [],
+  "sources_source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+  "sources_url": "https://meritindia.in/state-data/goa",
+  "sources_as_of": "10 Sep 2026"
  },
  "_goaHistory": {
   "sldc_trend": [
@@ -43178,5 +43294,342 @@
   },
   "source": "CEA monthly Installed Capacity report",
   "note": "Installed capacity. CEA reports RES as Small Hydro + Wind + Solar + Biomass + Waste; large hydro is counted separately. Published a few weeks after month end, so the newest figure usually lags by a month or two."
+ },
+ "_goaAllocation": {
+  "as_of": "10 Sep 2026",
+  "rows": [
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KSTPS-WR",
+    "plant_mw": 2100.0,
+    "alloc_mw": 212.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "RAMAGUNDAM STPS STG-1&2",
+    "plant_mw": 2100.0,
+    "alloc_mw": 96.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "VTPS 1",
+    "plant_mw": 1260.0,
+    "alloc_mw": 37.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "SIPAT_1",
+    "plant_mw": 1980.0,
+    "alloc_mw": 24.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "RGPPL",
+    "plant_mw": 1967.0,
+    "alloc_mw": 20.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KHARGONE - I",
+    "plant_mw": 1320.0,
+    "alloc_mw": 18.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "MAUDA-II",
+    "plant_mw": 1320.0,
+    "alloc_mw": 17.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KAPS",
+    "plant_mw": 440.0,
+    "alloc_mw": 16.0,
+    "type": "Nuclear",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "GADARWARA-I",
+    "plant_mw": 1600.0,
+    "alloc_mw": 15.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "NTPC SOLAPUR",
+    "plant_mw": 1320.0,
+    "alloc_mw": 15.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "VTPS 2",
+    "plant_mw": 1000.0,
+    "alloc_mw": 14.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "GOA ENERGY PVT. LTD.",
+    "plant_mw": 13.0,
+    "alloc_mw": 13.0,
+    "type": "Thermal",
+    "ownership": "State Generation",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "MAUDA-I",
+    "plant_mw": 1000.0,
+    "alloc_mw": 13.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "SESA STERLITE LTD.",
+    "plant_mw": 13.0,
+    "alloc_mw": 13.0,
+    "type": "Thermal",
+    "ownership": "State Generation",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "TAPS 3&4",
+    "plant_mw": 1080.0,
+    "alloc_mw": 13.0,
+    "type": "Nuclear",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "VSTPS 4",
+    "plant_mw": 1000.0,
+    "alloc_mw": 13.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "VSTPS 3",
+    "plant_mw": 1000.0,
+    "alloc_mw": 12.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "SIPAT 2-WR",
+    "plant_mw": 1000.0,
+    "alloc_mw": 11.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "GANDHAR RLNG",
+    "plant_mw": 657.0,
+    "alloc_mw": 7.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KSTPS 3-WR",
+    "plant_mw": 500.0,
+    "alloc_mw": 6.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "VSTPS -5",
+    "plant_mw": 500.0,
+    "alloc_mw": 6.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "GANDHAR",
+    "plant_mw": 657.0,
+    "alloc_mw": 5.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "LARA-1",
+    "plant_mw": 1600.0,
+    "alloc_mw": 4.0,
+    "type": "Thermal",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KAWAS GAS",
+    "plant_mw": 656.0,
+    "alloc_mw": 3.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KAWAS LIQUID",
+    "plant_mw": 656.0,
+    "alloc_mw": 3.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KAWAS NAPM",
+    "plant_mw": 656.0,
+    "alloc_mw": 3.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "KAWAS RLNG",
+    "plant_mw": 656.0,
+    "alloc_mw": 3.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "GAN_ NAPM",
+    "plant_mw": 657.0,
+    "alloc_mw": 1.0,
+    "type": "Gas",
+    "ownership": "Central ISGS",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   },
+   {
+    "as_of": "10 Sep 2026",
+    "station": "GOA SPONGE PVT. LTD.",
+    "plant_mw": 1.0,
+    "alloc_mw": 1.0,
+    "type": "Thermal",
+    "ownership": "State Generation",
+    "variable_cost_rs_kwh": null,
+    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+    "fetched_at": "2026-09-12T20:48:23.421015+05:30"
+   }
+  ],
+  "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
+  "url": "https://meritindia.in/state-data/goa",
+  "stations": 29,
+  "total_alloc_mw": 614.0,
+  "by_type": {
+   "Thermal": 540.0,
+   "Gas": 45.0,
+   "Nuclear": 29.0
+  },
+  "by_ownership": {
+   "Central ISGS": 587.0,
+   "State Generation": 27.0
+  }
  }
 }

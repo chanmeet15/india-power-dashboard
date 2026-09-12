@@ -1313,10 +1313,12 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
         <div>
           <div style="font-weight:700;color:#0055aa;margin-bottom:6px">📋 Administration</div>
-          <div>Utility: <b>Goa Electricity Dept (GED) / GEDCL</b></div>
-          <div>Transmission: <b>GETCO / PGCIL (central)</b></div>
+          <div>Utility: <b>Goa Electricity Department (GED)</b></div>
+          <div>Transmission: <b>PGCIL</b> (central — Goa has no state transco)</div>
           <div>SLDC: <b>Goa SLDC (goaelectricity.gov.in)</b></div>
+          <div>Regulator: <b>JERC for Goa &amp; UTs</b></div>
           <div>Regional grid: <b>Western Region (WRLDC)</b></div>
+          <div>Also: <b>100 MW connectivity from Southern Region</b></div>
         </div>
         <div>
           <div style="font-weight:700;color:#007744;margin-bottom:6px">⚡ Supply Profile <span style="font-weight:400;color:#5a7a9a">— observed</span></div>
@@ -1328,11 +1330,8 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
           <div id="goa-fact-asof" style="margin-top:6px;color:#5a7a9a">—</div>
         </div>
         <div>
-          <div style="font-weight:700;color:#cc6600;margin-bottom:6px">🔌 Central Sector</div>
-          <div>Main supplier: <b>NTPC (Mouda, Korba, Sipat)</b></div>
-          <div>Nuclear: <b>NPCIL Tarapur allocation</b></div>
-          <div>Hydro: <b>Sardar Sarovar, Koyna</b></div>
-          <div>Exchange: <b>IEX DAM/RTM + bilateral</b></div>
+          <div style="font-weight:700;color:#cc6600;margin-bottom:6px">🔌 Allocation Profile</div>
+          <div id="goa-fact-alloc">—</div>
         </div>
       </div>
     </div>
@@ -6017,8 +6016,18 @@ function renderGoa() {
   // the last published day, and the labels below say which day that is rather
   // than implying these are live readings.
   const gp    = data?._goaHistory?.psp_latest || null;
-  const dem   = goa.demand_mw      || sldc.demand_mw      || sd.demand_mw     || 0;
-  const gen   = goa.generation_mw  || sldc.generation_mw  || sd.met_mw        || 0;
+  // sd.met_mw is sd.demand_mw copied, so falling back to it made supply equal
+  // demand exactly and printed "0 MW surplus" as though it were measured. PSP
+  // publishes Goa's energy met AND its energy shortage for the day, so the two
+  // can be derived honestly: requirement = met + shortage, availability = met,
+  // both as a daily average MW (energy / 24 h).
+  const pspDemMW = gp && Number.isFinite(gp.energy_met_mu)
+    ? ((gp.energy_met_mu + (Number.isFinite(gp.energy_shortage_mu) ? gp.energy_shortage_mu : 0)) * 1000 / 24)
+    : 0;
+  const pspGenMW = gp && Number.isFinite(gp.energy_met_mu)
+    ? (gp.energy_met_mu * 1000 / 24) : 0;
+  const dem   = goa.demand_mw      || sldc.demand_mw      || pspDemMW || 0;
+  const gen   = goa.generation_mw  || sldc.generation_mw  || pspGenMW || 0;
   // No Goa-specific frequency is published anywhere. The all-India profile is
   // the honest nearest thing and is labelled as such, never as a Goa reading.
   const freq  = goa.freq_hz        || sldc.freq_hz        || data?._psp?.latest_frequency_hz || 0;
@@ -6035,13 +6044,24 @@ function renderGoa() {
 
   const drawal = (goa.wrldc_drawal||[])[0];
 
-  document.getElementById('goa-demand').textContent  = dem ? dem.toLocaleString() + ' MW' : '—';
-  document.getElementById('goa-supply').textContent  = gen ? gen.toLocaleString() + ' MW' : '—';
+  // dem/gen resolve from the live SLDC feed if it ever parses, otherwise from
+  // the PSP-derived daily average (energy / 24 h). Those are different things
+  // and the tile said "real-time" for both.
+  const demIsLive = !!(goa.demand_mw || sldc.demand_mw);
+  const genIsLive = !!(goa.generation_mw || sldc.generation_mw);
+  document.getElementById('goa-demand').textContent  = dem ? Math.round(dem).toLocaleString() + ' MW' : '—';
+  document.getElementById('goa-supply').textContent  = gen ? Math.round(gen).toLocaleString() + ' MW' : '—';
+  const demLbl = document.getElementById('goa-demand')?.nextElementSibling;
+  if(demLbl) demLbl.textContent = !dem ? 'MW · no feed'
+    : demIsLive ? 'MW · real-time' : `MW · day average, PSP ${gp?.date||''}`;
+  const supLbl = document.getElementById('goa-supply')?.nextElementSibling;
+  if(supLbl) supLbl.textContent = !gen ? 'MW · no feed'
+    : genIsLive ? 'MW · real-time' : `MW · energy met ÷ 24 h, PSP ${gp?.date||''}`;
   // Demand and supply are both unavailable for Goa, so this tile was printing
   // 0 - 0 as "0 MW surplus" in green: absence rendered as a reassuring reading.
   const balKnown = !!(dem && gen);
   document.getElementById('goa-deficit').textContent =
-    balKnown ? (def||sur).toLocaleString() + ' MW' : '\u2014';
+    balKnown ? Math.round(def||sur).toLocaleString() + ' MW' : '\u2014';
   document.getElementById('goa-deficit').style.color =
     !balKnown ? '#334' : def > 0 ? '#d0004a' : '#007744';
   document.getElementById('goa-deficit-lbl').textContent =
@@ -6086,6 +6106,7 @@ function renderGoa() {
   renderGoaDrawalChart(goa);
   renderGoaSourceTable(goa, dem, gen);
   renderGoaFacts(goa, hist);
+  creditGoaSources(goa);
 }
 
 // The Key Facts card was static, uncited text and had drifted about 20% low:
@@ -6113,7 +6134,32 @@ function renderGoaFacts(goa, hist){
     const last  = rows[rows.length-1].date || rows[rows.length-1].day || '';
     set('goa-fact-asof', `observed ${first} → ${last} · Grid-India PSP · ${rows.length} days`);
   }
-  const re = (goa?.sources||[]).filter(s => ['Solar','Wind','WtE','Small Hydro'].includes(s.type));
+  // Allocation profile, computed from the sourced list rather than asserted.
+  const srcs = goa?.sources || [];
+  const fa = document.getElementById('goa-fact-alloc');
+  if(fa){
+    if(!srcs.length){
+      fa.innerHTML = '<span style="color:#a06a00">No allocation list loaded — run '
+        + '<code>python goa_sources.py --fetch --ingest --write-json</code></span>';
+    } else {
+      const tot = srcs.reduce((a,x)=>a+(x.capacity_mw||0),0);
+      const byType = {}, byOwn = {};
+      srcs.forEach(x => { byType[x.type||'Other'] = (byType[x.type||'Other']||0)+(x.capacity_mw||0);
+                          byOwn[x.agency||'—'] = (byOwn[x.agency||'—']||0)+(x.capacity_mw||0); });
+      const top = [...srcs].sort((a,b)=>(b.capacity_mw||0)-(a.capacity_mw||0)).slice(0,3);
+      const pct = v => tot ? (v/tot*100).toFixed(0) : '0';
+      fa.innerHTML =
+        `<div>Total allocated: <b>${Math.round(tot).toLocaleString()} MW</b> across ${srcs.length} stations</div>`
+        + Object.entries(byType).sort((a,b)=>b[1]-a[1]).map(([k,v]) =>
+            `<div>${k}: <b>${Math.round(v).toLocaleString()} MW</b> (${pct(v)}%)</div>`).join('')
+        + Object.entries(byOwn).sort((a,b)=>b[1]-a[1]).map(([k,v]) =>
+            `<div>${k}: <b>${Math.round(v).toLocaleString()} MW</b></div>`).join('')
+        + `<div style="margin-top:4px;color:#5a7a9a">Largest: `
+        + top.map(t=>`${t.source} ${Math.round(t.capacity_mw)} MW`).join(' · ') + `</div>`
+        + (goa?.sources_as_of ? `<div style="color:#5a7a9a">MERIT India · as of ${goa.sources_as_of}</div>` : '');
+    }
+  }
+  const re = srcs.filter(s => ['Solar','Wind','WtE','Small Hydro'].includes(s.type));
   const reMw = re.reduce((a,s)=>a+(s.capacity_mw||0),0);
   if(reMw) set('goa-fact-re',
     `RE allocated: <b>${reMw} MW</b> (${re.map(s=>s.type).filter((v,i,a)=>a.indexOf(v)===i).join(' + ')}) <span style="color:#5a7a9a">· PPA list</span>`);
@@ -6125,7 +6171,7 @@ function renderGoaSourcesChart(goa, dem, gen) {
   if (!ctx) return;
   if (charts['goa-sources']) charts['goa-sources'].destroy();
 
-  const sources = goa.sources || GOA_SOURCES_DEMO;
+  const sources = goa.sources || [];
   // Estimate actual dispatch: scale down to match actual generation
   const totalAlloc = sources.filter(s => s.capacity_mw).reduce((a,s) => a + (s.capacity_mw||0), 0);
   const scale = (gen || dem * 0.97) / (totalAlloc || 1);
@@ -6157,8 +6203,8 @@ function renderGoaSourcesChart(goa, dem, gen) {
         // Est. Dispatch is allocation scaled by live generation / allocation.
         // With no live Goa generation the scale is zero, so this series was a
         // row of zeros drawn beside real allocation bars. Null it instead.
-        { label: gen ? 'Est. Dispatch (MW)' : 'Est. Dispatch — no live generation feed',
-          data: entries.map(e => gen ? e.est : null),
+        { label: 'Despatch (MW) — not published per station',
+          data: entries.map(() => null),
           backgroundColor: entries.map(e => (typeColors[e.label]||'#888')+'44'),
           borderColor: entries.map(e => typeColors[e.label]||'#888'),
           borderWidth: 1, borderDash: [4,2], type: 'bar', order: 2 },
@@ -6230,12 +6276,21 @@ function renderGoaREChart(goa) {
   if (charts['goa-re']) charts['goa-re'].destroy();
 
   const reTypes = ['Solar', 'Wind', 'WtE', 'Small Hydro'];
-  const sources = goa.sources || GOA_SOURCES_DEMO;
+  const sources = goa.sources || [];
   const reSources = sources.filter(s => reTypes.includes(s.type));
-  const labels = reSources.length ? reSources.map(s => s.source)
-    : ['Solar Rooftop (GEDCL)','Solar Ground','Wind','Waste to Energy (Saligao)'];
-  const capacity = reSources.length ? reSources.map(s => s.capacity_mw || 0)
-    : [60, 25, 5, 8];
+  // These fell back to a hardcoded ['Solar Rooftop (GEDCL)','Solar Ground',
+  // 'Wind','Waste to Energy (Saligao)'] at [60,25,5,8] whenever the allocation
+  // list carried no RE row - which is always, because MERIT lists inter-state
+  // generating stations and Goa's own solar/wind/WtE are not among them. So the
+  // chart was drawing four invented capacities as though they were measured.
+  if(!reSources.length){
+    histNote('ch-goa-re','No renewable capacity in the allocation list \u2014 MERIT covers '
+      + 'inter-state generating stations, so Goa\u2019s own solar, wind and waste-to-energy '
+      + 'are not in it. Needs a GED or MNRE source.');
+    return;
+  }
+  const labels = reSources.map(s => s.source);
+  const capacity = reSources.map(s => s.capacity_mw || 0);
   const colors = ['#FFB300','#FFD54F','#00b4d8','#2ECC71'];
 
   charts['goa-re'] = new Chart(ctx, {
@@ -6437,22 +6492,24 @@ function renderGoaMixDonut(goa, dem, gen) {
   if (!ctx) return;
   if (charts['goa-mix-donut']) charts['goa-mix-donut'].destroy();
 
-  const sources = goa.sources || GOA_SOURCES_DEMO;
+  const sources = goa.sources || [];
   const totalAlloc = sources.filter(s=>s.capacity_mw).reduce((a,s)=>a+(s.capacity_mw||0),0);
   const scale = (gen || dem*0.97 || totalAlloc) / (totalAlloc || 1);
 
   // Without a live generation figure the scale collapses to 0.95, so this is
   // the installed-allocation mix, not a supply mix. Say so on the card.
-  if(!gen && !dem){
+  {
     const card = document.getElementById('ch-goa-mix-donut')?.closest('.card');
     const ct = card?.querySelector('.ct'); const cs = card?.querySelector('.cs');
     if(ct) ct.innerHTML = '<div class="dot dg"></div>Allocation Mix by Fuel Category';
-    if(cs) cs.textContent = 'Share of contracted allocation \u00b7 not measured dispatch \u00b7 GED / PPA reference list';
   }
+  // With no live generation the card is relabelled "Allocation Mix", so it must
+  // show the allocation itself - the old x0.95 dispatch fudge made the donut
+  // read 510 MW of thermal where the bar chart beside it read 540.
   const byType = {};
   sources.forEach(s => {
     const t = s.type || 'Other';
-    byType[t] = (byType[t]||0) + Math.round((s.capacity_mw||0) * Math.min(scale, 0.95));
+    byType[t] = (byType[t]||0) + Math.round(s.capacity_mw || 0);
   });
   const labels = Object.keys(byType).filter(k => byType[k] > 0);
   const vals   = labels.map(k => byType[k]);
@@ -6554,7 +6611,7 @@ function renderGoaDrawalChart(goa) {
 function renderGoaSourceTable(goa, dem, gen) {
   const tbody = document.getElementById('goa-src-tbody');
   if (!tbody) return;
-  const sources = goa.sources || GOA_SOURCES_DEMO;
+  const sources = goa.sources || [];
   const totalAlloc = sources.filter(s=>s.capacity_mw).reduce((a,s)=>a+(s.capacity_mw||0),0);
   const scale = (gen || dem*0.97 || totalAlloc) / (totalAlloc || 1);
   const totalGen = sources.reduce((a,s) => a + Math.round((s.capacity_mw||0)*Math.min(scale,0.95)), 0);
@@ -6565,9 +6622,13 @@ function renderGoaSourceTable(goa, dem, gen) {
   // "Est. Today" is capacity x a scale derived from live generation. With no
   // live generation every row was capacity x 0.95, so the column repeated the
   // allocation and "Share %" was allocation share wearing a dispatch label.
-  const liveGen = !!(gen || dem);
+  // `scale` is capped at 0.95, so whenever any demand figure exists at all every
+  // row printed exactly 95% of its allocation and called it "Est. Today". That
+  // is a uniform fudge, not an estimate. MERIT does publish a real per-station
+  // Schedule (MWh), but it is empty on the page as fetched - so until that is
+  // populated the column is a dash rather than a number nobody measured.
   tbody.innerHTML = sources.map(s => {
-    const est  = liveGen ? Math.round((s.capacity_mw||0) * Math.min(scale, 0.95)) : null;
+    const est  = Number.isFinite(s.schedule_mwh) ? Math.round(s.schedule_mwh) : null;
     const pct  = totalAlloc > 0 && s.capacity_mw
                  ? ((s.capacity_mw/totalAlloc)*100).toFixed(1) : '—';
     const col  = typeColors[s.type] || '#888';
@@ -6583,6 +6644,26 @@ function renderGoaSourceTable(goa, dem, gen) {
       <td style="text-align:right;font-weight:600;color:${col}">${pct}%</td>
     </tr>`;
   }).join('');
+}
+
+// Every panel built on the allocation list says where the list came from and
+// which day it describes. The list used to be hardcoded, unsourced and wrong,
+// so an uncredited allocation panel is exactly what must not ship again.
+function creditGoaSources(goa){
+  const n = (goa?.sources||[]).length;
+  const src = goa?.sources_source, asOf = goa?.sources_as_of, url = goa?.sources_url;
+  const line = n
+    ? `${src || 'allocation list'}${asOf ? ' \u00b7 as of ' + asOf : ''} \u00b7 ${n} stations`
+    : 'No allocation list loaded \u2014 run: python goa_sources.py --fetch --ingest --write-json';
+  [['ch-goa-sources', null],
+   ['ch-goa-mix-donut', null],
+   ['ch-goa-re', 'Installed/allocated capacity by RE type \u00b7 '],
+   ['goa-src-tbody', null]].forEach(([id, prefix]) => {
+    const el = document.getElementById(id);
+    const cs = el?.closest('.card')?.querySelector('.cs');
+    if(cs) cs.innerHTML = (prefix||'') +
+      (url && n ? `<a href="${url}" target="_blank" rel="noopener" style="color:inherit">${line}</a>` : line);
+  });
 }
 
 // Demo data helper
@@ -6619,7 +6700,7 @@ function buildDemoGoaDays(n) {
 
 function dlGoaCSV() {
   const goa = data?._goaData || {};
-  const sources = goa.sources || GOA_SOURCES_DEMO;
+  const sources = goa.sources || [];
   const dem = goa.demand_mw || 0;
   const gen = goa.generation_mw || dem * 0.97;
   const totalAlloc = sources.filter(s=>s.capacity_mw).reduce((a,s)=>a+(s.capacity_mw||0),0);

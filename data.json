@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-09-11T17:23:19.535677+05:30",
+ "scraped_at": "2026-09-12T15:42:43.701147+05:30",
  "is_snapshot": true,
- "snapshot_date": "2026-09-11",
- "snapshot_time": "17:23",
+ "snapshot_date": "2026-09-12",
+ "snapshot_time": "15:42",
  "iex_dam": {
   "status": "ok",
   "date": "11-09-2026",
@@ -6491,74 +6491,85 @@
   "source": "NPP / CEA"
  },
  "_sources": {
-  "captured_at_ist": "2026-09-11T17:23:19.535677+05:30",
+  "captured_at_ist": "2026-09-12T15:42:43.701147+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
-    "source": "NPP real-time chart API (behind CEA home page)",
-    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-09-11",
-    "status": "ok",
-    "tried": [],
-    "as_of": "17:21 IST"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP real-time chart API (behind CEA home page): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: /dashBoard/d",
+     "NPP landing-page counters (daily totals): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: / (Caused by",
+     "Vidyut PRAVAH all-India: ConnectionError: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Max retries exceeded with url: / (Caus"
+    ]
    },
    {
     "field": "All-India price & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "17:15 - 17:30 dated 11 SEP 2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ConnectionError: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Max retries exceeded with url: / (Caus"
+    ]
    },
    {
     "field": "State-wise demand & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/state-data/<state>",
-    "status": "ok (32 states)",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
    },
    {
     "field": "Storage dispatch & trans-national exchange",
-    "source": "MERIT India",
-    "url": "https://meritindia.in/Dashboard/BindAllIndiaMap",
-    "status": "ok",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "MERIT India: ConnectionError: HTTPSConnectionPool(host='meritindia.in', port=443): Max retries exceeded with url: /Dashboar"
+    ]
    },
    {
     "field": "Installed capacity (RES / hydro / thermal / nuclear)",
-    "source": "NPP landing counters (CEA)",
-    "url": "https://npp.gov.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "09-Sep-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP landing counters (CEA): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: / (Caused by"
+    ]
    },
    {
     "field": "DAM MCP / MCV / 96 blocks",
-    "source": "Indian Energy Exchange (IEX)",
-    "url": "https://www.iexindia.com/market-data/day-ahead-market/market-snapshot",
-    "status": "ok (96 blocks)",
-    "tried": [],
-    "as_of": "Delivery day 11-09-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): ConnectionError: HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /marke"
+    ]
    },
    {
     "field": "RTM MCP / volume / blocks",
-    "source": "Indian Energy Exchange (IEX)",
-    "url": "https://www.iexindia.com/market-data/real-time-market/market-snapshot",
-    "status": "ok (72 blocks)",
-    "tried": [],
-    "as_of": "Delivery day 11-09-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): ConnectionError: HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /marke"
+    ]
    },
    {
     "field": "Grid frequency",
-    "source": "-",
+    "source": "Grid-India / NLDC Daily PSP report",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "-",
-    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
+    "as_of": "2026-09-10 - published the morning after, so about a day behind live",
+    "status": "ok (96 blocks; latest 50.07 Hz at 23:45)",
     "tried": [
-     "grid-india.in (real-time)",
-     "report.grid-india.in",
-     "nldc.in",
-     "wrldc.in",
-     "meritindia.in"
+     "grid-india.in (real-time): no live feed",
+     "report.grid-india.in: no live feed",
+     "nldc.in: no live feed",
+     "wrldc.in: no live feed",
+     "meritindia.in: no live feed"
     ]
    }
   ]

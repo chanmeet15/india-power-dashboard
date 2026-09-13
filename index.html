@@ -730,8 +730,8 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
   <!-- State all-time records table -->
   <div class="card mb">
     <div class="sec" style="margin-bottom:8px">
-      <div class="ct"><div class="dot dp"></div>State-wise All-Time Peak Demand Records</div>
-      <div class="cs">Highest peak demand per state in the stored record · Grid-India PSP + daily scrape history · not a CEA all-time series</div>
+      <div class="ct"><div class="dot dp"></div>State Peak Demand — Highest Recorded</div>
+      <div class="cs" id="at-state-cs">Highest peak demand per state in the stored record · Grid-India PSP + daily scrape history · not an all-time series</div>
       <div class="frow">
         <input class="srch" id="at-state-search" oninput="renderAtStateTable()"
                placeholder="Search state..." style="width:140px">
@@ -741,7 +741,7 @@ input.srch:focus{border-color:#0088cc;box-shadow:0 0 0 3px rgba(0,136,204,.12)}
     <div class="tw"><table class="t" id="at-state-tbl">
       <thead><tr>
         <th>State</th><th>Region</th>
-        <th class="num">All-Time Peak (MW)</th>
+        <th class="num">Highest Recorded (MW)</th>
         <th class="num">Record Date</th>
         <th class="num">FY</th>
         <th class="num">Today's Peak (MW)</th>
@@ -2849,7 +2849,7 @@ function renderRegional(){
       <td class="num">${gen.toLocaleString()}</td>
       <td class="num ${(regExch[r.region]??0)>0?'lo':'hi'}">${
         regExch[r.region]!=null ? regExch[r.region].toFixed(1)+' MU' : '—'}</td>
-      <td class="num ${(r.deficit_mw||0)>0?'hi':'lo'}">${(r.deficit_mw||0).toLocaleString()}</td>
+      <td class="num ${((Number.isFinite(r.deficit_mw)?r.deficit_mw:Number.isFinite(r.shortage_mw)?r.shortage_mw:Math.max(0,(r.demand_mw||0)-(r.generation_mw||0))))>0?'hi':'lo'}">${((Number.isFinite(r.deficit_mw)?r.deficit_mw:Number.isFinite(r.shortage_mw)?r.shortage_mw:Math.max(0,(r.demand_mw||0)-(r.generation_mw||0)))).toLocaleString()}</td>
       <td class="num ${bal>=0?'lo':'hi'}">${balPct}%</td>
     </tr>`;
   }).join('');
@@ -3383,7 +3383,7 @@ function mkRegCompare(id,regs){
     data:{labels:regs.map(r=>r.region),datasets:[
       {label:'Demand MW',data:regs.map(r=>r.demand_mw||0),backgroundColor:'rgba(0,136,204,.5)',borderColor:'#0088cc',borderWidth:1},
       {label:'Generation MW',data:regs.map(r=>r.generation_mw||0),backgroundColor:'rgba(0,170,85,.4)',borderColor:'#00aa55',borderWidth:1},
-      {label:'Deficit MW',data:regs.map(r=>r.deficit_mw||0),backgroundColor:'rgba(208,0,74,.4)',borderColor:'#d0004a',borderWidth:1},
+      {label:'Deficit MW',data:regs.map(r=>(Number.isFinite(r.deficit_mw)?r.deficit_mw:Number.isFinite(r.shortage_mw)?r.shortage_mw:Math.max(0,(r.demand_mw||0)-(r.generation_mw||0)))),backgroundColor:'rgba(208,0,74,.4)',borderColor:'#d0004a',borderWidth:1},
     ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{boxWidth:9}},tooltip:TT},
       scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(23,45,74,.5)'}}}}}
@@ -3407,8 +3407,14 @@ function mkNatTrend(id,rows){
   charts[id]=new Chart(ctx,{type:'line',
     data:{labels:rows.map(r=>r.scraped_at?.slice(11,16)||r.t||r.date||''),
       datasets:[
-        {label:'Demand MW',data:rows.map(r=>r.demand_mw||r.demand||0),borderColor:'#e85d00',borderWidth:2,pointRadius:0,tension:.35,fill:false},
-        {label:'Generation MW',data:rows.map(r=>r.generation_mw||r.gen||0),borderColor:'#00aa55',borderWidth:2,pointRadius:0,tension:.35,fill:false},
+        {label:'Demand MW',data:rows.map(r=>{const v=r.demand_mw??r.demand;return Number.isFinite(v)?v:null;}),borderColor:'#e85d00',borderWidth:2,pointRadius:0,tension:.35,fill:false},
+        // `generation_mw||0` drew a flat zero line across the whole day whenever
+        // the series had no generation field - which it never has; the intraday
+        // feed carries time and demand only. A zero generation line reads as a
+        // blackout. Dropped unless a real generation value exists.
+        ...(rows.some(r=>Number.isFinite(r.generation_mw??r.gen)) ? [
+        {label:'Generation MW',data:rows.map(r=>{const v=r.generation_mw??r.gen;return Number.isFinite(v)?v:null;}),borderColor:'#00aa55',borderWidth:2,pointRadius:0,tension:.35,fill:false},
+        ] : []),
       ]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:true,position:'top',labels:{boxWidth:9}},tooltip:TT},
@@ -4399,7 +4405,7 @@ function renderSupplyRegional() {
       datasets:[
         { label:'Demand MW',    data:regs.map(r=>r.demand_mw||0),     backgroundColor:'rgba(232,93,0,.6)',  borderColor:'#e85d00', borderWidth:2, borderRadius:4 },
         { label:'Supply MW',    data:regs.map(r=>r.generation_mw||0), backgroundColor:'rgba(0,170,85,.5)',  borderColor:'#00aa55', borderWidth:2, borderRadius:4 },
-        { label:'Deficit MW',   data:regs.map(r=>r.deficit_mw||0),    backgroundColor:'rgba(208,0,74,.5)', borderColor:'#d0004a', borderWidth:2, borderRadius:4 },
+        { label:'Deficit MW',   data:regs.map(r=>(Number.isFinite(r.deficit_mw)?r.deficit_mw:Number.isFinite(r.shortage_mw)?r.shortage_mw:Math.max(0,(r.demand_mw||0)-(r.generation_mw||0)))),    backgroundColor:'rgba(208,0,74,.5)', borderColor:'#d0004a', borderWidth:2, borderRadius:4 },
       ]
     },
     options:{ responsive:true, maintainAspectRatio:false,
@@ -4844,6 +4850,22 @@ function renderMiniStateChart(canvasId, s){
   const canvas=document.getElementById(canvasId); if(!canvas) return;
   const ctx=canvas.getContext('2d'); if(!ctx) return;
   if(charts[canvasId]) charts[canvasId].destroy();
+  // 13 of 22 SLDCs parse nothing, and this drew three zero bars for each of
+  // them - which reads as "this state used no power", not "this SLDC did not
+  // report". Nothing is drawn unless the state actually reported something.
+  if(!Number.isFinite(s.demand_mw) && !Number.isFinite(s.generation_mw) && !Number.isFinite(s.met_mw)){
+    const p=canvas.parentNode;
+    canvas.style.display='none';
+    if(p && !p.querySelector('.mini-none')){
+      const n=document.createElement('div');
+      n.className='mini-none';
+      n.style.cssText='height:90px;display:flex;align-items:center;justify-content:center;'
+        +'text-align:center;color:#8aa0b8;font:10px/1.5 "JetBrains Mono",monospace';
+      n.textContent='SLDC feed not parsing';
+      canvas.parentNode.insertBefore(n, canvas.nextSibling);
+    }
+    return;
+  }
   const dem=s.demand_mw||0, gen=s.generation_mw||s.met_mw||0, def=Math.max(0,dem-gen);
   charts[canvasId]=new Chart(ctx,{type:'bar',
     data:{labels:['Demand','Supply','Deficit'],
@@ -4963,7 +4985,13 @@ function openSLDCModal(stateName, idx){
     const ctxB=document.getElementById('modal-ch-b')?.getContext('2d');
     if(ctxB){
       if(charts['modal-b']) charts['modal-b'].destroy();
-      const fv=freq||50;
+      // `freq||50` drew a perfect on-nominal gauge for every state with no
+      // frequency reading - 17 of 22 of them - in the same green as a measured
+      // one. No reading, no gauge.
+      if(!Number.isFinite(freq)){
+        histNote('modal-ch-b','No frequency reading published by this SLDC');
+      } else {
+      const fv=freq;
       const deviation=Math.abs(fv-50);
       charts['modal-b']=new Chart(ctxB,{type:'doughnut',
         data:{labels:['Within band','Deviation'],
@@ -4988,6 +5016,7 @@ function openSLDCModal(stateName, idx){
             }
           }}}
       );
+      }
     }
 
     // Chart C: Price context bar (DAM spot vs state implied price)
@@ -5638,6 +5667,13 @@ function renderAllTimePeak() {
 
 function renderAtStateTable() {
   const tbody = document.getElementById('at-state-tbody'); if(!tbody) return;
+  // "All-Time" over roughly a year of stored scraping is not all-time. Name the
+  // window the figures actually cover, taken from the stored history itself.
+  const _pk = data?._peakNational || [];
+  const _first = _pk.length ? _pk.map(r=>r.date).filter(Boolean).sort()[0] : null;
+  const _cs = document.getElementById('at-state-cs');
+  if(_cs && _first) _cs.textContent =
+    `Highest peak demand per state recorded since ${_first} · Grid-India PSP + daily scrape history · not an all-time series`;
   const at    = data?._peakAllTime || {};
   const sr    = at.state_records || [];
   const q     = (document.getElementById('at-state-search')?.value||'').toLowerCase();
@@ -7083,7 +7119,14 @@ function renderStorageMixChart(cap) {
   const ctx = document.getElementById('ch-stor-mix')?.getContext('2d');
   if (!ctx) return;
   if (charts['stor-mix']) charts['stor-mix'].destroy();
-  const vals = [cap.bess_mw||3000, cap.pumped_hydro_mw||3746];
+  // `||3000` / `||3746` are the same figures the curated project list happens to
+  // produce, so the fallback was invisible - but it would invent them outright
+  // if that list were ever absent.
+  if(!Number.isFinite(cap.bess_mw) && !Number.isFinite(cap.pumped_hydro_mw)){
+    histNote('ch-stor-mix','No storage capacity figures loaded');
+    return;
+  }
+  const vals = [cap.bess_mw||0, cap.pumped_hydro_mw||0];
   charts['stor-mix'] = new Chart(ctx, {
     type: 'doughnut',
     data: { labels:['BESS','Pumped Hydro (PSH)'],

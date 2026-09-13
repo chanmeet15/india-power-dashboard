@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-09-12T18:57:38.117243+05:30",
+ "scraped_at": "2026-09-13T06:43:32.404975+05:30",
  "is_snapshot": true,
- "snapshot_date": "2026-09-12",
- "snapshot_time": "18:57",
+ "snapshot_date": "2026-09-13",
+ "snapshot_time": "06:43",
  "iex_dam": {
   "status": "ok",
   "date": "12-09-2026",
@@ -3699,172 +3699,123 @@
   },
   "national_fy_series": [
    {
-    "fy": "2024-25",
-    "peak_mw": 250280.0,
-    "peak_met_mw": 250280.0,
-    "peak_date": "2024-05-30",
-    "source": "Grid India/CEA"
+    "fy": "2009-10",
+    "peak_mw": 119166.0,
+    "peak_met_mw": 104009.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2023-24",
-    "peak_mw": 243271.0,
-    "peak_met_mw": 243271.0,
-    "peak_date": "2024-05-23",
-    "source": "CEA Annual"
+    "fy": "2010-11",
+    "peak_mw": 122287.0,
+    "peak_met_mw": 110256.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2022-23",
-    "peak_mw": 229030.0,
-    "peak_met_mw": 224066.0,
-    "peak_date": "2023-06-29",
-    "source": "CEA Annual"
+    "fy": "2011-12",
+    "peak_mw": 130006.0,
+    "peak_met_mw": 116191.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2021-22",
-    "peak_mw": 215888.0,
-    "peak_met_mw": 209984.0,
-    "peak_date": "2022-04-29",
-    "source": "CEA Annual"
+    "fy": "2012-13",
+    "peak_mw": 135453.0,
+    "peak_met_mw": 123294.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2020-21",
-    "peak_mw": 200570.0,
-    "peak_met_mw": 189606.0,
-    "peak_date": "2021-04-07",
-    "source": "CEA Annual"
+    "fy": "2013-14",
+    "peak_mw": 135918.0,
+    "peak_met_mw": 129815.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2019-20",
-    "peak_mw": 190200.0,
-    "peak_met_mw": 183804.0,
-    "peak_date": "2019-07-11",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2018-19",
-    "peak_mw": 177022.0,
-    "peak_met_mw": 168529.0,
-    "peak_date": "2019-06-01",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2017-18",
-    "peak_mw": 164066.0,
-    "peak_met_mw": 158551.0,
-    "peak_date": "2018-06-01",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2016-17",
-    "peak_mw": 159542.0,
-    "peak_met_mw": 153366.0,
-    "peak_date": "2017-06-02",
-    "source": "CEA Annual"
+    "fy": "2014-15",
+    "peak_mw": 148166.0,
+    "peak_met_mw": 141160.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
     "fy": "2015-16",
     "peak_mw": 153366.0,
     "peak_met_mw": 148463.0,
-    "peak_date": "2016-07-18",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2014-15",
-    "peak_mw": 148463.0,
-    "peak_met_mw": 141193.0,
-    "peak_date": "2015-07-08",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2013-14",
-    "peak_mw": 135918.0,
-    "peak_met_mw": 130492.0,
-    "peak_date": "2014-06-07",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2012-13",
-    "peak_mw": 130006.0,
-    "peak_met_mw": 123294.0,
-    "peak_date": "2013-07-08",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2011-12",
-    "peak_mw": 122287.0,
-    "peak_met_mw": 116191.0,
-    "peak_date": "2012-07-30",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2010-11",
-    "peak_mw": 121292.0,
-    "peak_met_mw": 110256.0,
-    "peak_date": "2011-07-16",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2009-10",
-    "peak_mw": 119166.0,
-    "peak_met_mw": 104009.0,
-    "peak_date": "2010-01-28",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2008-09",
-    "peak_mw": 109809.0,
-    "peak_met_mw": 96785.0,
-    "peak_date": "2009-09-03",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2007-08",
-    "peak_mw": 108866.0,
-    "peak_met_mw": 90793.0,
-    "peak_date": "2008-07-25",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2006-07",
-    "peak_mw": 100715.0,
-    "peak_met_mw": 86818.0,
-    "peak_date": "2007-06-30",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2005-06",
-    "peak_mw": 93255.0,
-    "peak_met_mw": 81000.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2000-01",
-    "peak_mw": 78441.0,
-    "peak_met_mw": 68249.0,
+    "fy": "2016-17",
+    "peak_mw": 159542.0,
+    "peak_met_mw": 156934.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "1995-96",
-    "peak_mw": 68130.0,
-    "peak_met_mw": 55000.0,
+    "fy": "2017-18",
+    "peak_mw": 164066.0,
+    "peak_met_mw": 160752.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "1990-91",
-    "peak_mw": 48669.0,
-    "peak_met_mw": 42000.0,
+    "fy": "2018-19",
+    "peak_mw": 177022.0,
+    "peak_met_mw": 175528.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "1985-86",
-    "peak_mw": 34059.0,
-    "peak_met_mw": 29000.0,
+    "fy": "2019-20",
+    "peak_mw": 183804.0,
+    "peak_met_mw": 182533.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2020-21",
+    "peak_mw": 190198.0,
+    "peak_met_mw": 189395.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2021-22",
+    "peak_mw": 203014.0,
+    "peak_met_mw": 200539.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2022-23",
+    "peak_mw": 215888.0,
+    "peak_met_mw": 207231.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2023-24",
+    "peak_mw": 243271.0,
+    "peak_met_mw": 239931.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2024-25",
+    "peak_mw": 249856.0,
+    "peak_met_mw": 249854.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2025-26",
+    "peak_mw": 245444.0,
+    "peak_met_mw": 245416.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    }
   ],
   "state_records": [
@@ -4097,7 +4048,9 @@
     "fy": "2024-25"
    }
   ],
-  "current_fy": "2026-27"
+  "current_fy": "2026-27",
+  "fy_series_source": "Ministry of Power - \"Power Sector at a Glance, ALL INDIA\"",
+  "fy_series_fetched": "2026-09-12T21:24:13.758600+05:30"
  },
  "_curtailment": [
   {
@@ -6664,74 +6617,85 @@
   "source": "NPP / CEA"
  },
  "_sources": {
-  "captured_at_ist": "2026-09-12T18:57:38.117243+05:30",
+  "captured_at_ist": "2026-09-13T06:43:32.404975+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
-    "source": "NPP real-time chart API (behind CEA home page)",
-    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-09-12",
-    "status": "ok",
-    "tried": [],
-    "as_of": "18:51 IST"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP real-time chart API (behind CEA home page): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: /dashBoard/d",
+     "NPP landing-page counters (daily totals): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: / (Caused by",
+     "Vidyut PRAVAH all-India: ConnectionError: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Max retries exceeded with url: / (Caus"
+    ]
    },
    {
     "field": "All-India price & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "18:45 - 19:00 dated 12 SEP 2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ConnectionError: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Max retries exceeded with url: / (Caus"
+    ]
    },
    {
     "field": "State-wise demand & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/state-data/<state>",
-    "status": "ok (31 states), 1 unavailable",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
    },
    {
     "field": "Storage dispatch & trans-national exchange",
-    "source": "MERIT India",
-    "url": "https://meritindia.in/Dashboard/BindAllIndiaMap",
-    "status": "ok",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "MERIT India: ConnectionError: HTTPSConnectionPool(host='meritindia.in', port=443): Max retries exceeded with url: /Dashboar"
+    ]
    },
    {
     "field": "Installed capacity (RES / hydro / thermal / nuclear)",
-    "source": "NPP landing counters (CEA)",
-    "url": "https://npp.gov.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "09-Sep-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP landing counters (CEA): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: / (Caused by"
+    ]
    },
    {
     "field": "DAM MCP / MCV / 96 blocks",
-    "source": "Indian Energy Exchange (IEX)",
-    "url": "https://www.iexindia.com/market-data/day-ahead-market/market-snapshot",
-    "status": "ok (96 blocks)",
-    "tried": [],
-    "as_of": "Delivery day 12-09-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): ConnectionError: HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /marke"
+    ]
    },
    {
     "field": "RTM MCP / volume / blocks",
-    "source": "Indian Energy Exchange (IEX)",
-    "url": "https://www.iexindia.com/market-data/real-time-market/market-snapshot",
-    "status": "ok (80 blocks)",
-    "tried": [],
-    "as_of": "Delivery day 12-09-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): ConnectionError: HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /marke"
+    ]
    },
    {
     "field": "Grid frequency",
-    "source": "-",
+    "source": "Grid-India / NLDC Daily PSP report",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "-",
-    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
+    "as_of": "2026-09-11 - published the morning after, so about a day behind live",
+    "status": "ok (96 blocks; latest 49.96 Hz at 23:45)",
     "tried": [
-     "grid-india.in (real-time)",
-     "report.grid-india.in",
-     "nldc.in",
-     "wrldc.in",
-     "meritindia.in"
+     "grid-india.in (real-time): no live feed",
+     "report.grid-india.in: no live feed",
+     "nldc.in: no live feed",
+     "wrldc.in: no live feed",
+     "meritindia.in: no live feed"
     ]
    }
   ]

@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-09-15T09:32:15.907364+05:30",
+ "scraped_at": "2026-09-15T09:33:44.581410+05:30",
  "is_snapshot": true,
  "snapshot_date": "2026-09-15",
- "snapshot_time": "09:32",
+ "snapshot_time": "09:33",
  "iex_dam": {
   "status": "ok",
   "date": "14-09-2026",
@@ -6894,30 +6894,36 @@
   "source": "NPP / CEA"
  },
  "_sources": {
-  "captured_at_ist": "2026-09-15T09:32:15.907364+05:30",
+  "captured_at_ist": "2026-09-15T09:33:44.581410+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
-    "source": "NPP real-time chart API (behind CEA home page)",
-    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-09-14",
-    "status": "ok",
-    "tried": [],
-    "as_of": "11:47 IST"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP real-time chart API (behind CEA home page): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: /dashBoard/d",
+     "NPP landing-page counters (daily totals): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: / (Caused by",
+     "Vidyut PRAVAH all-India: ConnectionError: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Max retries exceeded with url: / (Caus"
+    ]
    },
    {
     "field": "All-India price & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "11:45 - 12:00 dated 14 SEP 2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ConnectionError: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Max retries exceeded with url: / (Caus"
+    ]
    },
    {
     "field": "State-wise demand & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/state-data/<state>",
-    "status": "ok (1 states), 31 unavailable",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
    },
    {
     "field": "Storage dispatch & trans-national exchange",
@@ -6925,7 +6931,7 @@
     "url": "-",
     "status": "UNAVAILABLE - every source failed",
     "tried": [
-     "MERIT India: skipped - step deadline reached"
+     "MERIT India: ConnectionError: HTTPSConnectionPool(host='meritindia.in', port=443): Max retries exceeded with url: /Dashboar"
     ]
    },
    {
@@ -6934,7 +6940,7 @@
     "url": "-",
     "status": "UNAVAILABLE - every source failed",
     "tried": [
-     "NPP landing counters (CEA): skipped - step deadline reached"
+     "NPP landing counters (CEA): ConnectionError: HTTPSConnectionPool(host='npp.gov.in', port=443): Max retries exceeded with url: / (Caused by"
     ]
    },
    {
@@ -6943,7 +6949,7 @@
     "url": "-",
     "status": "UNAVAILABLE - every source failed",
     "tried": [
-     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+     "Indian Energy Exchange (IEX): ConnectionError: HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /marke"
     ]
    },
    {
@@ -6952,7 +6958,7 @@
     "url": "-",
     "status": "UNAVAILABLE - every source failed",
     "tried": [
-     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+     "Indian Energy Exchange (IEX): ConnectionError: HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /marke"
     ]
    },
    {

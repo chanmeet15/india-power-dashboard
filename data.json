@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-10-05T11:43:42.424419+05:30",
+ "scraped_at": "2026-10-05T16:38:33.867682+05:30",
  "is_snapshot": true,
  "snapshot_date": "2026-10-05",
- "snapshot_time": "11:43",
+ "snapshot_time": "16:38",
  "iex_dam": {
   "status": "ok",
   "date": "05-10-2026",
@@ -787,89 +787,57 @@
   ]
  },
  "posoco": {
-  "national": {
-   "id": 13,
-   "scraped_at": "2026-09-03T12:27:42.584594",
-   "demand_mw": 250000.0,
-   "generation_mw": null,
-   "surplus_mw": null,
-   "deficit_mw": null,
-   "grid_freq_hz": null,
-   "peak_demand_mw": null,
-   "peak_met_mw": null,
-   "source": "FALLBACK:vidyutpravah.in"
-  },
   "status": "ok",
-  "regional": [
-   {
-    "region": "Northern",
-    "demand_mw": 4300.0,
-    "generation_mw": 4286.0,
-    "shortage_mw": 14.0
-   },
-   {
-    "region": "Western",
-    "demand_mw": 42071.0,
-    "generation_mw": 42071.0,
-    "shortage_mw": 0
-   },
-   {
-    "region": "Southern",
-    "demand_mw": 39753.0,
-    "generation_mw": 39753.0,
-    "shortage_mw": 0
-   },
-   {
-    "region": "Eastern",
-    "demand_mw": 1761.0,
-    "generation_mw": 1761.0,
-    "shortage_mw": 0
-   },
-   {
-    "region": "North-Eastern",
-    "demand_mw": 135.0,
-    "generation_mw": 135.0,
-    "shortage_mw": 0
-   }
-  ]
+  "scraped_at": "2026-10-05T16:38:33.867682+05:30",
+  "national": {
+   "demand_mw": 252285,
+   "generation_mw": 253304,
+   "deficit_mw": 0,
+   "surplus_mw": null,
+   "freq": null,
+   "peak_today_mw": 252543,
+   "min_today_mw": 252285
+  },
+  "regional": [],
+  "source": "NPP real-time chart API"
  },
  "_national": {
-  "demand_mw": 250000.0,
-  "generation_mw": null,
-  "deficit_mw": null,
+  "demand_mw": 252285,
+  "generation_mw": 253304,
+  "deficit_mw": 0,
   "surplus_mw": null,
-  "freq": null
+  "freq": null,
+  "peak_today_mw": 252543,
+  "min_today_mw": 252285
  },
  "merit": {
   "status": "ok",
+  "source": "NPP / CEA real-time",
+  "as_of": "2026-10-05T16:29:33+05:30",
   "generation_table": [
    {
-    "source": "Thermal (Coal)",
-    "generation_mw": 131707.0
+    "source": "Thermal",
+    "generation_mw": 166463
    },
    {
-    "source": "Renewable (RES)",
-    "generation_mw": 98603.0
+    "source": "Solar",
+    "generation_mw": 43352
    },
    {
     "source": "Hydro",
-    "generation_mw": 14385.0
+    "generation_mw": 20583
+   },
+   {
+    "source": "Wind",
+    "generation_mw": 10002
    },
    {
     "source": "Nuclear",
-    "generation_mw": 7119.0
+    "generation_mw": 7100
    },
    {
     "source": "Gas",
-    "generation_mw": 2423.0
-   },
-   {
-    "source": "Other RES",
-    "generation_mw": 2344.0
-   },
-   {
-    "source": "Storage",
-    "generation_mw": 38.0
+    "generation_mw": 5804
    }
   ]
  },
@@ -1287,7 +1255,20 @@
    "raw_html_length": 124664
   }
  ],
- "_nationalTrend": [],
+ "_nationalTrend": [
+  {
+   "time": "16:21",
+   "demand_mw": 252543
+  },
+  {
+   "time": "16:25",
+   "demand_mw": 252464
+  },
+  {
+   "time": "16:29",
+   "demand_mw": 252285
+  }
+ ],
  "_dbStats": {
   "iex_dam_summary": {
    "count": 511,
@@ -7124,75 +7105,82 @@
   "source": "NPP / CEA"
  },
  "_sources": {
-  "captured_at_ist": "2026-10-05T11:43:42.424419+05:30",
+  "captured_at_ist": "2026-10-05T16:38:33.867682+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
-    "source": "NPP landing-page counters (daily totals)",
-    "url": "https://npp.gov.in/",
+    "source": "NPP real-time chart API (behind CEA home page)",
+    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-10-05",
     "status": "ok",
-    "tried": [
-     "NPP real-time chart API (behind CEA home page): ValueError: demandmet1chartdata returned no rows"
-    ]
+    "tried": [],
+    "as_of": "16:29 IST"
    },
    {
     "field": "All-India price & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "11:30 - 11:45 dated 05 OCT 2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: HTTPError: 500 Server Error: Internal Server Error for url: https://vidyutpravah.in/"
+    ]
    },
    {
     "field": "State-wise demand & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/state-data/<state>",
-    "status": "ok (11 states), 21 unavailable",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
    },
    {
     "field": "Storage dispatch & trans-national exchange",
-    "source": "MERIT India",
-    "url": "https://meritindia.in/Dashboard/BindAllIndiaMap",
-    "status": "ok",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "MERIT India: skipped - step deadline reached"
+    ]
    },
    {
     "field": "Installed capacity (RES / hydro / thermal / nuclear)",
-    "source": "NPP landing counters (CEA)",
-    "url": "https://npp.gov.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "30-Sep-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP landing counters (CEA): skipped - step deadline reached"
+    ]
    },
    {
     "field": "DAM MCP / MCV / 96 blocks",
-    "source": "Indian Energy Exchange (IEX)",
-    "url": "https://www.iexindia.com/market-data/day-ahead-market/market-snapshot",
-    "status": "ok (96 blocks)",
-    "tried": [],
-    "as_of": "Delivery day 05-10-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+    ]
    },
    {
     "field": "RTM MCP / volume / blocks",
-    "source": "Indian Energy Exchange (IEX)",
-    "url": "https://www.iexindia.com/market-data/real-time-market/market-snapshot",
-    "status": "ok (52 blocks)",
-    "tried": [],
-    "as_of": "Delivery day 05-10-2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+    ]
    },
    {
     "field": "Grid frequency",
-    "source": "-",
+    "source": "Grid-India / NLDC Daily PSP report",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "-",
-    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
+    "as_of": "2026-10-04 - published the morning after, so about a day behind live",
+    "status": "ok (96 blocks; latest 49.96 Hz at 23:45)",
     "tried": [
-     "grid-india.in (real-time)",
-     "report.grid-india.in",
-     "nldc.in",
-     "wrldc.in",
-     "meritindia.in"
+     "grid-india.in (real-time): no live feed",
+     "report.grid-india.in: no live feed",
+     "nldc.in: no live feed",
+     "wrldc.in: no live feed",
+     "meritindia.in: no live feed"
     ]
    }
   ]
@@ -56512,5 +56500,46 @@
    "Central ISGS": 587.0,
    "State Generation": 27.0
   }
+ },
+ "_genTrend": {
+  "times": [
+   "16:21",
+   "16:25",
+   "16:29"
+  ],
+  "series": {
+   "Solar": [
+    46715,
+    45115,
+    43352
+   ],
+   "Nuclear": [
+    7118,
+    7097,
+    7100
+   ],
+   "Thermal": [
+    164843,
+    165757,
+    166463
+   ],
+   "Wind": [
+    9953,
+    9938,
+    10002
+   ],
+   "Hydro": [
+    19217,
+    19760,
+    20583
+   ],
+   "Gas": [
+    5699,
+    5742,
+    5804
+   ]
+  },
+  "source": "NPP real-time chart API",
+  "as_of": "2026-10-05T16:29:33+05:30"
  }
 }

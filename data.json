@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-10-04T15:16:55.719727+05:30",
+ "scraped_at": "2026-10-05T11:21:57.843814+05:30",
  "is_snapshot": true,
- "snapshot_date": "2026-10-04",
- "snapshot_time": "15:16",
+ "snapshot_date": "2026-10-05",
+ "snapshot_time": "11:21",
  "iex_dam": {
   "id": 509,
   "scraped_at": "2026-10-04T14:55:50.542063",
@@ -6471,7 +6471,7 @@
   ]
  },
  "_sources": {
-  "captured_at_ist": "2026-10-04T15:16:55.719727+05:30",
+  "captured_at_ist": "2026-10-05T11:21:57.843814+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
@@ -6488,14 +6488,16 @@
     "url": "https://vidyutpravah.in/",
     "status": "ok",
     "tried": [],
-    "as_of": "15:00 - 15:15 dated 04 OCT 2026"
+    "as_of": "11:15 - 11:30 dated 05 OCT 2026"
    },
    {
     "field": "State-wise demand & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/state-data/<state>",
-    "status": "ok (4 states), 28 unavailable",
-    "tried": []
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
    },
    {
     "field": "Storage dispatch & trans-national exchange",
@@ -6535,16 +6537,16 @@
    },
    {
     "field": "Grid frequency",
-    "source": "-",
+    "source": "Grid-India / NLDC Daily PSP report",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "-",
-    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
+    "as_of": "2026-10-03 - published the morning after, so about a day behind live",
+    "status": "ok (96 blocks; latest 49.86 Hz at 23:45)",
     "tried": [
-     "grid-india.in (real-time)",
-     "report.grid-india.in",
-     "nldc.in",
-     "wrldc.in",
-     "meritindia.in"
+     "grid-india.in (real-time): no live feed",
+     "report.grid-india.in: no live feed",
+     "nldc.in: no live feed",
+     "wrldc.in: no live feed",
+     "meritindia.in: no live feed"
     ]
    }
   ]

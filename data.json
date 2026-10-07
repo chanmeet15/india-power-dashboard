@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-10-06T13:15:26.191472",
+ "scraped_at": "2026-10-07T15:38:38.606557+05:30",
  "is_snapshot": true,
- "snapshot_date": "2026-10-06",
- "snapshot_time": "13:15 IST",
+ "snapshot_date": "2026-10-07",
+ "snapshot_time": "15:38",
  "iex_dam": {
   "id": 516,
   "scraped_at": "2026-10-06T07:58:57.847202",
@@ -15,57 +15,57 @@
   "status": "ok"
  },
  "posoco": {
+  "status": "ok",
+  "scraped_at": "2026-10-07T15:38:38.606557+05:30",
   "national": {
-   "id": 13,
-   "scraped_at": "2026-09-03T12:27:42.584594",
-   "demand_mw": 250000.0,
-   "generation_mw": null,
+   "demand_mw": 257520,
+   "generation_mw": 258036,
+   "deficit_mw": 0,
    "surplus_mw": null,
-   "deficit_mw": null,
-   "grid_freq_hz": null,
-   "peak_demand_mw": null,
-   "peak_met_mw": null,
-   "source": "FALLBACK:vidyutpravah.in"
+   "freq": null,
+   "peak_today_mw": 257909,
+   "min_today_mw": 204150
   },
-  "status": "ok"
+  "regional": [],
+  "source": "NPP real-time chart API"
  },
  "_national": {
-  "demand_mw": 250000.0,
-  "generation_mw": null,
-  "deficit_mw": null,
+  "demand_mw": 257520,
+  "generation_mw": 258036,
+  "deficit_mw": 0,
   "surplus_mw": null,
-  "freq": null
+  "freq": null,
+  "peak_today_mw": 257909,
+  "min_today_mw": 204150
  },
  "merit": {
   "status": "ok",
+  "source": "NPP / CEA real-time",
+  "as_of": "2026-10-07T15:27:59+05:30",
   "generation_table": [
    {
-    "source": "Thermal (Coal)",
-    "generation_mw": 171254.0
+    "source": "Thermal",
+    "generation_mw": 159417
+   },
+   {
+    "source": "Solar",
+    "generation_mw": 67891
    },
    {
     "source": "Hydro",
-    "generation_mw": 34682.0
-   },
-   {
-    "source": "Gas",
-    "generation_mw": 10252.0
-   },
-   {
-    "source": "Renewable (RES)",
-    "generation_mw": 9408.0
+    "generation_mw": 15294
    },
    {
     "source": "Nuclear",
-    "generation_mw": 7124.0
+    "generation_mw": 6744
    },
    {
-    "source": "Storage",
-    "generation_mw": 5568.0
+    "source": "Gas",
+    "generation_mw": 4718
    },
    {
-    "source": "Other RES",
-    "generation_mw": 2352.0
+    "source": "Wind",
+    "generation_mw": 3972
    }
   ]
  },
@@ -359,7 +359,208 @@
    "raw_html_length": 124664
   }
  ],
- "_nationalTrend": [],
+ "_nationalTrend": [
+  {
+   "time": "00:03",
+   "demand_mw": 219402
+  },
+  {
+   "time": "00:23",
+   "demand_mw": 217598
+  },
+  {
+   "time": "00:41",
+   "demand_mw": 216774
+  },
+  {
+   "time": "01:01",
+   "demand_mw": 215084
+  },
+  {
+   "time": "01:21",
+   "demand_mw": 213536
+  },
+  {
+   "time": "01:41",
+   "demand_mw": 212011
+  },
+  {
+   "time": "01:59",
+   "demand_mw": 210899
+  },
+  {
+   "time": "02:19",
+   "demand_mw": 209997
+  },
+  {
+   "time": "02:39",
+   "demand_mw": 209377
+  },
+  {
+   "time": "02:57",
+   "demand_mw": 208533
+  },
+  {
+   "time": "03:13",
+   "demand_mw": 207575
+  },
+  {
+   "time": "03:33",
+   "demand_mw": 205797
+  },
+  {
+   "time": "03:49",
+   "demand_mw": 205566
+  },
+  {
+   "time": "04:09",
+   "demand_mw": 204331
+  },
+  {
+   "time": "04:29",
+   "demand_mw": 205029
+  },
+  {
+   "time": "04:47",
+   "demand_mw": 205863
+  },
+  {
+   "time": "05:05",
+   "demand_mw": 207151
+  },
+  {
+   "time": "05:25",
+   "demand_mw": 209076
+  },
+  {
+   "time": "05:43",
+   "demand_mw": 211143
+  },
+  {
+   "time": "06:01",
+   "demand_mw": 213079
+  },
+  {
+   "time": "06:21",
+   "demand_mw": 214555
+  },
+  {
+   "time": "06:39",
+   "demand_mw": 217550
+  },
+  {
+   "time": "06:57",
+   "demand_mw": 218850
+  },
+  {
+   "time": "07:17",
+   "demand_mw": 221273
+  },
+  {
+   "time": "07:33",
+   "demand_mw": 224738
+  },
+  {
+   "time": "07:51",
+   "demand_mw": 228192
+  },
+  {
+   "time": "08:09",
+   "demand_mw": 232504
+  },
+  {
+   "time": "08:29",
+   "demand_mw": 238287
+  },
+  {
+   "time": "08:47",
+   "demand_mw": 241680
+  },
+  {
+   "time": "09:07",
+   "demand_mw": 245745
+  },
+  {
+   "time": "09:23",
+   "demand_mw": 249166
+  },
+  {
+   "time": "09:43",
+   "demand_mw": 250545
+  },
+  {
+   "time": "10:03",
+   "demand_mw": 251668
+  },
+  {
+   "time": "10:23",
+   "demand_mw": 252837
+  },
+  {
+   "time": "10:39",
+   "demand_mw": 253159
+  },
+  {
+   "time": "10:57",
+   "demand_mw": 252592
+  },
+  {
+   "time": "11:13",
+   "demand_mw": 250771
+  },
+  {
+   "time": "11:29",
+   "demand_mw": 250249
+  },
+  {
+   "time": "11:46",
+   "demand_mw": 250423
+  },
+  {
+   "time": "12:43",
+   "demand_mw": 248055
+  },
+  {
+   "time": "13:01",
+   "demand_mw": 248184
+  },
+  {
+   "time": "13:21",
+   "demand_mw": 248184
+  },
+  {
+   "time": "13:39",
+   "demand_mw": 248184
+  },
+  {
+   "time": "13:57",
+   "demand_mw": 248609
+  },
+  {
+   "time": "14:13",
+   "demand_mw": 250192
+  },
+  {
+   "time": "14:29",
+   "demand_mw": 254202
+  },
+  {
+   "time": "14:45",
+   "demand_mw": 256655
+  },
+  {
+   "time": "15:03",
+   "demand_mw": 257284
+  },
+  {
+   "time": "15:19",
+   "demand_mw": 257164
+  },
+  {
+   "time": "15:27",
+   "demand_mw": 257520
+  }
+ ],
  "_dbStats": {
   "iex_dam_summary": {
    "count": 516,
@@ -24582,5 +24783,456 @@
   },
   "source": "CEA monthly Installed Capacity report",
   "note": "Installed capacity. CEA reports RES as Small Hydro + Wind + Solar + Biomass + Waste; large hydro is counted separately. Published a few weeks after month end, so the newest figure usually lags by a month or two."
+ },
+ "_genTrend": {
+  "times": [
+   "00:03",
+   "00:23",
+   "00:41",
+   "01:01",
+   "01:21",
+   "01:41",
+   "01:59",
+   "02:19",
+   "02:39",
+   "02:57",
+   "03:13",
+   "03:33",
+   "03:45",
+   "04:05",
+   "04:25",
+   "04:43",
+   "05:01",
+   "05:21",
+   "05:39",
+   "05:57",
+   "06:17",
+   "06:37",
+   "06:55",
+   "07:13",
+   "07:29",
+   "07:47",
+   "08:07",
+   "08:25",
+   "08:43",
+   "09:03",
+   "09:19",
+   "09:39",
+   "09:59",
+   "10:19",
+   "10:37",
+   "10:53",
+   "11:09",
+   "11:25",
+   "11:43",
+   "12:39",
+   "12:57",
+   "13:17",
+   "13:37",
+   "13:53",
+   "14:09",
+   "14:27",
+   "14:43",
+   "14:59",
+   "15:15",
+   "15:27"
+  ],
+  "series": {
+   "Wind": [
+    6914,
+    6599,
+    6092,
+    5671,
+    5410,
+    5164,
+    5119,
+    5023,
+    5034,
+    5048,
+    4929,
+    4768,
+    4708,
+    4552,
+    4423,
+    4384,
+    4345,
+    4376,
+    4344,
+    4383,
+    4293,
+    4260,
+    4130,
+    3997,
+    3833,
+    3427,
+    2858,
+    2501,
+    2316,
+    2417,
+    2612,
+    2724,
+    2681,
+    2777,
+    3118,
+    3198,
+    3554,
+    3977,
+    4316,
+    4543,
+    4462,
+    4462,
+    4462,
+    4431,
+    4410,
+    4252,
+    4285,
+    4257,
+    4129,
+    3972
+   ],
+   "Nuclear": [
+    7256,
+    7229,
+    7227,
+    7234,
+    7249,
+    7246,
+    7256,
+    7256,
+    7255,
+    7247,
+    7255,
+    7272,
+    7255,
+    7262,
+    7264,
+    7269,
+    7266,
+    7256,
+    7267,
+    7265,
+    7248,
+    7251,
+    7266,
+    7266,
+    7255,
+    7269,
+    7267,
+    7249,
+    7267,
+    7270,
+    7247,
+    7235,
+    7225,
+    7229,
+    7232,
+    7232,
+    7229,
+    7210,
+    7212,
+    7222,
+    7230,
+    7230,
+    7230,
+    7207,
+    7214,
+    7197,
+    7186,
+    6752,
+    6744,
+    6744
+   ],
+   "Gas": [
+    10348,
+    9765,
+    9718,
+    9616,
+    9598,
+    9484,
+    9418,
+    9301,
+    9192,
+    8877,
+    8452,
+    8183,
+    7972,
+    7926,
+    7326,
+    7120,
+    7231,
+    7374,
+    7577,
+    7618,
+    7551,
+    7516,
+    7503,
+    6498,
+    5213,
+    4128,
+    3211,
+    2533,
+    2549,
+    2504,
+    2520,
+    2486,
+    2492,
+    2498,
+    2482,
+    2439,
+    2457,
+    2473,
+    2475,
+    2501,
+    2487,
+    2487,
+    2487,
+    2859,
+    3173,
+    3544,
+    3694,
+    3892,
+    4290,
+    4718
+   ],
+   "Thermal": [
+    170919,
+    170599,
+    170675,
+    169671,
+    169326,
+    168555,
+    168240,
+    167711,
+    167121,
+    166665,
+    166682,
+    166217,
+    166334,
+    165453,
+    167004,
+    167360,
+    167525,
+    167941,
+    168221,
+    168739,
+    168848,
+    169380,
+    167994,
+    166769,
+    165272,
+    163729,
+    160594,
+    158065,
+    155020,
+    150191,
+    149764,
+    146272,
+    143235,
+    140961,
+    138651,
+    136982,
+    134117,
+    132218,
+    130903,
+    129365,
+    129546,
+    129546,
+    129546,
+    132746,
+    137271,
+    144088,
+    149208,
+    153323,
+    155826,
+    159417
+   ],
+   "Solar": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    111,
+    134,
+    129,
+    144,
+    249,
+    1628,
+    4651,
+    10441,
+    17858,
+    27766,
+    39228,
+    49714,
+    58785,
+    65888,
+    71269,
+    76904,
+    81597,
+    85303,
+    88436,
+    90127,
+    91315,
+    92132,
+    92549,
+    92145,
+    92258,
+    92258,
+    92258,
+    88252,
+    84578,
+    81766,
+    78119,
+    75267,
+    71235,
+    67891
+   ],
+   "Hydro": [
+    22702,
+    22592,
+    22273,
+    22047,
+    20818,
+    20362,
+    19925,
+    20032,
+    19940,
+    19446,
+    19262,
+    18970,
+    18803,
+    18580,
+    18812,
+    19175,
+    19770,
+    21313,
+    22645,
+    24194,
+    25807,
+    26591,
+    26745,
+    26245,
+    24491,
+    21891,
+    18828,
+    17124,
+    15739,
+    15254,
+    15297,
+    15420,
+    14590,
+    13644,
+    13252,
+    13449,
+    13229,
+    13222,
+    13598,
+    12779,
+    12822,
+    12822,
+    12822,
+    12804,
+    12848,
+    13195,
+    13822,
+    14785,
+    14870,
+    15294
+   ]
+  },
+  "source": "NPP real-time chart API",
+  "as_of": "2026-10-07T15:27:59+05:30"
+ },
+ "_sources": {
+  "captured_at_ist": "2026-10-07T15:38:38.606557+05:30",
+  "fields": [
+   {
+    "field": "National demand & generation mix",
+    "source": "NPP real-time chart API (behind CEA home page)",
+    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-10-07",
+    "status": "ok",
+    "tried": [],
+    "as_of": "15:27 IST"
+   },
+   {
+    "field": "All-India price & shortage",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ReadTimeout: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Read timed out. (read timeout=25)"
+    ]
+   },
+   {
+    "field": "State-wise demand & shortage",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
+   },
+   {
+    "field": "Storage dispatch & trans-national exchange",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "MERIT India: skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "Installed capacity (RES / hydro / thermal / nuclear)",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP landing counters (CEA): skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "DAM MCP / MCV / 96 blocks",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "RTM MCP / volume / blocks",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "Grid frequency",
+    "source": "-",
+    "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
+    "as_of": "-",
+    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
+    "tried": [
+     "grid-india.in (real-time)",
+     "report.grid-india.in",
+     "nldc.in",
+     "wrldc.in",
+     "meritindia.in"
+    ]
+   }
+  ]
  }
 }

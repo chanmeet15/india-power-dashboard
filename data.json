@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-10-16T09:45:36.747634",
+ "scraped_at": "2026-10-16T13:54:53.343203+05:30",
  "is_snapshot": true,
  "snapshot_date": "2026-10-16",
- "snapshot_time": "09:45 IST",
+ "snapshot_time": "13:54",
  "iex_dam": {
   "id": 530,
   "scraped_at": "2026-10-15T12:28:39.807568",
@@ -15,57 +15,57 @@
   "status": "ok"
  },
  "posoco": {
+  "status": "ok",
+  "scraped_at": "2026-10-16T13:54:53.343203+05:30",
   "national": {
-   "id": 13,
-   "scraped_at": "2026-09-03T12:27:42.584594",
-   "demand_mw": 250000.0,
-   "generation_mw": null,
+   "demand_mw": 238672,
+   "generation_mw": 238169,
+   "deficit_mw": 503,
    "surplus_mw": null,
-   "deficit_mw": null,
-   "grid_freq_hz": null,
-   "peak_demand_mw": null,
-   "peak_met_mw": null,
-   "source": "FALLBACK:vidyutpravah.in"
+   "freq": null,
+   "peak_today_mw": 246301,
+   "min_today_mw": 194201
   },
-  "status": "ok"
+  "regional": [],
+  "source": "NPP real-time chart API"
  },
  "_national": {
-  "demand_mw": 250000.0,
-  "generation_mw": null,
-  "deficit_mw": null,
+  "demand_mw": 238672,
+  "generation_mw": 238169,
+  "deficit_mw": 503,
   "surplus_mw": null,
-  "freq": null
+  "freq": null,
+  "peak_today_mw": 246301,
+  "min_today_mw": 194201
  },
  "merit": {
   "status": "ok",
+  "source": "NPP / CEA real-time",
+  "as_of": "2026-10-16T13:45:33+05:30",
   "generation_table": [
    {
-    "source": "Thermal (Coal)",
-    "generation_mw": 131660.0
+    "source": "Thermal",
+    "generation_mw": 132772
    },
    {
-    "source": "Renewable (RES)",
-    "generation_mw": 91684.0
+    "source": "Solar",
+    "generation_mw": 81670
    },
    {
     "source": "Hydro",
-    "generation_mw": 11078.0
+    "generation_mw": 10856
    },
    {
     "source": "Nuclear",
-    "generation_mw": 7271.0
+    "generation_mw": 7247
    },
    {
-    "source": "Other RES",
-    "generation_mw": 2455.0
+    "source": "Wind",
+    "generation_mw": 3532
    },
    {
     "source": "Gas",
-    "generation_mw": 2001.0
-   },
-   {
-    "source": "Storage",
-    "generation_mw": 3.0
+    "generation_mw": 2092
    }
   ]
  },
@@ -346,7 +346,232 @@
    "raw_html_length": 127548
   }
  ],
- "_nationalTrend": [],
+ "_nationalTrend": [
+  {
+   "time": "00:03",
+   "demand_mw": 208374
+  },
+  {
+   "time": "00:19",
+   "demand_mw": 208743
+  },
+  {
+   "time": "00:35",
+   "demand_mw": 207535
+  },
+  {
+   "time": "00:47",
+   "demand_mw": 206406
+  },
+  {
+   "time": "01:01",
+   "demand_mw": 205178
+  },
+  {
+   "time": "01:15",
+   "demand_mw": 204001
+  },
+  {
+   "time": "01:31",
+   "demand_mw": 203141
+  },
+  {
+   "time": "01:47",
+   "demand_mw": 201655
+  },
+  {
+   "time": "02:01",
+   "demand_mw": 200692
+  },
+  {
+   "time": "02:15",
+   "demand_mw": 199659
+  },
+  {
+   "time": "02:31",
+   "demand_mw": 198276
+  },
+  {
+   "time": "02:47",
+   "demand_mw": 197743
+  },
+  {
+   "time": "03:01",
+   "demand_mw": 196496
+  },
+  {
+   "time": "03:17",
+   "demand_mw": 196074
+  },
+  {
+   "time": "03:31",
+   "demand_mw": 195490
+  },
+  {
+   "time": "03:47",
+   "demand_mw": 194653
+  },
+  {
+   "time": "04:01",
+   "demand_mw": 194547
+  },
+  {
+   "time": "04:17",
+   "demand_mw": 195023
+  },
+  {
+   "time": "04:33",
+   "demand_mw": 195622
+  },
+  {
+   "time": "04:49",
+   "demand_mw": 197148
+  },
+  {
+   "time": "05:05",
+   "demand_mw": 199088
+  },
+  {
+   "time": "05:21",
+   "demand_mw": 202736
+  },
+  {
+   "time": "05:37",
+   "demand_mw": 205721
+  },
+  {
+   "time": "05:53",
+   "demand_mw": 208039
+  },
+  {
+   "time": "06:09",
+   "demand_mw": 209297
+  },
+  {
+   "time": "06:25",
+   "demand_mw": 213231
+  },
+  {
+   "time": "06:39",
+   "demand_mw": 215337
+  },
+  {
+   "time": "06:53",
+   "demand_mw": 217206
+  },
+  {
+   "time": "07:09",
+   "demand_mw": 218081
+  },
+  {
+   "time": "07:25",
+   "demand_mw": 219909
+  },
+  {
+   "time": "07:41",
+   "demand_mw": 222940
+  },
+  {
+   "time": "07:57",
+   "demand_mw": 222473
+  },
+  {
+   "time": "08:13",
+   "demand_mw": 228278
+  },
+  {
+   "time": "08:29",
+   "demand_mw": 232009
+  },
+  {
+   "time": "08:45",
+   "demand_mw": 235392
+  },
+  {
+   "time": "09:01",
+   "demand_mw": 236995
+  },
+  {
+   "time": "09:17",
+   "demand_mw": 241884
+  },
+  {
+   "time": "09:29",
+   "demand_mw": 243872
+  },
+  {
+   "time": "09:43",
+   "demand_mw": 245303
+  },
+  {
+   "time": "09:57",
+   "demand_mw": 245928
+  },
+  {
+   "time": "10:25",
+   "demand_mw": 245444
+  },
+  {
+   "time": "10:39",
+   "demand_mw": 245904
+  },
+  {
+   "time": "10:53",
+   "demand_mw": 245007
+  },
+  {
+   "time": "11:07",
+   "demand_mw": 244503
+  },
+  {
+   "time": "11:23",
+   "demand_mw": 244406
+  },
+  {
+   "time": "11:35",
+   "demand_mw": 244507
+  },
+  {
+   "time": "11:49",
+   "demand_mw": 244603
+  },
+  {
+   "time": "12:03",
+   "demand_mw": 242684
+  },
+  {
+   "time": "12:17",
+   "demand_mw": 242344
+  },
+  {
+   "time": "12:29",
+   "demand_mw": 242277
+  },
+  {
+   "time": "12:43",
+   "demand_mw": 242277
+  },
+  {
+   "time": "12:57",
+   "demand_mw": 240541
+  },
+  {
+   "time": "13:13",
+   "demand_mw": 236311
+  },
+  {
+   "time": "13:27",
+   "demand_mw": 236694
+  },
+  {
+   "time": "13:43",
+   "demand_mw": 238136
+  },
+  {
+   "time": "13:45",
+   "demand_mw": 238672
+  }
+ ],
  "_dbStats": {
   "iex_dam_summary": {
    "count": 530,
@@ -60799,5 +61024,498 @@
    "Central ISGS": 587.0,
    "State Generation": 27.0
   }
+ },
+ "_genTrend": {
+  "times": [
+   "00:03",
+   "00:19",
+   "00:35",
+   "00:47",
+   "01:01",
+   "01:15",
+   "01:31",
+   "01:47",
+   "02:01",
+   "02:15",
+   "02:31",
+   "02:47",
+   "03:01",
+   "03:17",
+   "03:31",
+   "03:47",
+   "04:01",
+   "04:17",
+   "04:33",
+   "04:49",
+   "05:05",
+   "05:21",
+   "05:37",
+   "05:53",
+   "06:09",
+   "06:25",
+   "06:39",
+   "06:53",
+   "07:09",
+   "07:25",
+   "07:41",
+   "07:57",
+   "08:13",
+   "08:29",
+   "08:45",
+   "09:01",
+   "09:17",
+   "09:29",
+   "09:43",
+   "09:57",
+   "10:25",
+   "10:39",
+   "10:53",
+   "11:07",
+   "11:23",
+   "11:35",
+   "11:49",
+   "12:03",
+   "12:17",
+   "12:29",
+   "12:43",
+   "12:57",
+   "13:13",
+   "13:27",
+   "13:43",
+   "13:45"
+  ],
+  "series": {
+   "Hydro": [
+    17324,
+    17490,
+    16889,
+    16346,
+    15890,
+    15304,
+    14997,
+    14046,
+    14235,
+    13269,
+    13268,
+    12560,
+    12251,
+    12542,
+    12698,
+    12174,
+    12281,
+    12838,
+    13775,
+    14182,
+    15401,
+    17271,
+    19254,
+    20685,
+    21897,
+    23799,
+    24576,
+    24618,
+    23753,
+    21626,
+    19962,
+    17695,
+    15137,
+    14387,
+    13529,
+    13207,
+    13153,
+    13353,
+    13312,
+    12770,
+    11292,
+    11066,
+    11106,
+    10901,
+    10615,
+    10585,
+    10411,
+    10421,
+    10168,
+    10234,
+    10234,
+    10414,
+    10825,
+    11027,
+    10856,
+    10856
+   ],
+   "Solar": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    159,
+    182,
+    186,
+    175,
+    191,
+    32,
+    572,
+    1514,
+    3141,
+    6435,
+    11496,
+    17719,
+    24963,
+    33170,
+    42394,
+    49466,
+    55162,
+    60488,
+    64319,
+    67935,
+    70654,
+    76066,
+    78633,
+    81219,
+    84727,
+    86694,
+    87056,
+    86614,
+    87387,
+    87628,
+    87740,
+    87740,
+    86019,
+    84663,
+    83752,
+    82089,
+    81670
+   ],
+   "Nuclear": [
+    7323,
+    7312,
+    7315,
+    7307,
+    7305,
+    7300,
+    7316,
+    7319,
+    7307,
+    7316,
+    7334,
+    7340,
+    7323,
+    7309,
+    7317,
+    7314,
+    7324,
+    7312,
+    7329,
+    7331,
+    7342,
+    7331,
+    7326,
+    7334,
+    7342,
+    7339,
+    7313,
+    7322,
+    7331,
+    7329,
+    7307,
+    7343,
+    7334,
+    7331,
+    7328,
+    7326,
+    7327,
+    7302,
+    7294,
+    7294,
+    7304,
+    7294,
+    7286,
+    7293,
+    7277,
+    7252,
+    7273,
+    7257,
+    7261,
+    7248,
+    7248,
+    7266,
+    7266,
+    7256,
+    7250,
+    7247
+   ],
+   "Gas": [
+    6187,
+    6374,
+    6263,
+    6250,
+    6287,
+    6211,
+    6140,
+    6057,
+    5927,
+    5783,
+    5670,
+    5531,
+    5255,
+    4780,
+    4707,
+    4720,
+    4697,
+    4666,
+    4449,
+    4503,
+    4556,
+    4479,
+    4942,
+    5143,
+    5191,
+    4987,
+    4686,
+    4624,
+    4103,
+    3169,
+    2769,
+    2584,
+    2350,
+    2145,
+    1911,
+    1837,
+    1784,
+    1784,
+    1795,
+    1798,
+    1804,
+    1779,
+    1790,
+    1798,
+    1804,
+    1769,
+    1801,
+    1830,
+    1849,
+    1838,
+    1838,
+    1668,
+    1766,
+    1857,
+    2004,
+    2092
+   ],
+   "Wind": [
+    5579,
+    5724,
+    5777,
+    5684,
+    5574,
+    5518,
+    5418,
+    5179,
+    5129,
+    5062,
+    4855,
+    4595,
+    4637,
+    4614,
+    4673,
+    4599,
+    4561,
+    4602,
+    4566,
+    4527,
+    4457,
+    4483,
+    4549,
+    4602,
+    4843,
+    4925,
+    4978,
+    4829,
+    4697,
+    4457,
+    4096,
+    3774,
+    3529,
+    3220,
+    3011,
+    2996,
+    3166,
+    3214,
+    3165,
+    3213,
+    3066,
+    3213,
+    3288,
+    3395,
+    3399,
+    3374,
+    3415,
+    3444,
+    3283,
+    3235,
+    3235,
+    3090,
+    3051,
+    3275,
+    3532,
+    3532
+   ],
+   "Thermal": [
+    169377,
+    169675,
+    169126,
+    168798,
+    168191,
+    167861,
+    167411,
+    167353,
+    166576,
+    166955,
+    165856,
+    166116,
+    165674,
+    165620,
+    164910,
+    164864,
+    164785,
+    164804,
+    164444,
+    165629,
+    166461,
+    168106,
+    168462,
+    169178,
+    168876,
+    170781,
+    171219,
+    171523,
+    171087,
+    171270,
+    170667,
+    165471,
+    166069,
+    162027,
+    159206,
+    155720,
+    155664,
+    153553,
+    150860,
+    149443,
+    145382,
+    143380,
+    139651,
+    136435,
+    134916,
+    134878,
+    135212,
+    132674,
+    132383,
+    132117,
+    132117,
+    132379,
+    128856,
+    130026,
+    132172,
+    132772
+   ]
+  },
+  "source": "NPP real-time chart API",
+  "as_of": "2026-10-16T13:45:33+05:30"
+ },
+ "_sources": {
+  "captured_at_ist": "2026-10-16T13:54:53.343203+05:30",
+  "fields": [
+   {
+    "field": "National demand & generation mix",
+    "source": "NPP real-time chart API (behind CEA home page)",
+    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-10-16",
+    "status": "ok",
+    "tried": [],
+    "as_of": "13:45 IST"
+   },
+   {
+    "field": "All-India price & shortage",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ReadTimeout: HTTPSConnectionPool(host='vidyutpravah.in', port=443): Read timed out. (read timeout=25)"
+    ]
+   },
+   {
+    "field": "State-wise demand & shortage",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
+    ]
+   },
+   {
+    "field": "Storage dispatch & trans-national exchange",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "MERIT India: skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "Installed capacity (RES / hydro / thermal / nuclear)",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "NPP landing counters (CEA): skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "DAM MCP / MCV / 96 blocks",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "RTM MCP / volume / blocks",
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Indian Energy Exchange (IEX): skipped - step deadline reached"
+    ]
+   },
+   {
+    "field": "Grid frequency",
+    "source": "Grid-India / NLDC Daily PSP report",
+    "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
+    "as_of": "2026-10-15 - published the morning after, so about a day behind live",
+    "status": "ok (96 blocks; latest 49.95 Hz at 23:45)",
+    "tried": [
+     "grid-india.in (real-time): no live feed",
+     "report.grid-india.in: no live feed",
+     "nldc.in: no live feed",
+     "wrldc.in: no live feed",
+     "meritindia.in: no live feed"
+    ]
+   }
+  ]
  }
 }

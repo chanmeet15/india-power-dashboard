@@ -4283,172 +4283,123 @@
   },
   "national_fy_series": [
    {
-    "fy": "2024-25",
-    "peak_mw": 250280.0,
-    "peak_met_mw": 250280.0,
-    "peak_date": "2024-05-30",
-    "source": "Grid India/CEA"
+    "fy": "2009-10",
+    "peak_mw": 119166.0,
+    "peak_met_mw": 104009.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2023-24",
-    "peak_mw": 243271.0,
-    "peak_met_mw": 243271.0,
-    "peak_date": "2024-05-23",
-    "source": "CEA Annual"
+    "fy": "2010-11",
+    "peak_mw": 122287.0,
+    "peak_met_mw": 110256.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2022-23",
-    "peak_mw": 229030.0,
-    "peak_met_mw": 224066.0,
-    "peak_date": "2023-06-29",
-    "source": "CEA Annual"
+    "fy": "2011-12",
+    "peak_mw": 130006.0,
+    "peak_met_mw": 116191.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2021-22",
-    "peak_mw": 215888.0,
-    "peak_met_mw": 209984.0,
-    "peak_date": "2022-04-29",
-    "source": "CEA Annual"
+    "fy": "2012-13",
+    "peak_mw": 135453.0,
+    "peak_met_mw": 123294.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2020-21",
-    "peak_mw": 200570.0,
-    "peak_met_mw": 189606.0,
-    "peak_date": "2021-04-07",
-    "source": "CEA Annual"
+    "fy": "2013-14",
+    "peak_mw": 135918.0,
+    "peak_met_mw": 129815.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2019-20",
-    "peak_mw": 190200.0,
-    "peak_met_mw": 183804.0,
-    "peak_date": "2019-07-11",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2018-19",
-    "peak_mw": 177022.0,
-    "peak_met_mw": 168529.0,
-    "peak_date": "2019-06-01",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2017-18",
-    "peak_mw": 164066.0,
-    "peak_met_mw": 158551.0,
-    "peak_date": "2018-06-01",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2016-17",
-    "peak_mw": 159542.0,
-    "peak_met_mw": 153366.0,
-    "peak_date": "2017-06-02",
-    "source": "CEA Annual"
+    "fy": "2014-15",
+    "peak_mw": 148166.0,
+    "peak_met_mw": 141160.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    },
    {
     "fy": "2015-16",
     "peak_mw": 153366.0,
     "peak_met_mw": 148463.0,
-    "peak_date": "2016-07-18",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2014-15",
-    "peak_mw": 148463.0,
-    "peak_met_mw": 141193.0,
-    "peak_date": "2015-07-08",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2013-14",
-    "peak_mw": 135918.0,
-    "peak_met_mw": 130492.0,
-    "peak_date": "2014-06-07",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2012-13",
-    "peak_mw": 130006.0,
-    "peak_met_mw": 123294.0,
-    "peak_date": "2013-07-08",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2011-12",
-    "peak_mw": 122287.0,
-    "peak_met_mw": 116191.0,
-    "peak_date": "2012-07-30",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2010-11",
-    "peak_mw": 121292.0,
-    "peak_met_mw": 110256.0,
-    "peak_date": "2011-07-16",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2009-10",
-    "peak_mw": 119166.0,
-    "peak_met_mw": 104009.0,
-    "peak_date": "2010-01-28",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2008-09",
-    "peak_mw": 109809.0,
-    "peak_met_mw": 96785.0,
-    "peak_date": "2009-09-03",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2007-08",
-    "peak_mw": 108866.0,
-    "peak_met_mw": 90793.0,
-    "peak_date": "2008-07-25",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2006-07",
-    "peak_mw": 100715.0,
-    "peak_met_mw": 86818.0,
-    "peak_date": "2007-06-30",
-    "source": "CEA Annual"
-   },
-   {
-    "fy": "2005-06",
-    "peak_mw": 93255.0,
-    "peak_met_mw": 81000.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "2000-01",
-    "peak_mw": 78441.0,
-    "peak_met_mw": 68249.0,
+    "fy": "2016-17",
+    "peak_mw": 159542.0,
+    "peak_met_mw": 156934.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "1995-96",
-    "peak_mw": 68130.0,
-    "peak_met_mw": 55000.0,
+    "fy": "2017-18",
+    "peak_mw": 164066.0,
+    "peak_met_mw": 160752.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "1990-91",
-    "peak_mw": 48669.0,
-    "peak_met_mw": 42000.0,
+    "fy": "2018-19",
+    "peak_mw": 177022.0,
+    "peak_met_mw": 175528.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
    },
    {
-    "fy": "1985-86",
-    "peak_mw": 34059.0,
-    "peak_met_mw": 29000.0,
+    "fy": "2019-20",
+    "peak_mw": 183804.0,
+    "peak_met_mw": 182533.0,
     "peak_date": null,
-    "source": "CEA Annual"
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2020-21",
+    "peak_mw": 190198.0,
+    "peak_met_mw": 189395.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2021-22",
+    "peak_mw": 203014.0,
+    "peak_met_mw": 200539.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2022-23",
+    "peak_mw": 215888.0,
+    "peak_met_mw": 207231.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2023-24",
+    "peak_mw": 243271.0,
+    "peak_met_mw": 239931.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2024-25",
+    "peak_mw": 249856.0,
+    "peak_met_mw": 249854.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
+   },
+   {
+    "fy": "2025-26",
+    "peak_mw": 245444.0,
+    "peak_met_mw": 245416.0,
+    "peak_date": null,
+    "source": "Ministry of Power"
    }
   ],
   "state_records": [
@@ -4903,7 +4854,9 @@
     "fy": "2024-25"
    }
   ],
-  "current_fy": "2026-27"
+  "current_fy": "2026-27",
+  "fy_series_source": "Ministry of Power - \"Power Sector at a Glance, ALL INDIA\"",
+  "fy_series_fetched": "2026-10-19T11:08:15.220923+05:30"
  },
  "_curtailment": [
   {
@@ -63194,6 +63147,278 @@
    "last": "2026-10-15",
    "note": "Daily totals as published by Grid-India. The intraday SRAS/TRAS shapes in the source PDF are images, so no block-wise series exists to show.",
    "source": "Grid-India Daily AS/SCUC report"
+  },
+  "charges": {
+   "months": [
+    {
+     "period": "2025-05",
+     "source_file": "Ancillary_services_report_May_2025_Final_921.pdf",
+     "reconciled": true,
+     "sras_rs": 280608167,
+     "sras_cr": 28.06,
+     "tras_shortfall_rs": -1875839904,
+     "tras_shortfall_cr": -187.58,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 5564436883,
+     "scuc_cr": 556.44,
+     "total_rs": 3969205146,
+     "total_cr": 396.92
+    },
+    {
+     "period": "2025-06",
+     "source_file": "Ancillary_services_report_June_2025_Final_672.pdf",
+     "reconciled": true,
+     "sras_rs": 154369444,
+     "sras_cr": 15.44,
+     "tras_shortfall_rs": 771659470,
+     "tras_shortfall_cr": 77.17,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 6133883391,
+     "scuc_cr": 613.39,
+     "total_rs": 7059912305,
+     "total_cr": 705.99
+    },
+    {
+     "period": "2025-07",
+     "source_file": "Ancillary_services_report_July_2025_Signed_170.pdf",
+     "reconciled": true,
+     "sras_rs": 121913247,
+     "sras_cr": 12.19,
+     "tras_shortfall_rs": -80643498,
+     "tras_shortfall_cr": -8.06,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 5429331927,
+     "scuc_cr": 542.93,
+     "total_rs": 5470601676,
+     "total_cr": 547.06
+    },
+    {
+     "period": "2025-08",
+     "source_file": "Ancillary_services_report_August_2025_Signed_834.pdf",
+     "reconciled": true,
+     "sras_rs": 321307056,
+     "sras_cr": 32.13,
+     "tras_shortfall_rs": -1091434234,
+     "tras_shortfall_cr": -109.14,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 4351524523,
+     "scuc_cr": 435.15,
+     "total_rs": 3581397345,
+     "total_cr": 358.14
+    },
+    {
+     "period": "2025-09",
+     "source_file": "Ancillary_services_report_September_2025_Signed_457.pdf",
+     "reconciled": true,
+     "sras_rs": 352617811,
+     "sras_cr": 35.26,
+     "tras_shortfall_rs": -183330505,
+     "tras_shortfall_cr": -18.33,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 9670114152,
+     "scuc_cr": 967.01,
+     "total_rs": 9839401458,
+     "total_cr": 983.94
+    },
+    {
+     "period": "2025-10",
+     "source_file": "Ancillary_services_report_October_2025_Signed_926.pdf",
+     "reconciled": true,
+     "sras_rs": 743718384,
+     "sras_cr": 74.37,
+     "tras_shortfall_rs": -829310311,
+     "tras_shortfall_cr": -82.93,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 6072481725,
+     "scuc_cr": 607.25,
+     "total_rs": 5986889798,
+     "total_cr": 598.69
+    },
+    {
+     "period": "2025-11",
+     "source_file": "Ancillary_services_report_November_2025_Signed_673.pdf",
+     "reconciled": true,
+     "sras_rs": 517233326,
+     "sras_cr": 51.72,
+     "tras_shortfall_rs": 88791359,
+     "tras_shortfall_cr": 8.88,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 4590866256,
+     "scuc_cr": 459.09,
+     "total_rs": 5196890941,
+     "total_cr": 519.69
+    },
+    {
+     "period": "2025-12",
+     "source_file": "Ancillary_services_report_December_2025_Signed_498.pdf",
+     "reconciled": true,
+     "sras_rs": 303629136,
+     "sras_cr": 30.36,
+     "tras_shortfall_rs": 355592877,
+     "tras_shortfall_cr": 35.56,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 2296384421,
+     "scuc_cr": 229.64,
+     "total_rs": 2955606434,
+     "total_cr": 295.56
+    },
+    {
+     "period": "2026-01",
+     "source_file": "Ancillary_services_report_January_2026_Signed_448.pdf",
+     "reconciled": true,
+     "sras_rs": 418844202,
+     "sras_cr": 41.88,
+     "tras_shortfall_rs": -3864175372,
+     "tras_shortfall_cr": -386.42,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 1723763434,
+     "scuc_cr": 172.38,
+     "total_rs": -1721567736,
+     "total_cr": -172.16
+    },
+    {
+     "period": "2026-02",
+     "source_file": "Ancillary_services_report_February_2026_Signed_663.pdf",
+     "reconciled": true,
+     "sras_rs": 358440172,
+     "sras_cr": 35.84,
+     "tras_shortfall_rs": -1616801376,
+     "tras_shortfall_cr": -161.68,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 1613063743,
+     "scuc_cr": 161.31,
+     "total_rs": 354702539,
+     "total_cr": 35.47
+    },
+    {
+     "period": "2026-03",
+     "source_file": "Ancillary_services_report_March_2026_Signed_337.pdf",
+     "reconciled": true,
+     "sras_rs": 16831534,
+     "sras_cr": 1.68,
+     "tras_shortfall_rs": -1783316301,
+     "tras_shortfall_cr": -178.33,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 1670449029,
+     "scuc_cr": 167.04,
+     "total_rs": -96035738,
+     "total_cr": -9.6
+    },
+    {
+     "period": "2026-04",
+     "source_file": "Ancillary_services_Report_April_2026_Signed_254.pdf",
+     "reconciled": true,
+     "sras_rs": 121831594,
+     "sras_cr": 12.18,
+     "tras_shortfall_rs": -2201634404,
+     "tras_shortfall_cr": -220.16,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 5205343282,
+     "scuc_cr": 520.53,
+     "total_rs": 3125540472,
+     "total_cr": 312.55
+    },
+    {
+     "period": "2026-05",
+     "source_file": "Ancillary_services_Report_May_2026_Signed_914.pdf",
+     "reconciled": true,
+     "sras_rs": 130547583,
+     "sras_cr": 13.05,
+     "tras_shortfall_rs": 296751390,
+     "tras_shortfall_cr": 29.68,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 8044962123,
+     "scuc_cr": 804.5,
+     "total_rs": 8472261096,
+     "total_cr": 847.23
+    },
+    {
+     "period": "2026-06",
+     "source_file": "Ancillary_services_report_June_2026_Signed_618.pdf",
+     "reconciled": true,
+     "sras_rs": 218753734,
+     "sras_cr": 21.88,
+     "tras_shortfall_rs": -866558180,
+     "tras_shortfall_cr": -86.66,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 6248020706,
+     "scuc_cr": 624.8,
+     "total_rs": 5600216260,
+     "total_cr": 560.02
+    },
+    {
+     "period": "2026-07",
+     "source_file": "Ancillary_Services_Report_July-2026_Signed_718.pdf",
+     "reconciled": true,
+     "sras_rs": 72724287,
+     "sras_cr": 7.27,
+     "tras_shortfall_rs": 40371994,
+     "tras_shortfall_cr": 4.04,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 6313512629,
+     "scuc_cr": 631.35,
+     "total_rs": 6426608910,
+     "total_cr": 642.66
+    },
+    {
+     "period": "2026-08",
+     "source_file": "Ancillary_Services_Report_August-2026_Signed_786.pdf",
+     "reconciled": true,
+     "sras_rs": 171613519,
+     "sras_cr": 17.16,
+     "tras_shortfall_rs": 320267116,
+     "tras_shortfall_cr": 32.03,
+     "tras_market_rs": null,
+     "tras_market_cr": null,
+     "scuc_rs": 5777501530,
+     "scuc_cr": 577.75,
+     "total_rs": 6269382165,
+     "total_cr": 626.94
+    }
+   ],
+   "latest": {
+    "period": "2026-08",
+    "source_file": "Ancillary_Services_Report_August-2026_Signed_786.pdf",
+    "reconciled": true,
+    "sras_rs": 171613519,
+    "sras_cr": 17.16,
+    "tras_shortfall_rs": 320267116,
+    "tras_shortfall_cr": 32.03,
+    "tras_market_rs": null,
+    "tras_market_cr": null,
+    "scuc_rs": 5777501530,
+    "scuc_cr": 577.75,
+    "total_rs": 6269382165,
+    "total_cr": 626.94
+   },
+   "labels": {
+    "sras": "SRAS net charges",
+    "tras_shortfall": "TRAS shortfall / emergency net charges",
+    "tras_market": "TRAS market net charges",
+    "scuc": "SCUC net charges"
+   },
+   "coverage": {
+    "months": 16,
+    "first": "2025-05",
+    "last": "2026-08",
+    "source": "Grid-India Monthly Ancillary Services report",
+    "note": "Published about a month in arrears. Negative figures are net receivable BY the pool, not an error. Reports before June 2025 use an older layout this parser does not read, so they are absent rather than wrong."
+   }
   }
  },
  "_ceaCapacity": {

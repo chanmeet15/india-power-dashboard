@@ -1,11 +1,11 @@
 {
- "scraped_at": "2026-10-26T17:25:17.790856+05:30",
+ "scraped_at": "2026-10-26T17:56:02.507397+05:30",
  "is_snapshot": true,
  "snapshot_date": "2026-10-26",
- "snapshot_time": "17:25",
+ "snapshot_time": "17:56",
  "iex_dam": {
-  "id": 568,
-  "scraped_at": "2026-10-26T14:53:23.479158",
+  "id": 570,
+  "scraped_at": "2026-10-26T17:25:35.941221",
   "date": "2026-10-26",
   "mcp": 4447.29,
   "mcv_mwh": 400266.88,
@@ -786,12 +786,12 @@
  },
  "posoco": {
   "status": "ok",
-  "scraped_at": "2026-10-26T17:25:17.790856+05:30",
+  "scraped_at": "2026-10-26T17:56:02.507397+05:30",
   "national": {
-   "demand_mw": 224078,
-   "generation_mw": 223817,
-   "deficit_mw": 261,
-   "surplus_mw": 152.0,
+   "demand_mw": 223977,
+   "generation_mw": 219184,
+   "deficit_mw": 4793,
+   "surplus_mw": null,
    "freq": null,
    "peak_today_mw": 227838,
    "min_today_mw": 171834
@@ -800,10 +800,10 @@
   "source": "NPP real-time chart API"
  },
  "_national": {
-  "demand_mw": 224078,
-  "generation_mw": 223817,
-  "deficit_mw": 261,
-  "surplus_mw": 152.0,
+  "demand_mw": 223977,
+  "generation_mw": 219184,
+  "deficit_mw": 4793,
+  "surplus_mw": null,
   "freq": null,
   "peak_today_mw": 227838,
   "min_today_mw": 171834
@@ -811,31 +811,31 @@
  "merit": {
   "status": "ok",
   "source": "NPP / CEA real-time",
-  "as_of": "2026-10-26T16:59:33+05:30",
+  "as_of": "2026-10-26T17:45:33+05:30",
   "generation_table": [
    {
     "source": "Thermal",
-    "generation_mw": 170954
-   },
-   {
-    "source": "Solar",
-    "generation_mw": 20383
+    "generation_mw": 176207
    },
    {
     "source": "Hydro",
-    "generation_mw": 14741
+    "generation_mw": 21320
    },
    {
     "source": "Wind",
-    "generation_mw": 7864
+    "generation_mw": 7671
    },
    {
     "source": "Nuclear",
-    "generation_mw": 7327
+    "generation_mw": 7315
+   },
+   {
+    "source": "Solar",
+    "generation_mw": 3722
    },
    {
     "source": "Gas",
-    "generation_mw": 2548
+    "generation_mw": 2949
    }
   ]
  },
@@ -988,7 +988,29 @@
  ],
  "_stateData": [
   {
-   "scraped_at": "2026-10-26T15:05:39.987871",
+   "scraped_at": "2026-10-26T17:39:44.113117",
+   "date": "2026-10-26",
+   "state": "Punjab",
+   "region": "Northern",
+   "demand_mw": 4129.0,
+   "met_mw": 4129.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "source": "SLDC"
+  },
+  {
+   "scraped_at": "2026-10-26T17:39:46.853314",
+   "date": "2026-10-26",
+   "state": "Delhi",
+   "region": "Northern",
+   "demand_mw": 4149.0,
+   "met_mw": 4149.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "source": "SLDC"
+  },
+  {
+   "scraped_at": "2026-10-26T17:39:47.324467",
    "date": "2026-10-26",
    "state": "Uttar Pradesh",
    "region": "Northern",
@@ -999,45 +1021,12 @@
    "source": "SLDC"
   },
   {
-   "scraped_at": "2026-10-26T15:05:42.684859",
-   "date": "2026-10-26",
-   "state": "Delhi",
-   "region": "Northern",
-   "demand_mw": 4037.0,
-   "met_mw": 4037.0,
-   "shortage_mw": 0,
-   "shortage_pct": 0.0,
-   "source": "SLDC"
-  },
-  {
-   "scraped_at": "2026-10-26T15:05:56.414844",
-   "date": "2026-10-26",
-   "state": "Punjab",
-   "region": "Northern",
-   "demand_mw": 4804.0,
-   "met_mw": 4804.0,
-   "shortage_mw": 0,
-   "shortage_pct": 0.0,
-   "source": "SLDC"
-  },
-  {
-   "scraped_at": "2026-10-26T15:06:23.323380",
-   "date": "2026-10-26",
-   "state": "Karnataka",
-   "region": "Southern",
-   "demand_mw": 1508.0,
-   "met_mw": 1508.0,
-   "shortage_mw": 0,
-   "shortage_pct": 0.0,
-   "source": "SLDC"
-  },
-  {
-   "scraped_at": "2026-10-26T15:07:09.611863",
+   "scraped_at": "2026-10-26T17:41:31.441170",
    "date": "2026-10-26",
    "state": "Odisha",
    "region": "Eastern",
-   "demand_mw": 5752.07,
-   "met_mw": 5752.07,
+   "demand_mw": 5851.94,
+   "met_mw": 5851.94,
    "shortage_mw": 0,
    "shortage_pct": 0.0,
    "source": "SLDC"
@@ -1074,8 +1063,8 @@
    "raw_html_length": 241229
   },
   {
-   "id": 2227,
-   "scraped_at": "2026-10-26T14:58:18.349328",
+   "id": 2230,
+   "scraped_at": "2026-10-26T17:31:17.835719",
    "rldc": "WRLDC",
    "region": "Western",
    "freq_hz": null,
@@ -1088,8 +1077,8 @@
    "raw_html_length": 51280
   },
   {
-   "id": 2228,
-   "scraped_at": "2026-10-26T14:59:22.790509",
+   "id": 2231,
+   "scraped_at": "2026-10-26T17:32:23.605248",
    "rldc": "SRLDC",
    "region": "Southern",
    "freq_hz": null,
@@ -1102,8 +1091,8 @@
    "raw_html_length": 360
   },
   {
-   "id": 2229,
-   "scraped_at": "2026-10-26T14:59:32.613326",
+   "id": 2232,
+   "scraped_at": "2026-10-26T17:32:38.185556",
    "rldc": "ERLDC",
    "region": "Eastern",
    "freq_hz": null,
@@ -1113,7 +1102,7 @@
    "deficit_mw": null,
    "od_ug_mw": null,
    "vcm_mw": null,
-   "raw_html_length": 29355
+   "raw_html_length": 41903
   }
  ],
  "_nationalTrend": [
@@ -1326,20 +1315,32 @@
    "demand_mw": 226091
   },
   {
-   "time": "16:59",
-   "demand_mw": 224078
+   "time": "17:05",
+   "demand_mw": 222115
+  },
+  {
+   "time": "17:21",
+   "demand_mw": 221518
+  },
+  {
+   "time": "17:35",
+   "demand_mw": 222750
+  },
+  {
+   "time": "17:45",
+   "demand_mw": 223977
   }
  ],
  "_dbStats": {
   "iex_dam_summary": {
-   "count": 568,
+   "count": 570,
    "oldest": "2026-05-26T01:34:19.189684",
-   "newest": "2026-10-26T14:53:23.479158"
+   "newest": "2026-10-26T17:25:35.941221"
   },
   "iex_dam_blocks": {
-   "count": 490,
+   "count": 491,
    "oldest": "2026-05-26T01:34:19.189684",
-   "newest": "2026-10-26T14:53:23.479158"
+   "newest": "2026-10-26T17:25:35.941221"
   },
   "national_demand": {
    "count": 13,
@@ -1352,9 +1353,9 @@
    "newest": null
   },
   "rldc_data": {
-   "count": 2229,
+   "count": 2232,
    "oldest": "2026-05-26T02:45:13.698456",
-   "newest": "2026-10-26T14:59:32.613326"
+   "newest": "2026-10-26T17:32:38.185556"
   },
   "rldc_state_drawal": {
    "count": 0,
@@ -1372,9 +1373,9 @@
    "newest": null
   },
   "merit_generation": {
-   "count": 523,
+   "count": 530,
    "oldest": "2026-05-26T01:58:43.830063",
-   "newest": "2026-10-26T15:05:28.732691"
+   "newest": "2026-10-26T17:39:36.378790"
   },
   "remc_data": {
    "count": 0,
@@ -1392,15 +1393,15 @@
    "newest": null
   },
   "scrape_log": {
-   "count": 27010,
+   "count": 27067,
    "oldest": "2026-05-26T01:03:01.757282",
-   "newest": "2026-10-26T15:12:16.779512"
+   "newest": "2026-10-26T17:46:19.991514"
   }
  },
  "_sldcData": [
   {
-   "id": 10037,
-   "scraped_at": "2026-10-26T15:06:20.975365",
+   "id": 10061,
+   "scraped_at": "2026-10-26T17:40:44.119338",
    "sldc": "AP_SLDC",
    "state": "Andhra Pradesh",
    "region": "Southern",
@@ -1417,8 +1418,8 @@
    "raw_snippet": "\n APSLDC \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Search Site \n \n \n only in current section \n \n \n \n \n \n \n Advanced Search\u2026 \n \n \n \n \n \n Log in \n \n \n \n \n \n \n \n \n \n \n \n \n Toggle navigation \n \n \n \n \n \n \n \n Home About Services Dashboard Reports Apps \n \n Contact e-office email TOO Login Search Site \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n You are here: \n \n \n Home \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n APSLDC \n \n https://sldc.aptransco.co.in \n https://"
   },
   {
-   "id": 10049,
-   "scraped_at": "2026-10-26T15:08:47.991171",
+   "id": 10073,
+   "scraped_at": "2026-10-26T17:43:32.772454",
    "sldc": "ASSAM_SLDC",
    "state": "Assam",
    "region": "North-Eastern",
@@ -1435,8 +1436,8 @@
    "raw_snippet": "\n \n \n \n \n \n \n  ASSAM ELECTRICITY GRID CORPORATION LIMITED (AEGCL)  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n \n \n \n \n \n \n \n \n \n \n \n \n Screen Reader Access \n \n A- \n A \n A+ \n C \n \n \n \n \n \n \n \n \n \n  CIN    U40101AS2003SGC007238     GST No.     18AAFCA4973J9Z3  \n \n \n \n \n      Employee Corner \n \n \n \n    Employee Mail \n \n \n    ESS Portal \n \n \n    PMS/ACR \n \n \n   \nGSS Datasheet \n \n \n \n \n \n \n \n \n \n \n \n \n \n"
   },
   {
-   "id": 10044,
-   "scraped_at": "2026-10-26T15:07:28.382549",
+   "id": 10067,
+   "scraped_at": "2026-10-26T17:41:45.653604",
    "sldc": "BIHAR_SLDC",
    "state": "Bihar",
    "region": "Eastern",
@@ -1453,8 +1454,8 @@
    "raw_snippet": "\n \n \n\t North Bihar Power Distribution Company Ltd\n \n \n \n \n \n \n \n \n North Bihar Power Distribution Company Ltd \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n                    \u00a0\n                    \n                     \n \n \n \n \n \n \n \n \n \n \n \n \n                                    NORTH BIHAR POWER DISTRIBUTION COMPANY LTD \n \n                                    GOVERNMENT OF BIHAR \n \n \n \u0939\u093f\u0902\u0926\u0940 \u00a0 \u00a0\n                                 \u00a0\n                                 \u00a0\n                              "
   },
   {
-   "id": 10017,
-   "scraped_at": "2026-10-26T09:16:40.764867",
+   "id": 10059,
+   "scraped_at": "2026-10-26T17:40:37.150829",
    "sldc": "CG_SLDC",
    "state": "Chhattisgarh",
    "region": "Western",
@@ -1468,17 +1469,17 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n \n \n State Load Despatch Centre | Chhattisgarh \n \n \n \n \n \n \n \n \n \n \n \n STATE LOAD DESPATCH CENTRE \n \n \n \n \n \n \n Latest Updates \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n          About\u00a0Us\n           \n \n Overview \n Grid Diagram \n Constitution \n Function \n SCADA \n Photo Gallery \n FAQ \n Availability Based Tariff \n Code Of Ethics \n \n \n \n Open\u00a0Access  \n \n Regulations & Procedures \n STOA Bank Details \n LTOA & MTOA Information \n Intrastate Appr. for CSPDCL \n Open Access Charges \n Monthly Approved NOC"
+   "raw_snippet": "\n \n \n \n \n \n State Load Despatch Centre | Chhattisgarh \n \n \n \n \n \n \n \n \n \n \n \n STATE LOAD DESPATCH CENTRE \n \n \n \n \n \n \n Latest Updates \n \n \n \n \n   The Web-based scheduling URL \"https://web.sldccg.com\" and Website URL \"https://sldccg.com\" will be under shutdown from 14:30 Hrs. to 17:30 Hrs. on dtd. 26-OCT-2026. All entities are requested to email at email_id schedule@sldccg.com with a copy to email_id support@sldccg.com for any schedule related activities during the above period. \n \n \n \n \n \n \n \n \n"
   },
   {
-   "id": 10032,
-   "scraped_at": "2026-10-26T15:05:42.684859",
+   "id": 10054,
+   "scraped_at": "2026-10-26T17:39:46.853314",
    "sldc": "DELHI_SLDC",
    "state": "Delhi",
    "region": "Northern",
-   "freq_hz": 50.11,
-   "demand_mw": 4037.0,
-   "generation_mw": 328.0,
+   "freq_hz": 49.89,
+   "demand_mw": 4149.0,
+   "generation_mw": 370.0,
    "peak_demand_mw": 2026.0,
    "peak_demand_date": null,
    "energy_today_mu": null,
@@ -1486,11 +1487,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n Delhi SLDC \n \n \n \n \n STATE LOAD DESPATCH CENTRE, DELHI \ud83d\udd58 15:05:41 IST 26 October 2026 \u260e Control Room 011-23221091 An ISO 9001:2015 Organization Power System in Delhi \u25be Open Access \u25be Directory \u25be Energy Accounting \u25be Schedules \u25be Real Time Data Reports \u25be Related Links \u25be FAQ MENU \u2630 Power System in Delhi + Open Access + Directory + Energy Accounting + Schedules + Real Time Data Reports + Related Links + FAQ ABOUT US About Delhi SLDC Delhi State Load Despatch Centre (Delhi SLDC) is the apex bod"
+   "raw_snippet": "\n \n \n \n Delhi SLDC \n \n \n \n \n STATE LOAD DESPATCH CENTRE, DELHI \ud83d\udd58 17:39:46 IST 26 October 2026 \u260e Control Room 011-23221091 An ISO 9001:2015 Organization Power System in Delhi \u25be Open Access \u25be Directory \u25be Energy Accounting \u25be Schedules \u25be Real Time Data Reports \u25be Related Links \u25be FAQ MENU \u2630 Power System in Delhi + Open Access + Directory + Energy Accounting + Schedules + Real Time Data Reports + Related Links + FAQ ABOUT US About Delhi SLDC Delhi State Load Despatch Centre (Delhi SLDC) is the apex bod"
   },
   {
-   "id": 10051,
-   "scraped_at": "2026-10-26T15:12:16.606221",
+   "id": 10074,
+   "scraped_at": "2026-10-26T17:46:19.886315",
    "sldc": "GOA_SLDC",
    "state": "Goa",
    "region": "Western",
@@ -1507,12 +1508,12 @@
    "raw_snippet": "\n \n Electricity Department, Government of Goa \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to the content \n \n Smart meter installation has commenced in Division I, Panjim (Taleigao, Bambolim, Corlim and Panjim City). Authorized representatives will visit your premise for meter replacement. Smart Meter installation is free of cost for all consumers. For any installation concerns, contact the nearest GED office or Ca"
   },
   {
-   "id": 10033,
-   "scraped_at": "2026-10-26T15:05:48.125200",
+   "id": 10056,
+   "scraped_at": "2026-10-26T17:39:53.233862",
    "sldc": "GUJARAT_SLDC",
    "state": "Gujarat",
    "region": "Western",
-   "freq_hz": 50.126,
+   "freq_hz": 49.953,
    "demand_mw": null,
    "generation_mw": null,
    "peak_demand_mw": null,
@@ -1525,8 +1526,8 @@
    "raw_snippet": "\n \n State Load Despatch Centre (SLDC) | Vadodara, Gujarat \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n CTRL+F2   acc toolbox  \u2717 - close keyboard navigation     block animations   color contrast     uncolored display     bright contrast     reverse contrast text size     increase text       decrease text     readable text highlighting content     underline links     underline headers     images titles zoom in     big white cursor     big black cursor     zoom screen accessibility state"
   },
   {
-   "id": 10042,
-   "scraped_at": "2026-10-26T15:07:17.852235",
+   "id": 10064,
+   "scraped_at": "2026-10-26T17:41:25.528230",
    "sldc": "HARYANA_SLDC",
    "state": "Haryana",
    "region": "Northern",
@@ -1543,8 +1544,8 @@
    "raw_snippet": "\n HTTP Status 404 - Not Found \n \n \n \n \n HTTP Status 404 - Not Found \n \n \n \n JBoss Application Server \n \n \u00a0 \n \n \n"
   },
   {
-   "id": 10050,
-   "scraped_at": "2026-10-26T15:09:19.298676",
+   "id": 10071,
+   "scraped_at": "2026-10-26T17:43:22.814803",
    "sldc": "JH_SLDC",
    "state": "Jharkhand",
    "region": "Eastern",
@@ -1558,16 +1559,16 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n \n Jharkhand Bijli Vitran Nigam Limited\n     \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Select Language Hindi Powered by  Translate \n \n \n \n \n \n \n \n \n \n \n  contactus@jbvnl.co.in \n \n \n \n English \n ?????? \n \n \n \n \n                                A+ \n A \n A- \n \n \n \n \n \n \n \n  1800 345 6570\n                             \n  /  \n 0651 2710002 \n  /  \n 1912 \n  /  \n 09431135503 \n  /  \n 9031110121 \n  /  \n 09431135504 \n \n \n \n                                Screen Reader\n                       "
+   "raw_snippet": "\n \n \n \n \n \n Jharkhand Bijli Vitran Nigam Limited\n     \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  contactus@jbvnl.co.in \n \n \n \n English \n ?????? \n \n \n \n \n                                A+ \n A \n A- \n \n \n \n \n \n \n \n  1800 345 6570\n                             \n  /  \n 0651 2710002 \n  /  \n 1912 \n  /  \n 09431135503 \n  /  \n 9031110121 \n  /  \n 09431135504 \n \n \n \n                                Screen Reader\n                             \n \n \n \n                           "
   },
   {
-   "id": 10038,
-   "scraped_at": "2026-10-26T15:06:23.323380",
+   "id": 10060,
+   "scraped_at": "2026-10-26T17:40:41.791091",
    "sldc": "KA_SLDC",
    "state": "Karnataka",
    "region": "Southern",
    "freq_hz": null,
-   "demand_mw": 1508.0,
+   "demand_mw": 131.0,
    "generation_mw": null,
    "peak_demand_mw": null,
    "peak_demand_date": null,
@@ -1579,8 +1580,8 @@
    "raw_snippet": "\n\tKPTCL-SLDC-HOME\n \n \n \n \n \n \n \n \n \n \n \n \n \n KARNATAKA POWER TRANSMISSION\n                    CORPORATION LIMITED \n \n Karnataka State Load Dispatch Centre \n \n                        Transmission Grid Management \n                        Facilitates Inter state transfer & Intra state transfer of power to Distribution\n                        Companies of Karnataka in a secure and economical manner \u00a0  \u00a0 \u00a0\n                     \u00a0 \u00a0 \u00a0 \n \n        \u00a0\n         \n            \u00a0\n             \n \n \n \n 26/10/2026"
   },
   {
-   "id": 10047,
-   "scraped_at": "2026-10-26T15:08:21.145951",
+   "id": 10070,
+   "scraped_at": "2026-10-26T17:42:41.878985",
    "sldc": "KERALA_SLDC",
    "state": "Kerala",
    "region": "Southern",
@@ -1597,8 +1598,8 @@
    "raw_snippet": "\n \n Kerala State Load despatch Center \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Home \n System Statistics \n \n Generation \n Imports \n Storage \n Availability \n Others \n Forecast \n \n \n About Us \n Contacts Us \n Links \n Open Access \n \n Login \n \n \n \n \n \n \n * Kerala SLDC - Winner of National Level Excellence Award 2021 *  \n \n \n \n \n \n \n \n Permit Management System \n \n \n \n Notifications \n \n   Kerala SLDC - Winner of National Level Excellence Award 2021    \n \n \n \n   Our Mission\u00a0-  \n\"To facilitate intra and inter st"
   },
   {
-   "id": 10036,
-   "scraped_at": "2026-10-26T15:06:11.362706",
+   "id": 10058,
+   "scraped_at": "2026-10-26T17:40:19.786317",
    "sldc": "MAHA_SLDC",
    "state": "Maharashtra",
    "region": "Western",
@@ -1615,8 +1616,8 @@
    "raw_snippet": "\n \n \n \n \n \n \n  Maharashtra State Load Despatch Centre (MSLDC) \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to main content \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Maharashtra State Load Despatch Centre \n (A Govt of Maharashtra Undertaking ) \n \n \n \n \n \n \n \n \r\n                                                                                                                                About Us                                                                                                 \n \n \n \n \n \r\n                "
   },
   {
-   "id": 10048,
-   "scraped_at": "2026-10-26T15:08:25.061584",
+   "id": 10072,
+   "scraped_at": "2026-10-26T17:43:31.870499",
    "sldc": "MIZORAM_SLDC",
    "state": "Mizoram",
    "region": "North-Eastern",
@@ -1630,17 +1631,17 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n State Load Despatch Center (SLDC), Government of Mizoram, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n    \t            Close Menu\n    \t         Home  About Us Mizoram SLDC Provisions Of Electricity Act 2003 About SLDC Organisational Chart Mizoram Profile Contact Us  Prog & Scheme GPRS SCADA  Useful Information Tuirial Hydroelectric Power Plant Power Allocation Acts & Rules   -A   A   +A     Skip to Navigation   Skip to Main Content   Search       Screen Reade"
+   "raw_snippet": "\n \n \n \n \n State Load Despatch Center (SLDC), Government of Mizoram, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n    \t            Close Menu\n    \t         Home    About Us Mizoram SLDC Provisions Of Electricity Act 2003 About SLDC Organisational Chart Mizoram Profile Contact Us    Prog & Scheme GPRS SCADA    Useful Information Tuirial Hydroelectric Power Plant Power Allocation Acts & Rules \n \n \n \n \n \n \n -A \n A \n +A \n \n Skip to Navigation \n Skip to Main Content"
   },
   {
-   "id": 10041,
-   "scraped_at": "2026-10-26T15:07:09.611863",
+   "id": 10066,
+   "scraped_at": "2026-10-26T17:41:31.441170",
    "sldc": "ODISHA_SLDC",
    "state": "Odisha",
    "region": "Eastern",
-   "freq_hz": 50.05,
-   "demand_mw": 5752.07,
-   "generation_mw": 1084.63,
+   "freq_hz": 49.8,
+   "demand_mw": 5851.94,
+   "generation_mw": 745.88,
    "peak_demand_mw": null,
    "peak_demand_date": null,
    "energy_today_mu": null,
@@ -1651,8 +1652,8 @@
    "raw_snippet": "\n \n \n \u0b37\u0b4d\u0b1f\u0b47\u0b1f\u0b4d \u0b32\u0b4b\u0b21\u0b4d \u0b21\u0b3f\u0b38\u0b4d\u0b2a\u0b3e\u0b1a\u0b4d \u0b38\u0b47\u0b23\u0b4d\u0b1f\u0b30 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  Skip to Main Content \n  Screen Reader Access \n \n \n A+ \n A\u2212 \n A \n \n \n \n \n \n \n \n \n RTI \n \n Languages \n   \n   \n Login   \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n STATE LOAD DESPATCH CENTRE - ODISHA \n (A Govt. of Odisha Undertaking) \n (24 X 7 SLDC Never Sleeps) \n \n \n \n \n \n \u00a0Contact Us \u00a0\u00a0\u00a0\u00a0\n\t\t\t\t\t\t\t\t \u00a0Sitemap \u00a0\u00a0\u00a0\u00a0\n\t\t\t\t\t\t\t\t "
   },
   {
-   "id": 10040,
-   "scraped_at": "2026-10-26T15:07:04.054011",
+   "id": 10063,
+   "scraped_at": "2026-10-26T17:41:14.202963",
    "sldc": "PUDUCHERRY_SLDC",
    "state": "Puducherry",
    "region": "Southern",
@@ -1669,14 +1670,14 @@
    "raw_snippet": "\n \n \n \n \n Official Website of Electricity Department, Government of Puducherry, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  Skip To Main Content \n  Screen Reader Access \n \n \n \n \n \n \n \n \n \n \n \n \n \n English  Assamese  (\u0985\u09b8\u09ae\u09c0\u09af\u09bc\u09be) Bengali  (\u09ac\u09be\u0982\u09b2\u09be) Bodo  (\u092c\u0921\u093c\u094b) Dogri  (\u0921\u094b\u0917\u0930\u0940) Goan Konkani  (\u0917\u094b\u0935\u093e \u0915\u094b\u0902\u0915\u0923\u0940) Gujarati  (\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0) Hindi  (\u0939\u093f\u0928\u094d\u0926\u0940) Kannada  (\u0c95\u0ca8\u0ccd\u0ca8\u0ca1) Kashmiri  (\u0915\u0936\u094d\u092e\u0940\u0930\u0940) Maithili  (\u092e\u0948\u0925\u093f\u0932\u0940) Malayalam  (\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02) Manipuri  (\u09ae\u09a3\u09bf"
   },
   {
-   "id": 10034,
-   "scraped_at": "2026-10-26T15:05:56.414844",
+   "id": 10053,
+   "scraped_at": "2026-10-26T17:39:44.113117",
    "sldc": "PUNJAB_SLDC",
    "state": "Punjab",
    "region": "Northern",
-   "freq_hz": null,
-   "demand_mw": 4804.0,
-   "generation_mw": 2938.0,
+   "freq_hz": 49.98,
+   "demand_mw": 4129.0,
+   "generation_mw": 4341.0,
    "peak_demand_mw": null,
    "peak_demand_date": null,
    "energy_today_mu": null,
@@ -1684,11 +1685,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n Welcome to State Load Dispatch Centre (SLDC), PSTCL, Patiala, Punjab, India  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Mon Oct 26 2026 15:05:55 GMT+0530 (India Standard Time) \n \n \n \n \n \n \n Skip to Main Content \n \n Font Size \n \n \n \n \n \n \n \n \n \n \n \n Select Theme \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n                        Punjab State Load Dispatch Centre\n                     \n \n \n                    Punjab State Transmission Corpor"
+   "raw_snippet": "\n \n Welcome to State Load Dispatch Centre (SLDC), PSTCL, Patiala, Punjab, India  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Mon Oct 26 2026 17:39:43 GMT+0530 (India Standard Time) \n \n \n \n \n \n \n Skip to Main Content \n \n Font Size \n \n \n \n \n \n \n \n \n \n \n \n Select Theme \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n                        Punjab State Load Dispatch Centre\n                     \n \n \n                    Punjab State Transmission Corpor"
   },
   {
-   "id": 10045,
-   "scraped_at": "2026-10-26T15:07:31.754154",
+   "id": 10068,
+   "scraped_at": "2026-10-26T17:41:50.991207",
    "sldc": "SIKKIM_SLDC",
    "state": "Sikkim",
    "region": "Eastern",
@@ -1705,8 +1706,8 @@
    "raw_snippet": "\n \n \n \n Government of Sikkim, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n                                                    An official website of the Government of Sikkim, India\n                                                 \n \n \n                                                    Sikkim Official Website, India\n                                                 \n \n \n \n \n \n \n \n \n \n \n \n                                                    dit-sik[at]nic[dot]in\n           "
   },
   {
-   "id": 10043,
-   "scraped_at": "2026-10-26T15:07:24.298763",
+   "id": 10065,
+   "scraped_at": "2026-10-26T17:41:26.675446",
    "sldc": "TN_SLDC",
    "state": "Tamil Nadu",
    "region": "Southern",
@@ -1741,12 +1742,12 @@
    "raw_snippet": "\n \n \n \n \n \n \n \n \n \n Official Website | Tripura State Electricity Corporation Limited \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n A+ \n A \n A- \n \n \n \n   \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n \n \n \n \n \n \n \n Tripura State Electricity Corporation Limited \n A Govt. of Tripur"
   },
   {
-   "id": 10031,
-   "scraped_at": "2026-10-26T15:05:39.987871",
+   "id": 10055,
+   "scraped_at": "2026-10-26T17:39:47.324467",
    "sldc": "UP_SLDC",
    "state": "Uttar Pradesh",
    "region": "Northern",
-   "freq_hz": 50.07,
+   "freq_hz": 49.95,
    "demand_mw": 32673.0,
    "generation_mw": null,
    "peak_demand_mw": 32673.0,
@@ -1759,8 +1760,8 @@
    "raw_snippet": "\n \n \n Welcome :: UPSLDC \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Employee Mail | \n RTI | \n Site Map | \n Contact Us \n \n \n \n \n \n \n \n \n U P SLDC Limited \n (A UP Government Undertaking) \n CIN - U40106UP2022SGC169330 \n \n \n \n \n \n \n \n \n \n \n Home \n About Us   \n \n About UPSLDC \n Formation of UP SLDC \n Organization Structure \n List of Personnel \n Sanctioned Manpower for SLDC \n Email IDs of SLDC Officers \n \n \n Real Time Data \n Transfer Capability   \n \n TTC & ATC   \n \n Month Wise \n \n \n \n \n "
   },
   {
-   "id": 10035,
-   "scraped_at": "2026-10-26T15:05:59.280896",
+   "id": 10057,
+   "scraped_at": "2026-10-26T17:40:15.630872",
    "sldc": "UK_SLDC",
    "state": "Uttarakhand",
    "region": "Northern",
@@ -1774,11 +1775,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n Welcome to Power Tranmission Corporation of Uttarakhand Limited \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Screen Reader Access \n Skip to main content \n Skip to navigation \n \n \n \n \n \n \n \n \n \n Home \n Webmail \n Feedback \n \n \n \n \n Employee Login \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Menu \n \n About Us \n \n PTCUL at a Glance  \n Corporate Vision, Aims and Objectives  \n Corporate Values  \n Board of Directors  \n Milestones and Achievements  \n Statutory C"
+   "raw_snippet": "\n \n Welcome to Power Tranmission Corporation of Uttarakhand Limited \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Screen Reader Access \n Skip to main content \n Skip to navigation \n \n \n \n \n \n \n \n \n \n Home \n Webmail \n Feedback \n \n \n \n \n Employee Login \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n About Us \n \n PTCUL at a Glance  \n Corporate Vision, Aims and Objectives  \n Corporate Values  \n Board of Directors  \n Milestones and Achievements  \n Statutory Comm"
   },
   {
-   "id": 10046,
-   "scraped_at": "2026-10-26T15:08:11.353473",
+   "id": 10069,
+   "scraped_at": "2026-10-26T17:42:25.591927",
    "sldc": "WB_SLDC",
    "state": "West Bengal",
    "region": "Eastern",
@@ -4129,7 +4130,7 @@
   {
    "date": "2026-10-26",
    "state": "Odisha",
-   "peak_demand_mw": 5752.07
+   "peak_demand_mw": 5851.94
   },
   {
    "date": "2026-10-26",
@@ -5071,7 +5072,7 @@
   ],
   "current_fy": "2026-27",
   "fy_series_source": "Ministry of Power - \"Power Sector at a Glance, ALL INDIA\"",
-  "fy_series_fetched": "2026-10-26T15:24:01.726833+05:30"
+  "fy_series_fetched": "2026-10-26T17:57:58.687912+05:30"
  },
  "_curtailment": [
   {
@@ -5090,7 +5091,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 29862,
@@ -5108,7 +5109,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 29861,
@@ -5126,7 +5127,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 29858,
@@ -5144,7 +5145,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 29856,
@@ -5162,7 +5163,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 29854,
@@ -5180,7 +5181,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 28181,
@@ -5198,7 +5199,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 28180,
@@ -5216,7 +5217,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 28179,
@@ -5234,7 +5235,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 28178,
@@ -5252,7 +5253,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 28177,
@@ -5270,7 +5271,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 28176,
@@ -5288,7 +5289,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26277,
@@ -5306,7 +5307,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26276,
@@ -5324,7 +5325,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26275,
@@ -5342,7 +5343,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26274,
@@ -5360,7 +5361,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26273,
@@ -5378,7 +5379,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26272,
@@ -5396,7 +5397,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26271,
@@ -5414,7 +5415,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26270,
@@ -5432,7 +5433,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26269,
@@ -5450,7 +5451,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26268,
@@ -5468,7 +5469,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 26267,
@@ -5486,7 +5487,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 24106,
@@ -5504,7 +5505,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 24105,
@@ -5522,7 +5523,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 24104,
@@ -5540,7 +5541,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   },
   {
    "id": 24103,
@@ -5558,7 +5559,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-10-26T15:10:09.876941"
+   "scraped_at": "2026-10-26T17:44:23.006373"
   }
  ],
  "_reCapacity": {
@@ -5580,19 +5581,19 @@
  },
  "_storageData": {
   "status": "ok",
-  "ts": "2026-10-26T15:12:21.862793",
+  "ts": "2026-10-26T17:46:23.577148",
   "latest_dispatch": [
    {
-    "id": 73,
-    "scraped_at": "2026-10-26T15:05:28.732691",
+    "id": 74,
+    "scraped_at": "2026-10-26T17:39:36.378790",
     "source_name": "Storage",
     "storage_type": "Combined",
     "region": "All-India",
     "capacity_mw": null,
     "energy_mwh": null,
-    "dispatch_mw": 2.0,
+    "dispatch_mw": 5339.0,
     "charging_mw": 0.0,
-    "discharging_mw": 2.0,
+    "discharging_mw": 5339.0,
     "soc_pct": null,
     "cycles_today": null,
     "source": "MERIT"
@@ -5770,15 +5771,15 @@
    {
     "day": "2026-10-26",
     "type": "Combined",
-    "avg_dispatch": 2.0,
-    "avg_dis": 2.0,
+    "avg_dispatch": 1781.0,
+    "avg_dis": 1781.0,
     "avg_chg": 0.0
    }
   ],
   "merit_storage": [
    {
     "source": "Storage",
-    "mw": 2.0
+    "mw": 5339.0
    }
   ],
   "projects": [
@@ -5908,7 +5909,7 @@
   "status": "ok",
   "state": "Goa",
   "region": "Western",
-  "ts": "2026-10-26T15:12:21.873385",
+  "ts": "2026-10-26T17:46:23.583935",
   "demand_mw": null,
   "generation_mw": null,
   "freq_hz": null,
@@ -6488,7 +6489,7 @@
    null,
    null,
    268.4,
-   312.2
+   314.7
   ],
   "rtm": [
    null,
@@ -6516,7 +6517,7 @@
    "note": "already present"
   }
  ],
- "_fallbackRanAt": "2026-10-26T15:15:06.332242",
+ "_fallbackRanAt": "2026-10-26T17:48:43.284276",
  "_genTrend": {
   "times": [
    "00:01",
@@ -6571,7 +6572,10 @@
    "16:19",
    "16:35",
    "16:49",
-   "16:59"
+   "17:03",
+   "17:19",
+   "17:33",
+   "17:45"
   ],
   "series": {
    "Wind": [
@@ -6627,7 +6631,10 @@
     8088,
     8057,
     7890,
-    7864
+    7761,
+    7640,
+    7571,
+    7671
    ],
    "Thermal": [
     151253,
@@ -6682,7 +6689,10 @@
     157592,
     164076,
     168613,
-    170954
+    170229,
+    171549,
+    174351,
+    176207
    ],
    "Nuclear": [
     7371,
@@ -6737,7 +6747,10 @@
     7324,
     7341,
     7309,
-    7327
+    7306,
+    7331,
+    7332,
+    7315
    ],
    "Solar": [
     0,
@@ -6792,7 +6805,10 @@
     40124,
     32404,
     25488,
-    20383
+    18559,
+    11740,
+    6759,
+    3722
    ],
    "Hydro": [
     11181,
@@ -6847,7 +6863,10 @@
     10993,
     11773,
     13697,
-    14741
+    15265,
+    17040,
+    19526,
+    21320
    ],
    "Gas": [
     1757,
@@ -6902,14 +6921,17 @@
     2238,
     2403,
     2500,
-    2548
+    2551,
+    2892,
+    2922,
+    2949
    ]
   },
   "source": "NPP real-time chart API",
-  "as_of": "2026-10-26T16:59:33+05:30"
+  "as_of": "2026-10-26T17:45:33+05:30"
  },
  "_sources": {
-  "captured_at_ist": "2026-10-26T17:25:17.790856+05:30",
+  "captured_at_ist": "2026-10-26T17:56:02.507397+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
@@ -6917,15 +6939,16 @@
     "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-10-26",
     "status": "ok",
     "tried": [],
-    "as_of": "16:59 IST"
+    "as_of": "17:45 IST"
    },
    {
     "field": "All-India price & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "17:00 - 17:15 dated 26 OCT 2026"
+    "source": "-",
+    "url": "-",
+    "status": "UNAVAILABLE - every source failed",
+    "tried": [
+     "Vidyut PRAVAH, Ministry of Power: HTTPError: 500 Server Error: Internal Server Error for url: https://vidyutpravah.in/"
+    ]
    },
    {
     "field": "State-wise demand & shortage",
@@ -6974,16 +6997,16 @@
    },
    {
     "field": "Grid frequency",
-    "source": "Grid-India / NLDC Daily PSP report",
+    "source": "-",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "2026-10-25 - published the morning after, so about a day behind live",
-    "status": "ok (96 blocks; latest 49.89 Hz at 23:45)",
+    "as_of": "-",
+    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
     "tried": [
-     "grid-india.in (real-time): no live feed",
-     "report.grid-india.in: no live feed",
-     "nldc.in: no live feed",
-     "wrldc.in: no live feed",
-     "meritindia.in: no live feed"
+     "grid-india.in (real-time)",
+     "report.grid-india.in",
+     "nldc.in",
+     "wrldc.in",
+     "meritindia.in"
     ]
    }
   ]
@@ -25056,6 +25079,28 @@
     "total_mu": 4577.29,
     "installed_total_mw": 560545.65,
     "monitored_total_mw": 313363.79
+   },
+   {
+    "date": "2026-10-23",
+    "bhutan_import_mu": 16.46,
+    "hydro_mu": 325.62,
+    "nuclear_mu": 190.34,
+    "res_mu": null,
+    "thermal_mu": 4051.06,
+    "total_mu": 4583.48,
+    "installed_total_mw": 560545.65,
+    "monitored_total_mw": 313363.79
+   },
+   {
+    "date": "2026-10-24",
+    "bhutan_import_mu": 15.41,
+    "hydro_mu": 317.62,
+    "nuclear_mu": 191.29,
+    "res_mu": null,
+    "thermal_mu": 4045.6,
+    "total_mu": 4569.92,
+    "installed_total_mw": 560545.65,
+    "monitored_total_mw": 313363.79
    }
   ],
   "monthly": [
@@ -25187,12 +25232,12 @@
    },
    {
     "period": "2026-10",
-    "days_with_data": 22,
-    "thermal_mu": 90624.33,
-    "nuclear_mu": 4126.53,
-    "hydro_mu": 9946.6,
-    "bhutan_import_mu": 629.65,
-    "total_mu": 105327.11
+    "days_with_data": 24,
+    "thermal_mu": 98720.99,
+    "nuclear_mu": 4508.16,
+    "hydro_mu": 10589.84,
+    "bhutan_import_mu": 661.52,
+    "total_mu": 114480.51
    }
   ],
   "yearly": [
@@ -25207,21 +25252,19 @@
    },
    {
     "period": "FY2026-27",
-    "days_with_data": 205,
-    "thermal_mu": 811203.37,
-    "nuclear_mu": 36384.91,
-    "hydro_mu": 103946.79,
-    "bhutan_import_mu": 6503.15,
-    "total_mu": 958038.22
+    "days_with_data": 207,
+    "thermal_mu": 819300.03,
+    "nuclear_mu": 36766.54,
+    "hydro_mu": 104590.03,
+    "bhutan_import_mu": 6535.02,
+    "total_mu": 967191.62
    }
   ],
   "coverage": {
-   "days_stored": 446,
+   "days_stored": 448,
    "first": "2025-08-03",
-   "last": "2026-10-22",
+   "last": "2026-10-24",
    "gaps": [
-    "2026-10-23",
-    "2026-10-24",
     "2026-10-25",
     "2026-10-26"
    ]

@@ -1,8 +1,8 @@
 {
- "scraped_at": "2026-11-02T16:52:07.477451+05:30",
+ "scraped_at": "2026-11-02T17:07:09.818990+05:30",
  "is_snapshot": true,
  "snapshot_date": "2026-11-02",
- "snapshot_time": "16:52",
+ "snapshot_time": "17:07",
  "iex_dam": {
   "id": 595,
   "scraped_at": "2026-11-02T16:28:21.061175",
@@ -786,12 +786,12 @@
  },
  "posoco": {
   "status": "ok",
-  "scraped_at": "2026-11-02T16:52:07.477451+05:30",
+  "scraped_at": "2026-11-02T17:07:09.818990+05:30",
   "national": {
-   "demand_mw": 216165,
-   "generation_mw": 215992,
-   "deficit_mw": 173,
-   "surplus_mw": null,
+   "demand_mw": 214339,
+   "generation_mw": 213631,
+   "deficit_mw": 708,
+   "surplus_mw": 393.0,
    "freq": null,
    "peak_today_mw": 226421,
    "min_today_mw": 167591
@@ -800,10 +800,10 @@
   "source": "NPP real-time chart API"
  },
  "_national": {
-  "demand_mw": 216165,
-  "generation_mw": 215992,
-  "deficit_mw": 173,
-  "surplus_mw": null,
+  "demand_mw": 214339,
+  "generation_mw": 213631,
+  "deficit_mw": 708,
+  "surplus_mw": 393.0,
   "freq": null,
   "peak_today_mw": 226421,
   "min_today_mw": 167591
@@ -811,31 +811,31 @@
  "merit": {
   "status": "ok",
   "source": "NPP / CEA real-time",
-  "as_of": "2026-11-02T16:41:33+05:30",
+  "as_of": "2026-11-02T16:58:02+05:30",
   "generation_table": [
    {
     "source": "Thermal",
-    "generation_mw": 161874
+    "generation_mw": 164225
    },
    {
     "source": "Solar",
-    "generation_mw": 28296
+    "generation_mw": 19554
    },
    {
     "source": "Hydro",
-    "generation_mw": 12758
+    "generation_mw": 16176
    },
    {
     "source": "Nuclear",
-    "generation_mw": 6700
+    "generation_mw": 6693
    },
    {
     "source": "Wind",
-    "generation_mw": 3823
+    "generation_mw": 4141
    },
    {
     "source": "Gas",
-    "generation_mw": 2541
+    "generation_mw": 2842
    }
   ]
  },
@@ -1303,8 +1303,12 @@
    "demand_mw": 219171
   },
   {
-   "time": "16:41",
-   "demand_mw": 216165
+   "time": "16:45",
+   "demand_mw": 215995
+  },
+  {
+   "time": "16:58",
+   "demand_mw": 214339
   }
  ],
  "_dbStats": {
@@ -6606,7 +6610,8 @@
    "15:47",
    "16:07",
    "16:27",
-   "16:41"
+   "16:45",
+   "16:58"
   ],
   "series": {
    "Hydro": [
@@ -6659,7 +6664,8 @@
     9530,
     9620,
     10793,
-    12758
+    13218,
+    16176
    ],
    "Nuclear": [
     6712,
@@ -6711,7 +6717,8 @@
     6699,
     6707,
     6693,
-    6700
+    6692,
+    6693
    ],
    "Solar": [
     0,
@@ -6763,7 +6770,8 @@
     52212,
     45296,
     36633,
-    28296
+    26244,
+    19554
    ],
    "Wind": [
     5457,
@@ -6815,7 +6823,8 @@
     3422,
     3686,
     3789,
-    3823
+    3856,
+    4141
    ],
    "Gas": [
     1453,
@@ -6867,7 +6876,8 @@
     1941,
     2076,
     2342,
-    2541
+    2581,
+    2842
    ],
    "Thermal": [
     152372,
@@ -6919,14 +6929,15 @@
     149543,
     153894,
     158980,
-    161874
+    162738,
+    164225
    ]
   },
   "source": "NPP real-time chart API",
-  "as_of": "2026-11-02T16:41:33+05:30"
+  "as_of": "2026-11-02T16:58:02+05:30"
  },
  "_sources": {
-  "captured_at_ist": "2026-11-02T16:52:07.477451+05:30",
+  "captured_at_ist": "2026-11-02T17:07:09.818990+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
@@ -6934,16 +6945,15 @@
     "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-11-02",
     "status": "ok",
     "tried": [],
-    "as_of": "16:41 IST"
+    "as_of": "16:58 IST"
    },
    {
     "field": "All-India price & shortage",
-    "source": "-",
-    "url": "-",
-    "status": "UNAVAILABLE - every source failed",
-    "tried": [
-     "Vidyut PRAVAH, Ministry of Power: HTTPError: 500 Server Error: Internal Server Error for url: https://vidyutpravah.in/"
-    ]
+    "source": "Vidyut PRAVAH, Ministry of Power",
+    "url": "https://vidyutpravah.in/",
+    "status": "ok",
+    "tried": [],
+    "as_of": "17:00 - 17:15 dated 02 NOV 2026"
    },
    {
     "field": "State-wise demand & shortage",
@@ -6992,16 +7002,16 @@
    },
    {
     "field": "Grid frequency",
-    "source": "-",
+    "source": "Grid-India / NLDC Daily PSP report",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "-",
-    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
+    "as_of": "2026-11-01 - published the morning after, so about a day behind live",
+    "status": "ok (96 blocks; latest 50.07 Hz at 23:45)",
     "tried": [
-     "grid-india.in (real-time)",
-     "report.grid-india.in",
-     "nldc.in",
-     "wrldc.in",
-     "meritindia.in"
+     "grid-india.in (real-time): no live feed",
+     "report.grid-india.in: no live feed",
+     "nldc.in: no live feed",
+     "wrldc.in: no live feed",
+     "meritindia.in: no live feed"
     ]
    }
   ]

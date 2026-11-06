@@ -1,71 +1,71 @@
 {
- "scraped_at": "2026-11-06T16:31:12.279104+05:30",
+ "scraped_at": "2026-11-06T16:40:36.175263",
  "is_snapshot": true,
  "snapshot_date": "2026-11-06",
- "snapshot_time": "16:31",
+ "snapshot_time": "16:40 IST",
  "iex_dam": {
-  "id": 608,
-  "scraped_at": "2026-11-06T10:57:25.204804",
+  "id": 609,
+  "scraped_at": "2026-11-06T16:31:23.404558",
   "date": "2026-11-06",
-  "mcp": 5170.7,
-  "mcv_mwh": 406201.68,
-  "purchase_bid_mwh": -2026.0,
-  "sell_bid_mwh": 433664.13,
+  "mcp": null,
+  "mcv_mwh": null,
+  "purchase_bid_mwh": 1.0,
+  "sell_bid_mwh": 1.0,
   "blocks": [],
   "status": "ok"
  },
  "posoco": {
-  "status": "ok",
-  "scraped_at": "2026-11-06T16:31:12.279104+05:30",
   "national": {
-   "demand_mw": 217415,
-   "generation_mw": 218233,
-   "deficit_mw": 0,
+   "id": 13,
+   "scraped_at": "2026-09-03T12:27:42.584594",
+   "demand_mw": 250000.0,
+   "generation_mw": null,
    "surplus_mw": null,
-   "freq": null,
-   "peak_today_mw": 228168,
-   "min_today_mw": 172827
+   "deficit_mw": null,
+   "grid_freq_hz": null,
+   "peak_demand_mw": null,
+   "peak_met_mw": null,
+   "source": "FALLBACK:vidyutpravah.in"
   },
-  "regional": [],
-  "source": "NPP real-time chart API"
+  "status": "ok"
  },
  "_national": {
-  "demand_mw": 217415,
-  "generation_mw": 218233,
-  "deficit_mw": 0,
+  "demand_mw": 250000.0,
+  "generation_mw": null,
+  "deficit_mw": null,
   "surplus_mw": null,
-  "freq": null,
-  "peak_today_mw": 228168,
-  "min_today_mw": 172827
+  "freq": null
  },
  "merit": {
   "status": "ok",
-  "source": "NPP / CEA real-time",
-  "as_of": "2026-11-06T16:22:02+05:30",
   "generation_table": [
    {
-    "source": "Thermal",
-    "generation_mw": 157211
+    "source": "Thermal (Coal)",
+    "generation_mw": 161499.0
    },
    {
-    "source": "Solar",
-    "generation_mw": 37446
+    "source": "Renewable (RES)",
+    "generation_mw": 34542.0
    },
    {
     "source": "Hydro",
-    "generation_mw": 9953
+    "generation_mw": 12118.0
    },
    {
     "source": "Nuclear",
-    "generation_mw": 6683
+    "generation_mw": 6686.0
    },
    {
-    "source": "Wind",
-    "generation_mw": 5001
+    "source": "Other RES",
+    "generation_mw": 2901.0
    },
    {
     "source": "Gas",
-    "generation_mw": 1939
+    "generation_mw": 2084.0
+   },
+   {
+    "source": "Storage",
+    "generation_mw": 1154.0
    }
   ]
  },
@@ -223,18 +223,18 @@
    "source": "SLDC"
   },
   {
-   "scraped_at": "2026-11-06T10:59:47.265301",
+   "scraped_at": "2026-11-06T11:00:50.156956",
    "date": "2026-11-06",
-   "state": "Delhi",
-   "region": "Northern",
-   "demand_mw": 4094.0,
-   "met_mw": 4094.0,
+   "state": "Odisha",
+   "region": "Eastern",
+   "demand_mw": 5735.5,
+   "met_mw": 5735.5,
    "shortage_mw": 0,
    "shortage_pct": 0.0,
    "source": "SLDC"
   },
   {
-   "scraped_at": "2026-11-06T10:59:50.549841",
+   "scraped_at": "2026-11-06T16:39:04.621222",
    "date": "2026-11-06",
    "state": "Uttar Pradesh",
    "region": "Northern",
@@ -245,12 +245,12 @@
    "source": "SLDC"
   },
   {
-   "scraped_at": "2026-11-06T11:00:50.156956",
+   "scraped_at": "2026-11-06T16:39:09.196518",
    "date": "2026-11-06",
-   "state": "Odisha",
-   "region": "Eastern",
-   "demand_mw": 5735.5,
-   "met_mw": 5735.5,
+   "state": "Delhi",
+   "region": "Northern",
+   "demand_mw": 3749.0,
+   "met_mw": 3749.0,
    "shortage_mw": 0,
    "shortage_pct": 0.0,
    "source": "SLDC"
@@ -273,8 +273,8 @@
    "raw_html_length": 124664
   },
   {
-   "id": 2302,
-   "scraped_at": "2026-11-06T10:53:54.983147",
+   "id": 2306,
+   "scraped_at": "2026-11-06T16:33:25.655196",
    "rldc": "NRLDC",
    "region": "Northern",
    "freq_hz": 49.95,
@@ -287,8 +287,8 @@
    "raw_html_length": 241941
   },
   {
-   "id": 2303,
-   "scraped_at": "2026-11-06T10:54:08.086269",
+   "id": 2307,
+   "scraped_at": "2026-11-06T16:33:46.814913",
    "rldc": "WRLDC",
    "region": "Western",
    "freq_hz": null,
@@ -301,8 +301,8 @@
    "raw_html_length": 51280
   },
   {
-   "id": 2304,
-   "scraped_at": "2026-11-06T10:54:18.579261",
+   "id": 2308,
+   "scraped_at": "2026-11-06T16:33:55.869187",
    "rldc": "SRLDC",
    "region": "Southern",
    "freq_hz": 49.99,
@@ -315,8 +315,8 @@
    "raw_html_length": 266014
   },
   {
-   "id": 2305,
-   "scraped_at": "2026-11-06T10:54:43.967868",
+   "id": 2309,
+   "scraped_at": "2026-11-06T16:34:03.235343",
    "rldc": "ERLDC",
    "region": "Eastern",
    "freq_hz": null,
@@ -326,229 +326,20 @@
    "deficit_mw": null,
    "od_ug_mw": null,
    "vcm_mw": null,
-   "raw_html_length": 41903
+   "raw_html_length": 29355
   }
  ],
- "_nationalTrend": [
-  {
-   "time": "00:01",
-   "demand_mw": 182528
-  },
-  {
-   "time": "00:21",
-   "demand_mw": 181640
-  },
-  {
-   "time": "00:39",
-   "demand_mw": 180019
-  },
-  {
-   "time": "00:59",
-   "demand_mw": 178395
-  },
-  {
-   "time": "01:19",
-   "demand_mw": 177007
-  },
-  {
-   "time": "01:38",
-   "demand_mw": 176040
-  },
-  {
-   "time": "01:57",
-   "demand_mw": 174739
-  },
-  {
-   "time": "02:17",
-   "demand_mw": 173567
-  },
-  {
-   "time": "02:36",
-   "demand_mw": 173163
-  },
-  {
-   "time": "02:55",
-   "demand_mw": 173924
-  },
-  {
-   "time": "03:15",
-   "demand_mw": 173641
-  },
-  {
-   "time": "03:36",
-   "demand_mw": 173334
-  },
-  {
-   "time": "03:55",
-   "demand_mw": 173494
-  },
-  {
-   "time": "04:17",
-   "demand_mw": 174546
-  },
-  {
-   "time": "04:36",
-   "demand_mw": 174179
-  },
-  {
-   "time": "04:55",
-   "demand_mw": 176776
-  },
-  {
-   "time": "05:14",
-   "demand_mw": 181740
-  },
-  {
-   "time": "05:34",
-   "demand_mw": 187796
-  },
-  {
-   "time": "05:53",
-   "demand_mw": 191903
-  },
-  {
-   "time": "06:12",
-   "demand_mw": 195817
-  },
-  {
-   "time": "06:31",
-   "demand_mw": 203337
-  },
-  {
-   "time": "06:50",
-   "demand_mw": 208040
-  },
-  {
-   "time": "07:09",
-   "demand_mw": 211514
-  },
-  {
-   "time": "07:29",
-   "demand_mw": 212865
-  },
-  {
-   "time": "07:48",
-   "demand_mw": 212665
-  },
-  {
-   "time": "08:07",
-   "demand_mw": 213311
-  },
-  {
-   "time": "08:25",
-   "demand_mw": 218234
-  },
-  {
-   "time": "08:45",
-   "demand_mw": 221502
-  },
-  {
-   "time": "09:03",
-   "demand_mw": 221160
-  },
-  {
-   "time": "09:23",
-   "demand_mw": 226000
-  },
-  {
-   "time": "09:42",
-   "demand_mw": 228168
-  },
-  {
-   "time": "10:00",
-   "demand_mw": 226730
-  },
-  {
-   "time": "10:19",
-   "demand_mw": 225541
-  },
-  {
-   "time": "10:37",
-   "demand_mw": 225257
-  },
-  {
-   "time": "10:56",
-   "demand_mw": 224874
-  },
-  {
-   "time": "11:15",
-   "demand_mw": 223858
-  },
-  {
-   "time": "11:33",
-   "demand_mw": 222693
-  },
-  {
-   "time": "11:52",
-   "demand_mw": 222703
-  },
-  {
-   "time": "12:11",
-   "demand_mw": 220442
-  },
-  {
-   "time": "12:29",
-   "demand_mw": 219196
-  },
-  {
-   "time": "12:49",
-   "demand_mw": 219434
-  },
-  {
-   "time": "13:07",
-   "demand_mw": 215774
-  },
-  {
-   "time": "13:27",
-   "demand_mw": 214903
-  },
-  {
-   "time": "13:46",
-   "demand_mw": 214502
-  },
-  {
-   "time": "14:06",
-   "demand_mw": 214033
-  },
-  {
-   "time": "14:25",
-   "demand_mw": 215123
-  },
-  {
-   "time": "14:45",
-   "demand_mw": 217414
-  },
-  {
-   "time": "15:05",
-   "demand_mw": 217726
-  },
-  {
-   "time": "15:23",
-   "demand_mw": 219197
-  },
-  {
-   "time": "15:43",
-   "demand_mw": 219823
-  },
-  {
-   "time": "16:02",
-   "demand_mw": 219795
-  },
-  {
-   "time": "16:22",
-   "demand_mw": 217415
-  }
- ],
+ "_nationalTrend": [],
  "_dbStats": {
   "iex_dam_summary": {
-   "count": 608,
+   "count": 609,
    "oldest": "2026-05-26T01:34:19.189684",
-   "newest": "2026-11-06T10:57:25.204804"
+   "newest": "2026-11-06T16:31:23.404558"
   },
   "iex_dam_blocks": {
-   "count": 512,
+   "count": 513,
    "oldest": "2026-05-26T01:34:19.189684",
-   "newest": "2026-11-06T10:51:52.633572"
+   "newest": "2026-11-06T16:31:23.404558"
   },
   "national_demand": {
    "count": 13,
@@ -561,9 +352,9 @@
    "newest": null
   },
   "rldc_data": {
-   "count": 2305,
+   "count": 2309,
    "oldest": "2026-05-26T02:45:13.698456",
-   "newest": "2026-11-06T10:54:43.967868"
+   "newest": "2026-11-06T16:34:03.235343"
   },
   "rldc_state_drawal": {
    "count": 0,
@@ -581,9 +372,9 @@
    "newest": null
   },
   "merit_generation": {
-   "count": 656,
+   "count": 663,
    "oldest": "2026-05-26T01:58:43.830063",
-   "newest": "2026-11-06T10:59:40.264180"
+   "newest": "2026-11-06T16:38:55.479726"
   },
   "remc_data": {
    "count": 0,
@@ -601,9 +392,9 @@
    "newest": null
   },
   "scrape_log": {
-   "count": 28485,
+   "count": 28542,
    "oldest": "2026-05-26T01:03:01.757282",
-   "newest": "2026-11-06T11:06:16.732724"
+   "newest": "2026-11-06T16:40:31.779776"
   }
  },
  "_sldcData": [
@@ -662,8 +453,8 @@
    "raw_snippet": "\n \n \n \r\n\t North Bihar Power Distribution Company Ltd\r\n \n \n \n \n \n \n \n \n North Bihar Power Distribution Company Ltd \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \r\n                    \u00a0\r\n                    \r\n                     \n \n \n \n \n \n \n \n \n \n \n \n \r\n                                    NORTH BIHAR POWER DISTRIBUTION COMPANY LTD \n \r\n                                    GOVERNMENT OF BIHAR \n \n \n \u0939\u093f\u0902\u0926\u0940 \u00a0 \u00a0\r\n                                 \u00a0\r\n                                 \u00a0\r\n                  "
   },
   {
-   "id": 10512,
-   "scraped_at": "2026-11-06T11:00:33.365448",
+   "id": 10532,
+   "scraped_at": "2026-11-06T16:40:04.905970",
    "sldc": "CG_SLDC",
    "state": "Chhattisgarh",
    "region": "Western",
@@ -680,14 +471,14 @@
    "raw_snippet": "\n \n \n \n \n \n State Load Despatch Centre | Chhattisgarh \n \n \n \n \n \n \n \n \n \n \n \n STATE LOAD DESPATCH CENTRE \n \n \n \n \n \n \n Latest Updates \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n          About\u00a0Us\n           \n \n Overview \n Grid Diagram \n Constitution \n Function \n SCADA \n Photo Gallery \n FAQ \n Availability Based Tariff \n Code Of Ethics \n \n \n \n Open\u00a0Access  \n \n Regulations & Procedures \n STOA Bank Details \n LTOA & MTOA Information \n Intrastate Appr. for CSPDCL \n Open Access Charges \n Monthly Approved NOC"
   },
   {
-   "id": 10504,
-   "scraped_at": "2026-11-06T10:59:47.265301",
+   "id": 10528,
+   "scraped_at": "2026-11-06T16:39:09.196518",
    "sldc": "DELHI_SLDC",
    "state": "Delhi",
    "region": "Northern",
-   "freq_hz": 50.03,
-   "demand_mw": 4094.0,
-   "generation_mw": 313.0,
+   "freq_hz": 49.89,
+   "demand_mw": 3749.0,
+   "generation_mw": 410.0,
    "peak_demand_mw": 2026.0,
    "peak_demand_date": null,
    "energy_today_mu": null,
@@ -695,11 +486,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n Delhi SLDC \n \n \n \n \n STATE LOAD DESPATCH CENTRE, DELHI \ud83d\udd58 10:59:46 IST 06 November 2026 \u260e Control Room 011-23221091 An ISO 9001:2015 Organization Power System in Delhi \u25be Open Access \u25be Directory \u25be Energy Accounting \u25be Schedules \u25be Real Time Data Reports \u25be Related Links \u25be FAQ MENU \u2630 Power System in Delhi + Open Access + Directory + Energy Accounting + Schedules + Real Time Data Reports + Related Links + FAQ ABOUT US About Delhi SLDC Delhi State Load Despatch Centre (Delhi SLDC) is the apex bo"
+   "raw_snippet": "\n \n \n \n Delhi SLDC \n \n \n \n \n STATE LOAD DESPATCH CENTRE, DELHI \ud83d\udd58 16:39:08 IST 06 November 2026 \u260e Control Room 011-23221091 An ISO 9001:2015 Organization Power System in Delhi \u25be Open Access \u25be Directory \u25be Energy Accounting \u25be Schedules \u25be Real Time Data Reports \u25be Related Links \u25be FAQ MENU \u2630 Power System in Delhi + Open Access + Directory + Energy Accounting + Schedules + Real Time Data Reports + Related Links + FAQ ABOUT US About Delhi SLDC Delhi State Load Despatch Centre (Delhi SLDC) is the apex bo"
   },
   {
-   "id": 10523,
-   "scraped_at": "2026-11-06T11:06:16.683121",
+   "id": 10531,
+   "scraped_at": "2026-11-06T16:39:54.044221",
    "sldc": "GOA_SLDC",
    "state": "Goa",
    "region": "Western",
@@ -716,12 +507,12 @@
    "raw_snippet": "\n \n Electricity Department, Government of Goa \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to the content \n \n Smart meter installation has commenced in Division I, Panjim (Taleigao, Bambolim, Corlim and Panjim City). Authorized representatives will visit your premise for meter replacement. Smart Meter installation is free of cost for all consumers. For any installation concerns, contact the nearest GED office or Call Helpline "
   },
   {
-   "id": 10507,
-   "scraped_at": "2026-11-06T10:59:53.425824",
+   "id": 10529,
+   "scraped_at": "2026-11-06T16:39:09.391473",
    "sldc": "GUJARAT_SLDC",
    "state": "Gujarat",
    "region": "Western",
-   "freq_hz": 50.026,
+   "freq_hz": 49.97,
    "demand_mw": null,
    "generation_mw": null,
    "peak_demand_mw": null,
@@ -734,8 +525,8 @@
    "raw_snippet": "\n \n State Load Despatch Centre (SLDC) | Vadodara, Gujarat \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n CTRL+F2   acc toolbox  \u2717 - close keyboard navigation     block animations   color contrast     uncolored display     bright contrast     reverse contrast text size     increase text       decrease text     readable text highlighting content     underline links     underline headers     images titles zoom in     big white cursor     big black cursor     zoom screen accessibility state"
   },
   {
-   "id": 10515,
-   "scraped_at": "2026-11-06T11:01:29.108136",
+   "id": 10533,
+   "scraped_at": "2026-11-06T16:40:22.912644",
    "sldc": "HARYANA_SLDC",
    "state": "Haryana",
    "region": "Northern",
@@ -806,8 +597,8 @@
    "raw_snippet": "\n \n Kerala State Load despatch Center \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Home \n System Statistics \n \n Generation \n Imports \n Storage \n Availability \n Others \n Forecast \n \n \n About Us \n Contacts Us \n Links \n Open Access \n \n Login \n \n \n \n \n \n \n * Kerala SLDC - Winner of National Level Excellence Award 2021 *  \n \n \n \n \n \n \n \n Permit Management System \n \n \n \n Notifications \n \n   Kerala SLDC - Winner of National Level Excellence Award 2021    \n \n \n \n   Our Mission\u00a0-  \n\"To facilitate intra and inter st"
   },
   {
-   "id": 10508,
-   "scraped_at": "2026-11-06T10:59:54.745422",
+   "id": 10530,
+   "scraped_at": "2026-11-06T16:39:34.815286",
    "sldc": "MAHA_SLDC",
    "state": "Maharashtra",
    "region": "Western",
@@ -821,7 +612,7 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n \n \n  Maharashtra State Load Despatch Centre (MSLDC) \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to main content \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Maharashtra State Load Despatch Centre \n (A Govt of Maharashtra Undertaking ) \n \n \n \n \n \n \n \n \n                                                                                                                                About Us                                                                                                 \n \n \n \n \n \n                    "
+   "raw_snippet": "\n \n \n \n \n \n \n  Maharashtra State Load Despatch Centre (MSLDC) \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to main content \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Maharashtra State Load Despatch Centre \n (A Govt of Maharashtra Undertaking ) \n \n \n \n \n \n \n \n \r\n                                                                                                                                About Us                                                                                                 \n \n \n \n \n \r\n                "
   },
   {
    "id": 10520,
@@ -878,8 +669,8 @@
    "raw_snippet": "\n \n \n \n \n Official Website of Electricity Department, Government of Puducherry, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  Skip To Main Content \n  Screen Reader Access \n \n \n \n \n \n \n \n \n \n \n \n \n \n English  Assamese  (\u0985\u09b8\u09ae\u09c0\u09af\u09bc\u09be) Bengali  (\u09ac\u09be\u0982\u09b2\u09be) Bodo  (\u092c\u0921\u093c\u094b) Dogri  (\u0921\u094b\u0917\u0930\u0940) Goan Konkani  (\u0917\u094b\u0935\u093e \u0915\u094b\u0902\u0915\u0923\u0940) Gujarati  (\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0) Hindi  (\u0939\u093f\u0928\u094d\u0926\u0940) Kannada  (\u0c95\u0ca8\u0ccd\u0ca8\u0ca1) Kashmiri  (\u0915\u0936\u094d\u092e\u0940\u0930\u0940) Maithili  (\u092e\u0948\u0925\u093f\u0932\u0940) Malayalam  (\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02) Manipuri  (\u09ae\u09a3\u09bf"
   },
   {
-   "id": 10503,
-   "scraped_at": "2026-11-06T10:59:45.665326",
+   "id": 10525,
+   "scraped_at": "2026-11-06T16:39:04.045286",
    "sldc": "PUNJAB_SLDC",
    "state": "Punjab",
    "region": "Northern",
@@ -950,8 +741,8 @@
    "raw_snippet": "\n \n \n \n \n \n \n \n \n \n Official Website | Tripura State Electricity Corporation Limited \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n A+ \n A \n A- \n \n \n \n   \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n \n \n \n \n \n \n \n Tripura State Electricity Corporation Limited \n A Govt. of Tripur"
   },
   {
-   "id": 10506,
-   "scraped_at": "2026-11-06T10:59:50.549841",
+   "id": 10526,
+   "scraped_at": "2026-11-06T16:39:04.621222",
    "sldc": "UP_SLDC",
    "state": "Uttar Pradesh",
    "region": "Northern",
@@ -968,13 +759,13 @@
    "raw_snippet": "\n \n \n Welcome :: UPSLDC \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Employee Mail | \n RTI | \n Site Map | \n Contact Us \n \n \n \n \n \n \n \n \n U P SLDC Limited \n (A UP Government Undertaking) \n CIN - U40106UP2022SGC169330 \n \n \n \n \n \n \n \n \n \n \n Home \n About Us   \n \n About UPSLDC \n Formation of UP SLDC \n Organization Structure \n List of Personnel \n Sanctioned Manpower for SLDC \n Email IDs of SLDC Officers \n \n \n Real Time Data \n Transfer Capability   \n \n TTC & ATC   \n \n Month Wise \n \n \n \n \n "
   },
   {
-   "id": 10505,
-   "scraped_at": "2026-11-06T10:59:49.672311",
+   "id": 10527,
+   "scraped_at": "2026-11-06T16:39:09.031454",
    "sldc": "UK_SLDC",
    "state": "Uttarakhand",
    "region": "Northern",
    "freq_hz": null,
-   "demand_mw": 5.0,
+   "demand_mw": 6.0,
    "generation_mw": null,
    "peak_demand_mw": null,
    "peak_demand_date": null,
@@ -4506,7 +4297,7 @@
   ],
   "current_fy": "2026-27",
   "fy_series_source": "Ministry of Power - \"Power Sector at a Glance, ALL INDIA\"",
-  "fy_series_fetched": "2026-11-06T11:52:22.366697+05:30"
+  "fy_series_fetched": "2026-11-06T16:42:03.385562+05:30"
  },
  "_curtailment": [
   {
@@ -4816,38 +4607,22 @@
    "scraped_at": "2026-11-06T11:04:20.663673"
   }
  ],
- "_reCapacity": {
-  "solar_mw": 164594.75455,
-  "wind_mw": 58136.88999999999,
-  "small_hydro_mw": 5181.76,
-  "large_hydro_mw": 52064.66,
-  "biomass_mw": 10869.17,
-  "waste_to_energy_mw": 878.4,
-  "total_re_mw": 239660.97454999998,
-  "nuclear_mw": 8780.0,
-  "coal_mw": 224157.5,
-  "lignite_mw": 6620.0,
-  "gas_mw": 20122.419,
-  "diesel_mw": 589.204,
-  "split_source": "CEA monthly Installed Capacity report",
-  "split_month": "2026-07",
-  "note": "RES excludes large hydro. Solar/wind split from the CEA Installed Capacity report, 2026-07."
- },
+ "_reCapacity": {},
  "_storageData": {
   "status": "ok",
-  "ts": "2026-11-06T11:06:20.620892",
+  "ts": "2026-11-06T16:40:36.341135",
   "latest_dispatch": [
    {
-    "id": 92,
-    "scraped_at": "2026-11-06T10:59:40.264180",
+    "id": 93,
+    "scraped_at": "2026-11-06T16:38:55.479726",
     "source_name": "Storage",
     "storage_type": "Combined",
     "region": "All-India",
     "capacity_mw": null,
     "energy_mwh": null,
-    "dispatch_mw": 1.0,
+    "dispatch_mw": 1154.0,
     "charging_mw": 0.0,
-    "discharging_mw": 1.0,
+    "discharging_mw": 1154.0,
     "soc_pct": null,
     "cycles_today": null,
     "source": "MERIT"
@@ -5011,15 +4786,15 @@
    {
     "day": "2026-11-06",
     "type": "Combined",
-    "avg_dispatch": 1.0,
-    "avg_dis": 1.0,
+    "avg_dispatch": 385.3333333333333,
+    "avg_dis": 385.3333333333333,
     "avg_chg": 0.0
    }
   ],
   "merit_storage": [
    {
     "source": "Storage",
-    "mw": 1.0
+    "mw": 1154.0
    }
   ],
   "projects": [
@@ -5149,7 +4924,7 @@
   "status": "ok",
   "state": "Goa",
   "region": "Western",
-  "ts": "2026-11-06T11:06:20.646840",
+  "ts": "2026-11-06T16:40:36.358179",
   "demand_mw": null,
   "generation_mw": null,
   "freq_hz": null,
@@ -5310,215 +5085,7 @@
    }
   ],
   "state_supply_history": [],
-  "wrldc_drawal": [],
-  "sources": [
-   {
-    "source": "KSTPS-WR",
-    "type": "Thermal",
-    "capacity_mw": 212.0,
-    "agency": "Central ISGS",
-    "plant_mw": 2100.0
-   },
-   {
-    "source": "RAMAGUNDAM STPS STG-1&2",
-    "type": "Thermal",
-    "capacity_mw": 96.0,
-    "agency": "Central ISGS",
-    "plant_mw": 2100.0
-   },
-   {
-    "source": "VTPS 1",
-    "type": "Thermal",
-    "capacity_mw": 37.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1260.0
-   },
-   {
-    "source": "SIPAT_1",
-    "type": "Thermal",
-    "capacity_mw": 24.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1980.0
-   },
-   {
-    "source": "RGPPL",
-    "type": "Gas",
-    "capacity_mw": 20.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1967.0
-   },
-   {
-    "source": "KHARGONE - I",
-    "type": "Thermal",
-    "capacity_mw": 18.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1320.0
-   },
-   {
-    "source": "MAUDA-II",
-    "type": "Thermal",
-    "capacity_mw": 17.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1320.0
-   },
-   {
-    "source": "KAPS",
-    "type": "Nuclear",
-    "capacity_mw": 16.0,
-    "agency": "Central ISGS",
-    "plant_mw": 440.0
-   },
-   {
-    "source": "GADARWARA-I",
-    "type": "Thermal",
-    "capacity_mw": 15.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1600.0
-   },
-   {
-    "source": "NTPC SOLAPUR",
-    "type": "Thermal",
-    "capacity_mw": 15.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1320.0
-   },
-   {
-    "source": "VTPS 2",
-    "type": "Thermal",
-    "capacity_mw": 14.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1000.0
-   },
-   {
-    "source": "GOA ENERGY PVT. LTD.",
-    "type": "Thermal",
-    "capacity_mw": 13.0,
-    "agency": "State Generation",
-    "plant_mw": 13.0
-   },
-   {
-    "source": "MAUDA-I",
-    "type": "Thermal",
-    "capacity_mw": 13.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1000.0
-   },
-   {
-    "source": "SESA STERLITE LTD.",
-    "type": "Thermal",
-    "capacity_mw": 13.0,
-    "agency": "State Generation",
-    "plant_mw": 13.0
-   },
-   {
-    "source": "TAPS 3&4",
-    "type": "Nuclear",
-    "capacity_mw": 13.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1080.0
-   },
-   {
-    "source": "VSTPS 4",
-    "type": "Thermal",
-    "capacity_mw": 13.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1000.0
-   },
-   {
-    "source": "VSTPS 3",
-    "type": "Thermal",
-    "capacity_mw": 12.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1000.0
-   },
-   {
-    "source": "SIPAT 2-WR",
-    "type": "Thermal",
-    "capacity_mw": 11.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1000.0
-   },
-   {
-    "source": "GANDHAR RLNG",
-    "type": "Gas",
-    "capacity_mw": 7.0,
-    "agency": "Central ISGS",
-    "plant_mw": 657.0
-   },
-   {
-    "source": "KSTPS 3-WR",
-    "type": "Thermal",
-    "capacity_mw": 6.0,
-    "agency": "Central ISGS",
-    "plant_mw": 500.0
-   },
-   {
-    "source": "VSTPS -5",
-    "type": "Thermal",
-    "capacity_mw": 6.0,
-    "agency": "Central ISGS",
-    "plant_mw": 500.0
-   },
-   {
-    "source": "GANDHAR",
-    "type": "Gas",
-    "capacity_mw": 5.0,
-    "agency": "Central ISGS",
-    "plant_mw": 657.0
-   },
-   {
-    "source": "LARA-1",
-    "type": "Thermal",
-    "capacity_mw": 4.0,
-    "agency": "Central ISGS",
-    "plant_mw": 1600.0
-   },
-   {
-    "source": "KAWAS GAS",
-    "type": "Gas",
-    "capacity_mw": 3.0,
-    "agency": "Central ISGS",
-    "plant_mw": 656.0
-   },
-   {
-    "source": "KAWAS LIQUID",
-    "type": "Gas",
-    "capacity_mw": 3.0,
-    "agency": "Central ISGS",
-    "plant_mw": 656.0
-   },
-   {
-    "source": "KAWAS NAPM",
-    "type": "Gas",
-    "capacity_mw": 3.0,
-    "agency": "Central ISGS",
-    "plant_mw": 656.0
-   },
-   {
-    "source": "KAWAS RLNG",
-    "type": "Gas",
-    "capacity_mw": 3.0,
-    "agency": "Central ISGS",
-    "plant_mw": 656.0
-   },
-   {
-    "source": "GAN_ NAPM",
-    "type": "Gas",
-    "capacity_mw": 1.0,
-    "agency": "Central ISGS",
-    "plant_mw": 657.0
-   },
-   {
-    "source": "GOA SPONGE PVT. LTD.",
-    "type": "Thermal",
-    "capacity_mw": 1.0,
-    "agency": "State Generation",
-    "plant_mw": 1.0
-   }
-  ],
-  "sources_source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-  "sources_url": "https://meritindia.in/state-data/goa",
-  "sources_as_of": "31 Oct 2026"
+  "wrldc_drawal": []
  },
  "_goaHistory": {
   "sldc_trend": [
@@ -5731,10 +5298,10 @@
  "_sourceHealth": [
   {
    "metric": "iex_mcp",
-   "source": "primary scrape",
-   "status": "ok",
-   "value": 5170.7,
-   "note": "already present"
+   "source": "iexindia.com",
+   "status": "error",
+   "value": null,
+   "note": "HTTPSConnectionPool(host='www.iexindia.com', port=443): Max retries exceeded with url: /market-data/day-ahead-market/market-snapshot (Caused by NameResolutionError(\"HTTPSConnection(host='www.iexindia.com', port=443): Failed to resolve 'www.iexindia.com' ([Errno 11001] getaddrinfo failed)\"))"
   },
   {
    "metric": "national_demand",
@@ -5744,471 +5311,7 @@
    "note": "already present"
   }
  ],
- "_fallbackRanAt": "2026-11-06T11:08:41.286631",
- "_genTrend": {
-  "times": [
-   "00:01",
-   "00:21",
-   "00:39",
-   "00:59",
-   "01:19",
-   "01:38",
-   "01:57",
-   "02:17",
-   "02:36",
-   "02:55",
-   "03:15",
-   "03:36",
-   "03:55",
-   "04:17",
-   "04:36",
-   "04:55",
-   "05:14",
-   "05:34",
-   "05:53",
-   "06:12",
-   "06:31",
-   "06:50",
-   "07:09",
-   "07:29",
-   "07:48",
-   "08:07",
-   "08:25",
-   "08:45",
-   "09:03",
-   "09:23",
-   "09:42",
-   "10:00",
-   "10:19",
-   "10:37",
-   "10:56",
-   "11:15",
-   "11:33",
-   "11:52",
-   "12:11",
-   "12:29",
-   "12:49",
-   "13:07",
-   "13:27",
-   "13:46",
-   "14:06",
-   "14:25",
-   "14:45",
-   "15:05",
-   "15:23",
-   "15:43",
-   "16:02",
-   "16:22"
-  ],
-  "series": {
-   "Solar": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    294,
-    325,
-    383,
-    405,
-    1302,
-    1620,
-    2922,
-    5977,
-    11777,
-    20324,
-    30142,
-    39312,
-    49057,
-    56814,
-    63815,
-    70272,
-    73914,
-    77684,
-    80825,
-    83989,
-    85003,
-    87541,
-    88736,
-    88174,
-    87941,
-    86141,
-    84229,
-    83815,
-    82088,
-    79462,
-    75969,
-    72186,
-    67624,
-    61206,
-    53865,
-    46293,
-    37446
-   ],
-   "Nuclear": [
-    6755,
-    6766,
-    6749,
-    6761,
-    6745,
-    6758,
-    6752,
-    6764,
-    6759,
-    6745,
-    6745,
-    6746,
-    6748,
-    6747,
-    6777,
-    6761,
-    6753,
-    6778,
-    6769,
-    6763,
-    6753,
-    6773,
-    6759,
-    6759,
-    6776,
-    6753,
-    6754,
-    6766,
-    6758,
-    6713,
-    6717,
-    6705,
-    6698,
-    6702,
-    6704,
-    6709,
-    6714,
-    6703,
-    6716,
-    6690,
-    6681,
-    6701,
-    6692,
-    6700,
-    6691,
-    6686,
-    6681,
-    6673,
-    6674,
-    6671,
-    6659,
-    6683
-   ],
-   "Gas": [
-    1960,
-    1915,
-    1698,
-    1571,
-    1561,
-    1554,
-    1556,
-    1551,
-    1548,
-    1558,
-    1610,
-    1601,
-    1600,
-    1606,
-    1630,
-    1661,
-    1658,
-    1676,
-    1736,
-    1691,
-    1734,
-    1733,
-    1719,
-    1646,
-    1614,
-    1592,
-    1602,
-    1611,
-    1598,
-    1617,
-    1457,
-    1453,
-    1454,
-    1453,
-    1458,
-    1426,
-    1424,
-    1441,
-    1435,
-    1446,
-    1447,
-    1432,
-    1409,
-    1426,
-    1422,
-    1431,
-    1444,
-    1446,
-    1519,
-    1495,
-    1695,
-    1939
-   ],
-   "Wind": [
-    6874,
-    6771,
-    6605,
-    6452,
-    6401,
-    6194,
-    5932,
-    5835,
-    5926,
-    5979,
-    6023,
-    5925,
-    5951,
-    5859,
-    5704,
-    5646,
-    5787,
-    5745,
-    5957,
-    6014,
-    6006,
-    5953,
-    5899,
-    5667,
-    5253,
-    5117,
-    5180,
-    5301,
-    5194,
-    4855,
-    4669,
-    4579,
-    4781,
-    4929,
-    5133,
-    5200,
-    5062,
-    5044,
-    5155,
-    5046,
-    5012,
-    4992,
-    5252,
-    5397,
-    5339,
-    5441,
-    5595,
-    5726,
-    5808,
-    5579,
-    5284,
-    5001
-   ],
-   "Hydro": [
-    11127,
-    9660,
-    9365,
-    9048,
-    8633,
-    8360,
-    8077,
-    8032,
-    7979,
-    7958,
-    8077,
-    8542,
-    8543,
-    8654,
-    8931,
-    9433,
-    11014,
-    12950,
-    15183,
-    18339,
-    21170,
-    21404,
-    21362,
-    20455,
-    15700,
-    12600,
-    12100,
-    10603,
-    9185,
-    8657,
-    7827,
-    7162,
-    7178,
-    7185,
-    6696,
-    6363,
-    6569,
-    6912,
-    6559,
-    6749,
-    7009,
-    6789,
-    6256,
-    6682,
-    6577,
-    6749,
-    7450,
-    7682,
-    7926,
-    8517,
-    9287,
-    9953
-   ],
-   "Thermal": [
-    156903,
-    157349,
-    156678,
-    155992,
-    155342,
-    154793,
-    154322,
-    153114,
-    152753,
-    153419,
-    152801,
-    152191,
-    152317,
-    153233,
-    152857,
-    154927,
-    158429,
-    159728,
-    160029,
-    159827,
-    163563,
-    167061,
-    167368,
-    166068,
-    163344,
-    158372,
-    154403,
-    149396,
-    143341,
-    141737,
-    138763,
-    133350,
-    128163,
-    124187,
-    121217,
-    118382,
-    115412,
-    113841,
-    112573,
-    111584,
-    114044,
-    112561,
-    112053,
-    112839,
-    114930,
-    119359,
-    124935,
-    129781,
-    137278,
-    144969,
-    151752,
-    157211
-   ]
-  },
-  "source": "NPP real-time chart API",
-  "as_of": "2026-11-06T16:22:02+05:30"
- },
- "_sources": {
-  "captured_at_ist": "2026-11-06T16:31:12.279104+05:30",
-  "fields": [
-   {
-    "field": "National demand & generation mix",
-    "source": "NPP real-time chart API (behind CEA home page)",
-    "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-11-06",
-    "status": "ok",
-    "tried": [],
-    "as_of": "16:22 IST"
-   },
-   {
-    "field": "All-India price & shortage",
-    "source": "Vidyut PRAVAH, Ministry of Power",
-    "url": "https://vidyutpravah.in/",
-    "status": "ok",
-    "tried": [],
-    "as_of": "16:15 - 16:30 dated 06 NOV 2026"
-   },
-   {
-    "field": "State-wise demand & shortage",
-    "source": "-",
-    "url": "-",
-    "status": "UNAVAILABLE - every source failed",
-    "tried": [
-     "Vidyut PRAVAH, Ministry of Power: ValueError: no state pages parsed"
-    ]
-   },
-   {
-    "field": "Storage dispatch & trans-national exchange",
-    "source": "-",
-    "url": "-",
-    "status": "UNAVAILABLE - every source failed",
-    "tried": [
-     "MERIT India: skipped - step deadline reached"
-    ]
-   },
-   {
-    "field": "Installed capacity (RES / hydro / thermal / nuclear)",
-    "source": "-",
-    "url": "-",
-    "status": "UNAVAILABLE - every source failed",
-    "tried": [
-     "NPP landing counters (CEA): skipped - step deadline reached"
-    ]
-   },
-   {
-    "field": "DAM MCP / MCV / 96 blocks",
-    "source": "-",
-    "url": "-",
-    "status": "UNAVAILABLE - every source failed",
-    "tried": [
-     "Indian Energy Exchange (IEX): skipped - step deadline reached"
-    ]
-   },
-   {
-    "field": "RTM MCP / volume / blocks",
-    "source": "-",
-    "url": "-",
-    "status": "UNAVAILABLE - every source failed",
-    "tried": [
-     "Indian Energy Exchange (IEX): skipped - step deadline reached"
-    ]
-   },
-   {
-    "field": "Grid frequency",
-    "source": "Grid-India / NLDC Daily PSP report",
-    "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "2026-11-05 - published the morning after, so about a day behind live",
-    "status": "ok (96 blocks; latest 50.0 Hz at 23:45)",
-    "tried": [
-     "grid-india.in (real-time): no live feed",
-     "report.grid-india.in: no live feed",
-     "nldc.in: no live feed",
-     "wrldc.in: no live feed",
-     "meritindia.in: no live feed"
-    ]
-   }
-  ]
- },
+ "_fallbackRanAt": "2026-11-06T16:41:05.078814",
  "_history": {
   "daily": [
    {
@@ -72423,385 +71526,6 @@
     "source": "Grid-India Monthly Ancillary Services report",
     "note": "Published about a month in arrears. Negative figures are net receivable BY the pool, not an error. Reports before June 2025 use an older layout this parser does not read, so they are absent rather than wrong."
    }
-  }
- },
- "_ceaCapacity": {
-  "monthly": [
-   {
-    "month": "2026-07",
-    "solar_mw": 164594.75455,
-    "wind_mw": 58136.88999999999,
-    "small_hydro_mw": 5181.76,
-    "biomass_mw": 10869.17,
-    "waste_mw": 878.4,
-    "res_total_mw": 239660.97454999998,
-    "large_hydro_mw": 52064.66,
-    "nuclear_mw": 8780.0,
-    "coal_mw": 224157.5,
-    "lignite_mw": 6620.0,
-    "gas_mw": 20122.419,
-    "diesel_mw": 589.204,
-    "source": "CEA monthly Installed Capacity report",
-    "report_file": "2026-07_IC_July2026.xlsx",
-    "fetched_at": "2026-09-12T18:33:05.959128+05:30"
-   }
-  ],
-  "latest": {
-   "month": "2026-07",
-   "solar_mw": 164594.75455,
-   "wind_mw": 58136.88999999999,
-   "small_hydro_mw": 5181.76,
-   "biomass_mw": 10869.17,
-   "waste_mw": 878.4,
-   "res_total_mw": 239660.97454999998,
-   "large_hydro_mw": 52064.66,
-   "nuclear_mw": 8780.0,
-   "coal_mw": 224157.5,
-   "lignite_mw": 6620.0,
-   "gas_mw": 20122.419,
-   "diesel_mw": 589.204,
-   "source": "CEA monthly Installed Capacity report",
-   "report_file": "2026-07_IC_July2026.xlsx",
-   "fetched_at": "2026-09-12T18:33:05.959128+05:30"
-  },
-  "source": "CEA monthly Installed Capacity report",
-  "note": "Installed capacity. CEA reports RES as Small Hydro + Wind + Solar + Biomass + Waste; large hydro is counted separately. Published a few weeks after month end, so the newest figure usually lags by a month or two."
- },
- "_goaAllocation": {
-  "as_of": "31 Oct 2026",
-  "rows": [
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KSTPS-WR",
-    "plant_mw": 2100.0,
-    "alloc_mw": 212.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "RAMAGUNDAM STPS STG-1&2",
-    "plant_mw": 2100.0,
-    "alloc_mw": 96.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "VTPS 1",
-    "plant_mw": 1260.0,
-    "alloc_mw": 37.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "SIPAT_1",
-    "plant_mw": 1980.0,
-    "alloc_mw": 24.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "RGPPL",
-    "plant_mw": 1967.0,
-    "alloc_mw": 20.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KHARGONE - I",
-    "plant_mw": 1320.0,
-    "alloc_mw": 18.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "MAUDA-II",
-    "plant_mw": 1320.0,
-    "alloc_mw": 17.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KAPS",
-    "plant_mw": 440.0,
-    "alloc_mw": 16.0,
-    "type": "Nuclear",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "GADARWARA-I",
-    "plant_mw": 1600.0,
-    "alloc_mw": 15.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "NTPC SOLAPUR",
-    "plant_mw": 1320.0,
-    "alloc_mw": 15.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "VTPS 2",
-    "plant_mw": 1000.0,
-    "alloc_mw": 14.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "GOA ENERGY PVT. LTD.",
-    "plant_mw": 13.0,
-    "alloc_mw": 13.0,
-    "type": "Thermal",
-    "ownership": "State Generation",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "MAUDA-I",
-    "plant_mw": 1000.0,
-    "alloc_mw": 13.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "SESA STERLITE LTD.",
-    "plant_mw": 13.0,
-    "alloc_mw": 13.0,
-    "type": "Thermal",
-    "ownership": "State Generation",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "TAPS 3&4",
-    "plant_mw": 1080.0,
-    "alloc_mw": 13.0,
-    "type": "Nuclear",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "VSTPS 4",
-    "plant_mw": 1000.0,
-    "alloc_mw": 13.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "VSTPS 3",
-    "plant_mw": 1000.0,
-    "alloc_mw": 12.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "SIPAT 2-WR",
-    "plant_mw": 1000.0,
-    "alloc_mw": 11.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "GANDHAR RLNG",
-    "plant_mw": 657.0,
-    "alloc_mw": 7.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KSTPS 3-WR",
-    "plant_mw": 500.0,
-    "alloc_mw": 6.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "VSTPS -5",
-    "plant_mw": 500.0,
-    "alloc_mw": 6.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "GANDHAR",
-    "plant_mw": 657.0,
-    "alloc_mw": 5.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "LARA-1",
-    "plant_mw": 1600.0,
-    "alloc_mw": 4.0,
-    "type": "Thermal",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KAWAS GAS",
-    "plant_mw": 656.0,
-    "alloc_mw": 3.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KAWAS LIQUID",
-    "plant_mw": 656.0,
-    "alloc_mw": 3.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KAWAS NAPM",
-    "plant_mw": 656.0,
-    "alloc_mw": 3.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "KAWAS RLNG",
-    "plant_mw": 656.0,
-    "alloc_mw": 3.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "GAN_ NAPM",
-    "plant_mw": 657.0,
-    "alloc_mw": 1.0,
-    "type": "Gas",
-    "ownership": "Central ISGS",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   },
-   {
-    "as_of": "31 Oct 2026",
-    "station": "GOA SPONGE PVT. LTD.",
-    "plant_mw": 1.0,
-    "alloc_mw": 1.0,
-    "type": "Thermal",
-    "ownership": "State Generation",
-    "variable_cost_rs_kwh": null,
-    "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-    "fetched_at": "2026-11-02T17:31:57.687233+05:30"
-   }
-  ],
-  "source": "MERIT India (Ministry of Power) - state-wise merit order despatch",
-  "url": "https://meritindia.in/state-data/goa",
-  "stations": 29,
-  "total_alloc_mw": 614.0,
-  "by_type": {
-   "Thermal": 540.0,
-   "Gas": 45.0,
-   "Nuclear": 29.0
-  },
-  "by_ownership": {
-   "Central ISGS": 587.0,
-   "State Generation": 27.0
   }
  }
 }

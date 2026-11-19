@@ -1,12 +1,12 @@
 {
- "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+ "scraped_at": "2026-11-19T09:44:17.593327+05:30",
  "is_snapshot": true,
  "snapshot_date": "2026-11-19",
- "snapshot_time": "08:52",
+ "snapshot_time": "09:44",
  "iex_dam": {
   "status": "ok",
   "date": "19-11-2026",
-  "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+  "scraped_at": "2026-11-19T09:44:17.593327+05:30",
   "mcp": 3.75,
   "mcp_rs_mwh": 3747.35,
   "min_mcp": 300.99,
@@ -788,33 +788,33 @@
  },
  "posoco": {
   "status": "ok",
-  "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+  "scraped_at": "2026-11-19T09:44:17.593327+05:30",
   "national": {
-   "demand_mw": 223195,
-   "generation_mw": 223940,
+   "demand_mw": 227202,
+   "generation_mw": 227572,
    "deficit_mw": 0,
    "surplus_mw": null,
    "freq": null,
-   "peak_today_mw": 223195,
+   "peak_today_mw": 228269,
    "min_today_mw": 158165
   },
   "regional": [
    {
     "region": "Northern",
-    "demand_mw": 28371.0,
-    "generation_mw": 27507.0,
+    "demand_mw": 49484.0,
+    "generation_mw": 48620.0,
     "shortage_mw": 864.0
    },
    {
     "region": "Western",
-    "demand_mw": 25789.0,
-    "generation_mw": 25789.0,
+    "demand_mw": 73583.0,
+    "generation_mw": 73583.0,
     "shortage_mw": 0
    },
    {
     "region": "Southern",
-    "demand_mw": 3384.0,
-    "generation_mw": 3384.0,
+    "demand_mw": 49803.0,
+    "generation_mw": 49803.0,
     "shortage_mw": 0
    },
    {
@@ -825,50 +825,50 @@
    },
    {
     "region": "North-Eastern",
-    "demand_mw": 1691.0,
-    "generation_mw": 1691.0,
+    "demand_mw": 2176.0,
+    "generation_mw": 2176.0,
     "shortage_mw": 0
    }
   ],
   "source": "NPP real-time chart API"
  },
  "_national": {
-  "demand_mw": 223195,
-  "generation_mw": 223940,
+  "demand_mw": 227202,
+  "generation_mw": 227572,
   "deficit_mw": 0,
   "surplus_mw": null,
   "freq": null,
-  "peak_today_mw": 223195,
+  "peak_today_mw": 228269,
   "min_today_mw": 158165
  },
  "merit": {
   "status": "ok",
   "source": "NPP / CEA real-time",
-  "as_of": "2026-11-19T08:41:33+05:30",
+  "as_of": "2026-11-19T09:39:33+05:30",
   "generation_table": [
    {
     "source": "Thermal",
-    "generation_mw": 148653
+    "generation_mw": 132470
    },
    {
     "source": "Solar",
-    "generation_mw": 46053
+    "generation_mw": 71782
    },
    {
     "source": "Wind",
-    "generation_mw": 10619
+    "generation_mw": 7639
    },
    {
     "source": "Hydro",
-    "generation_mw": 10337
+    "generation_mw": 7478
    },
    {
     "source": "Nuclear",
-    "generation_mw": 6755
+    "generation_mw": 6720
    },
    {
     "source": "Gas",
-    "generation_mw": 1523
+    "generation_mw": 1483
    }
   ]
  },
@@ -1027,8 +1027,8 @@
   {
    "date": "2026-11-18",
    "avg_mcp": 3727.65,
-   "min_mcp": 1114.47,
-   "max_mcp": 10000.0
+   "min_mcp": 3727.65,
+   "max_mcp": 3727.65
   },
   {
    "date": "2026-11-19",
@@ -1039,6 +1039,19 @@
  ],
  "_stateData": [
   {
+   "state": "Arunachal Pradesh",
+   "region": "North-Eastern",
+   "demand_mw": 128.0,
+   "met_mw": 128.0,
+   "demand_yesterday_mw": 128.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
    "state": "Assam",
    "region": "North-Eastern",
    "demand_mw": 1309.0,
@@ -1048,7 +1061,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1061,7 +1074,20 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0.9,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Delhi",
+   "region": "Northern",
+   "demand_mw": 3874.0,
+   "met_mw": 3874.0,
+   "demand_yesterday_mw": 3874.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1074,7 +1100,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1087,7 +1113,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1100,7 +1126,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 12.6,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1113,7 +1139,7 @@
    "shortage_pct": 0.77,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1126,7 +1152,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 5.3,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1139,7 +1165,20 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0.8,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Karnataka",
+   "region": "Southern",
+   "demand_mw": 18022.0,
+   "met_mw": 18022.0,
+   "demand_yesterday_mw": 18022.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1152,7 +1191,59 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Madhya Pradesh",
+   "region": "Western",
+   "demand_mw": 19503.0,
+   "met_mw": 19503.0,
+   "demand_yesterday_mw": 19503.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 8.9,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Maharashtra",
+   "region": "Western",
+   "demand_mw": 28291.0,
+   "met_mw": 28291.0,
+   "demand_yesterday_mw": 28291.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Manipur",
+   "region": "North-Eastern",
+   "demand_mw": 180.0,
+   "met_mw": 180.0,
+   "demand_yesterday_mw": 180.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0.1,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Meghalaya",
+   "region": "North-Eastern",
+   "demand_mw": 279.0,
+   "met_mw": 279.0,
+   "demand_yesterday_mw": 279.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1165,20 +1256,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
-   "date": "2026-11-19"
-  },
-  {
-   "state": "Nagaland",
-   "region": "North-Eastern",
-   "demand_mw": 102.0,
-   "met_mw": 102.0,
-   "demand_yesterday_mw": 102.0,
-   "shortage_mw": 0,
-   "shortage_pct": 0.0,
-   "energy_shortage_mu": 0,
-   "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1191,7 +1269,46 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 1.0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Rajasthan",
+   "region": "Northern",
+   "demand_mw": 15249.0,
+   "met_mw": 15249.0,
+   "demand_yesterday_mw": 15249.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Tamil Nadu",
+   "region": "Southern",
+   "demand_mw": 16430.0,
+   "met_mw": 16430.0,
+   "demand_yesterday_mw": 16430.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Telangana",
+   "region": "Southern",
+   "demand_mw": 11967.0,
+   "met_mw": 11967.0,
+   "demand_yesterday_mw": 11967.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1204,7 +1321,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1217,7 +1334,20 @@
    "shortage_pct": 5.22,
    "energy_shortage_mu": 9.8,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+   "date": "2026-11-19"
+  },
+  {
+   "state": "Uttarakhand",
+   "region": "Northern",
+   "demand_mw": 1990.0,
+   "met_mw": 1990.0,
+   "demand_yesterday_mw": 1990.0,
+   "shortage_mw": 0,
+   "shortage_pct": 0.0,
+   "energy_shortage_mu": 0.1,
+   "source": "Vidyut PRAVAH",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1230,7 +1360,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1243,7 +1373,7 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   },
   {
@@ -1256,27 +1386,27 @@
    "shortage_pct": 0.0,
    "energy_shortage_mu": 0,
    "source": "Vidyut PRAVAH",
-   "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+   "scraped_at": "2026-11-19T09:44:17.593327+05:30",
    "date": "2026-11-19"
   }
  ],
  "_regionalData": [
   {
    "region": "Northern",
-   "demand_mw": 28371.0,
-   "generation_mw": 27507.0,
+   "demand_mw": 49484.0,
+   "generation_mw": 48620.0,
    "shortage_mw": 864.0
   },
   {
    "region": "Western",
-   "demand_mw": 25789.0,
-   "generation_mw": 25789.0,
+   "demand_mw": 73583.0,
+   "generation_mw": 73583.0,
    "shortage_mw": 0
   },
   {
    "region": "Southern",
-   "demand_mw": 3384.0,
-   "generation_mw": 3384.0,
+   "demand_mw": 49803.0,
+   "generation_mw": 49803.0,
    "shortage_mw": 0
   },
   {
@@ -1287,8 +1417,8 @@
   },
   {
    "region": "North-Eastern",
-   "demand_mw": 1691.0,
-   "generation_mw": 1691.0,
+   "demand_mw": 2176.0,
+   "generation_mw": 2176.0,
    "shortage_mw": 0
   }
  ],
@@ -1308,8 +1438,8 @@
    "raw_html_length": 124664
   },
   {
-   "id": 2406,
-   "scraped_at": "2026-11-18T17:09:19.042399",
+   "id": 2410,
+   "scraped_at": "2026-11-19T08:54:23.141206",
    "rldc": "NRLDC",
    "region": "Northern",
    "freq_hz": 49.95,
@@ -1319,11 +1449,11 @@
    "deficit_mw": null,
    "od_ug_mw": null,
    "vcm_mw": null,
-   "raw_html_length": 242017
+   "raw_html_length": 242023
   },
   {
-   "id": 2407,
-   "scraped_at": "2026-11-18T17:09:29.715385",
+   "id": 2411,
+   "scraped_at": "2026-11-19T08:54:30.050031",
    "rldc": "WRLDC",
    "region": "Western",
    "freq_hz": null,
@@ -1336,8 +1466,8 @@
    "raw_html_length": 51280
   },
   {
-   "id": 2408,
-   "scraped_at": "2026-11-18T17:09:55.341581",
+   "id": 2412,
+   "scraped_at": "2026-11-19T08:54:36.354794",
    "rldc": "SRLDC",
    "region": "Southern",
    "freq_hz": 49.99,
@@ -1350,8 +1480,8 @@
    "raw_html_length": 266014
   },
   {
-   "id": 2409,
-   "scraped_at": "2026-11-18T17:10:01.935690",
+   "id": 2413,
+   "scraped_at": "2026-11-19T08:54:44.299192",
    "rldc": "ERLDC",
    "region": "Eastern",
    "freq_hz": null,
@@ -1361,7 +1491,7 @@
    "deficit_mw": null,
    "od_ug_mw": null,
    "vcm_mw": null,
-   "raw_html_length": 41903
+   "raw_html_length": 29355
   }
  ],
  "_nationalTrend": [
@@ -1572,18 +1702,42 @@
   {
    "time": "08:41",
    "demand_mw": 223195
+  },
+  {
+   "time": "08:51",
+   "demand_mw": 223967
+  },
+  {
+   "time": "09:01",
+   "demand_mw": 223919
+  },
+  {
+   "time": "09:11",
+   "demand_mw": 227393
+  },
+  {
+   "time": "09:21",
+   "demand_mw": 227833
+  },
+  {
+   "time": "09:31",
+   "demand_mw": 227695
+  },
+  {
+   "time": "09:39",
+   "demand_mw": 227202
   }
  ],
  "_dbStats": {
   "iex_dam_summary": {
-   "count": 658,
+   "count": 660,
    "oldest": "2026-05-26T01:34:19.189684",
-   "newest": "2026-11-18T17:07:18.468532"
+   "newest": "2026-11-19T08:52:23.996935"
   },
   "iex_dam_blocks": {
-   "count": 538,
+   "count": 539,
    "oldest": "2026-05-26T01:34:19.189684",
-   "newest": "2026-11-18T17:07:18.468532"
+   "newest": "2026-11-19T08:52:23.996935"
   },
   "national_demand": {
    "count": 13,
@@ -1596,9 +1750,9 @@
    "newest": null
   },
   "rldc_data": {
-   "count": 2409,
+   "count": 2413,
    "oldest": "2026-05-26T02:45:13.698456",
-   "newest": "2026-11-18T17:10:01.935690"
+   "newest": "2026-11-19T08:54:44.299192"
   },
   "rldc_state_drawal": {
    "count": 0,
@@ -1616,9 +1770,9 @@
    "newest": null
   },
   "merit_generation": {
-   "count": 838,
+   "count": 845,
    "oldest": "2026-05-26T01:58:43.830063",
-   "newest": "2026-11-18T17:15:54.449178"
+   "newest": "2026-11-19T09:02:20.125377"
   },
   "remc_data": {
    "count": 0,
@@ -1636,15 +1790,15 @@
    "newest": null
   },
   "scrape_log": {
-   "count": 30111,
+   "count": 30168,
    "oldest": "2026-05-26T01:03:01.757282",
-   "newest": "2026-11-18T17:22:19.502893"
+   "newest": "2026-11-19T09:08:17.948070"
   }
  },
  "_sldcData": [
   {
-   "id": 11073,
-   "scraped_at": "2026-11-18T17:16:42.202010",
+   "id": 11096,
+   "scraped_at": "2026-11-19T09:02:46.306376",
    "sldc": "AP_SLDC",
    "state": "Andhra Pradesh",
    "region": "Southern",
@@ -1661,8 +1815,8 @@
    "raw_snippet": "\n APSLDC \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Search Site \n \n \n only in current section \n \n \n \n \n \n \n Advanced Search\u2026 \n \n \n \n \n \n Log in \n \n \n \n \n \n \n \n \n \n \n \n \n Toggle navigation \n \n \n \n \n \n \n \n Home About Services Dashboard Reports Apps \n \n Contact e-office email TOO Login Search Site \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n You are here: \n \n \n Home \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n APSLDC \n \n https://sldc.aptransco.co.in \n https://"
   },
   {
-   "id": 11086,
-   "scraped_at": "2026-11-18T17:19:20.955654",
+   "id": 11109,
+   "scraped_at": "2026-11-19T09:05:20.098747",
    "sldc": "ASSAM_SLDC",
    "state": "Assam",
    "region": "North-Eastern",
@@ -1679,8 +1833,8 @@
    "raw_snippet": "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Assam Electricity Grid Corporation Ltd - \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n \n \n \n \n \n \n \n \n \n \n \n \n Screen Reader Access \n \n A- \n A \n A+ \n C \n \n \n \n \n \n \n \n \n \n  CIN    U40101AS2003SGC007238     GST No.     18AAFCA4973J9Z3  \n \n \n \n \n      Employee Corner \n \n \n \n    Employee Mail \n \n \n    ESS Portal \n \n \n   \nGSS Datasheet \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Assam Electricity Grid C"
   },
   {
-   "id": 11081,
-   "scraped_at": "2026-11-18T17:18:01.930764",
+   "id": 11102,
+   "scraped_at": "2026-11-19T09:03:41.105713",
    "sldc": "BIHAR_SLDC",
    "state": "Bihar",
    "region": "Eastern",
@@ -1697,8 +1851,8 @@
    "raw_snippet": "\n \n \n\t North Bihar Power Distribution Company Ltd\n \n \n \n \n \n \n \n \n North Bihar Power Distribution Company Ltd \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n                    \u00a0\n                    \n                     \n \n \n \n \n \n \n \n \n \n \n \n \n                                    NORTH BIHAR POWER DISTRIBUTION COMPANY LTD \n \n                                    GOVERNMENT OF BIHAR \n \n \n \u0939\u093f\u0902\u0926\u0940 \u00a0 \u00a0\n                                 \u00a0\n                                 \u00a0\n                              "
   },
   {
-   "id": 11075,
-   "scraped_at": "2026-11-18T17:16:56.132734",
+   "id": 11098,
+   "scraped_at": "2026-11-19T09:03:13.953872",
    "sldc": "CG_SLDC",
    "state": "Chhattisgarh",
    "region": "Western",
@@ -1715,14 +1869,14 @@
    "raw_snippet": "\n \n \n \n \n \n State Load Despatch Centre | Chhattisgarh \n \n \n \n \n \n \n \n \n \n \n \n STATE LOAD DESPATCH CENTRE \n \n \n \n \n \n \n Latest Updates \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n          About\u00a0Us\n           \n \n Overview \n Grid Diagram \n Constitution \n Function \n SCADA \n Photo Gallery \n FAQ \n Availability Based Tariff \n Code Of Ethics \n \n \n \n Open\u00a0Access  \n \n Regulations & Procedures \n STOA Bank Details \n LTOA & MTOA Information \n Intrastate Appr. for CSPDCL \n Open Access Charges \n Monthly Approved NOC"
   },
   {
-   "id": 11069,
-   "scraped_at": "2026-11-18T17:16:08.566577",
+   "id": 11090,
+   "scraped_at": "2026-11-19T09:02:27.982754",
    "sldc": "DELHI_SLDC",
    "state": "Delhi",
    "region": "Northern",
-   "freq_hz": 49.95,
-   "demand_mw": 3521.0,
-   "generation_mw": 362.0,
+   "freq_hz": 50.04,
+   "demand_mw": 3202.0,
+   "generation_mw": 370.0,
    "peak_demand_mw": 2026.0,
    "peak_demand_date": null,
    "energy_today_mu": null,
@@ -1730,11 +1884,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n Delhi SLDC \n \n \n \n \n STATE LOAD DESPATCH CENTRE, DELHI \ud83d\udd58 17:16:07 IST 18 November 2026 \u260e Control Room 011-23221091 An ISO 9001:2015 Organization Power System in Delhi \u25be Open Access \u25be Directory \u25be Energy Accounting \u25be Schedules \u25be Real Time Data Reports \u25be Related Links \u25be FAQ MENU \u2630 Power System in Delhi + Open Access + Directory + Energy Accounting + Schedules + Real Time Data Reports + Related Links + FAQ ABOUT US About Delhi SLDC Delhi State Load Despatch Centre (Delhi SLDC) is the apex bo"
+   "raw_snippet": "\n \n \n \n Delhi SLDC \n \n \n \n \n STATE LOAD DESPATCH CENTRE, DELHI \ud83d\udd58 09:02:27 IST 19 November 2026 \u260e Control Room 011-23221091 An ISO 9001:2015 Organization Power System in Delhi \u25be Open Access \u25be Directory \u25be Energy Accounting \u25be Schedules \u25be Real Time Data Reports \u25be Related Links \u25be FAQ MENU \u2630 Power System in Delhi + Open Access + Directory + Energy Accounting + Schedules + Real Time Data Reports + Related Links + FAQ ABOUT US About Delhi SLDC Delhi State Load Despatch Centre (Delhi SLDC) is the apex bo"
   },
   {
-   "id": 11088,
-   "scraped_at": "2026-11-18T17:22:19.315076",
+   "id": 11111,
+   "scraped_at": "2026-11-19T09:08:17.728614",
    "sldc": "GOA_SLDC",
    "state": "Goa",
    "region": "Western",
@@ -1751,12 +1905,12 @@
    "raw_snippet": "\n \n Electricity Department, Government of Goa \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to the content \n \n Smart meter installation has commenced in Division I, Panjim (Taleigao, Bambolim, Corlim and Panjim City). Authorized representatives will visit your premise for meter replacement. Smart Meter installation is free of cost for all consumers. For any installation concerns, contact the nearest GED office or Call Helpl"
   },
   {
-   "id": 11070,
-   "scraped_at": "2026-11-18T17:16:11.265289",
+   "id": 11093,
+   "scraped_at": "2026-11-19T09:02:34.341526",
    "sldc": "GUJARAT_SLDC",
    "state": "Gujarat",
    "region": "Western",
-   "freq_hz": 49.933,
+   "freq_hz": 50.08,
    "demand_mw": null,
    "generation_mw": null,
    "peak_demand_mw": null,
@@ -1769,8 +1923,8 @@
    "raw_snippet": "\n \n State Load Despatch Centre (SLDC) | Vadodara, Gujarat \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n CTRL+F2   acc toolbox  \u2717 - close keyboard navigation     block animations   color contrast     uncolored display     bright contrast     reverse contrast text size     increase text       decrease text     readable text highlighting content     underline links     underline headers     images titles zoom in     big white cursor     big black cursor     zoom screen accessibility state"
   },
   {
-   "id": 11079,
-   "scraped_at": "2026-11-18T17:17:41.367271",
+   "id": 11106,
+   "scraped_at": "2026-11-19T09:04:08.202514",
    "sldc": "HARYANA_SLDC",
    "state": "Haryana",
    "region": "Northern",
@@ -1787,8 +1941,8 @@
    "raw_snippet": "\n HTTP Status 404 - Not Found \n \n \n \n \n HTTP Status 404 - Not Found \n \n \n \n JBoss Application Server \n \n \u00a0 \n \n \n"
   },
   {
-   "id": 11087,
-   "scraped_at": "2026-11-18T17:19:29.598877",
+   "id": 11110,
+   "scraped_at": "2026-11-19T09:05:29.562520",
    "sldc": "JH_SLDC",
    "state": "Jharkhand",
    "region": "Eastern",
@@ -1805,13 +1959,13 @@
    "raw_snippet": "\n \n \n \n \n Jharkhand Bijli Vitran Nigam Limited\n     \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Select Language Hindi Powered by  Translate \n \n \n \n \n \n \n \n \n \n \n  contactus@jbvnl.co.in \n \n \n \n English \n ?????? \n \n \n \n \n                                A+ \n A \n A- \n \n \n \n \n \n \n \n  1800 345 6570\n                             \n  /  \n 0651 2710002 \n  /  \n 1912 \n  /  \n 09431135503 \n  /  \n 9031110121 \n  /  \n 09431135504 \n \n \n \n                                Screen Reader\n                       "
   },
   {
-   "id": 11074,
-   "scraped_at": "2026-11-18T17:16:44.779877",
+   "id": 11097,
+   "scraped_at": "2026-11-19T09:02:48.676888",
    "sldc": "KA_SLDC",
    "state": "Karnataka",
    "region": "Southern",
    "freq_hz": null,
-   "demand_mw": 1366.0,
+   "demand_mw": 1121.0,
    "generation_mw": null,
    "peak_demand_mw": null,
    "peak_demand_date": null,
@@ -1820,11 +1974,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n\tKPTCL-SLDC-HOME\n \n \n \n \n \n \n \n \n \n \n \n \n \n KARNATAKA POWER TRANSMISSION\n                    CORPORATION LIMITED \n \n Karnataka State Load Dispatch Centre \n \n                        Transmission Grid Management \n                        Facilitates Inter state transfer & Intra state transfer of power to Distribution\n                        Companies of Karnataka in a secure and economical manner \u00a0  \u00a0 \u00a0\n                     \u00a0 \u00a0 \u00a0 \n \n        \u00a0\n         \n            \u00a0\n             \n \n \n \n 18/11/2026"
+   "raw_snippet": "\n\tKPTCL-SLDC-HOME\n \n \n \n \n \n \n \n \n \n \n \n \n \n KARNATAKA POWER TRANSMISSION\n                    CORPORATION LIMITED \n \n Karnataka State Load Dispatch Centre \n \n                        Transmission Grid Management \n                        Facilitates Inter state transfer & Intra state transfer of power to Distribution\n                        Companies of Karnataka in a secure and economical manner \u00a0  \u00a0 \u00a0\n                     \u00a0 \u00a0 \u00a0 \n \n        \u00a0\n         \n            \u00a0\n             \n \n \n \n 19/11/2026"
   },
   {
-   "id": 11084,
-   "scraped_at": "2026-11-18T17:18:39.516772",
+   "id": 11107,
+   "scraped_at": "2026-11-19T09:04:38.065776",
    "sldc": "KERALA_SLDC",
    "state": "Kerala",
    "region": "Southern",
@@ -1841,8 +1995,8 @@
    "raw_snippet": "\n \n Kerala State Load despatch Center \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Home \n System Statistics \n \n Generation \n Imports \n Storage \n Availability \n Others \n Forecast \n \n \n About Us \n Contacts Us \n Links \n Open Access \n \n Login \n \n \n \n \n \n \n * Kerala SLDC - Winner of National Level Excellence Award 2021 *  \n \n \n \n \n \n \n \n Permit Management System \n \n \n \n Notifications \n \n   Kerala SLDC - Winner of National Level Excellence Award 2021    \n \n \n \n   Our Mission\u00a0-  \n\"To facilitate intra and inter st"
   },
   {
-   "id": 11072,
-   "scraped_at": "2026-11-18T17:16:36.630452",
+   "id": 11094,
+   "scraped_at": "2026-11-19T09:02:37.313876",
    "sldc": "MAHA_SLDC",
    "state": "Maharashtra",
    "region": "Western",
@@ -1856,11 +2010,11 @@
    "surplus_mw": null,
    "od_mw": null,
    "vc_mw": null,
-   "raw_snippet": "\n \n \n \n \n \n \n  Maharashtra State Load Despatch Centre (MSLDC) \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to main content \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Maharashtra State Load Despatch Centre \n (A Govt of Maharashtra Undertaking ) \n \n \n \n \n \n \n \n \r\n                                                                                                                                About Us                                                                                                 \n \n \n \n \n \r\n                "
+   "raw_snippet": "\n \n \n \n \n \n  Maharashtra State Load Despatch Centre (MSLDC) \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to main content \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Maharashtra State Load Despatch Centre \n (A Govt of Maharashtra Undertaking ) \n \n \n \n \n \n \n \n \n                                                                                                                                About Us                                                                                                 \n \n \n \n \n \n                    "
   },
   {
-   "id": 11085,
-   "scraped_at": "2026-11-18T17:18:56.398544",
+   "id": 11108,
+   "scraped_at": "2026-11-19T09:04:50.536379",
    "sldc": "MIZORAM_SLDC",
    "state": "Mizoram",
    "region": "North-Eastern",
@@ -1877,14 +2031,14 @@
    "raw_snippet": "\n \n \n \n State Load Despatch Center (SLDC), Government of Mizoram, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n    \t            Close Menu\n    \t         Home  About Us Mizoram SLDC Provisions Of Electricity Act 2003 About SLDC Organisational Chart Mizoram Profile Contact Us  Prog & Scheme GPRS SCADA  Useful Information Tuirial Hydroelectric Power Plant Power Allocation Acts & Rules   -A   A   +A     Skip to Navigation   Skip to Main Content   Search       Screen Reade"
   },
   {
-   "id": 11080,
-   "scraped_at": "2026-11-18T17:17:43.547385",
+   "id": 11101,
+   "scraped_at": "2026-11-19T09:03:32.812613",
    "sldc": "ODISHA_SLDC",
    "state": "Odisha",
    "region": "Eastern",
-   "freq_hz": 50.0,
-   "demand_mw": 4931.53,
-   "generation_mw": 214.6,
+   "freq_hz": 49.99,
+   "demand_mw": 4846.47,
+   "generation_mw": 58.89,
    "peak_demand_mw": null,
    "peak_demand_date": null,
    "energy_today_mu": null,
@@ -1895,8 +2049,8 @@
    "raw_snippet": "\n \n \n \u0b37\u0b4d\u0b1f\u0b47\u0b1f\u0b4d \u0b32\u0b4b\u0b21\u0b4d \u0b21\u0b3f\u0b38\u0b4d\u0b2a\u0b3e\u0b1a\u0b4d \u0b38\u0b47\u0b23\u0b4d\u0b1f\u0b30 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  Skip to Main Content \n  Screen Reader Access \n \n \n A+ \n A\u2212 \n A \n \n \n \n \n \n \n \n \n RTI \n \n Languages \n   \n   \n Login   \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n STATE LOAD DESPATCH CENTRE - ODISHA \n (A Govt. of Odisha Undertaking) \n (24 X 7 SLDC Never Sleeps) \n \n \n \n \n \n \u00a0Contact Us \u00a0\u00a0\u00a0\u00a0\n\t\t\t\t\t\t\t\t \u00a0Sitemap \u00a0\u00a0\u00a0\u00a0\n\t\t\t\t\t\t\t"
   },
   {
-   "id": 11077,
-   "scraped_at": "2026-11-18T17:17:09.172835",
+   "id": 11100,
+   "scraped_at": "2026-11-19T09:03:28.081073",
    "sldc": "PUDUCHERRY_SLDC",
    "state": "Puducherry",
    "region": "Southern",
@@ -1913,8 +2067,8 @@
    "raw_snippet": "\n \n \n \n \n Official Website of Electricity Department, Government of Puducherry, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  Skip To Main Content \n  Screen Reader Access \n \n \n \n \n \n \n \n \n \n \n \n \n \n English  Assamese  (\u0985\u09b8\u09ae\u09c0\u09af\u09bc\u09be) Bengali  (\u09ac\u09be\u0982\u09b2\u09be) Bodo  (\u092c\u0921\u093c\u094b) Dogri  (\u0921\u094b\u0917\u0930\u0940) Goan Konkani  (\u0917\u094b\u0935\u093e \u0915\u094b\u0902\u0915\u0923\u0940) Gujarati  (\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0) Hindi  (\u0939\u093f\u0928\u094d\u0926\u0940) Kannada  (\u0c95\u0ca8\u0ccd\u0ca8\u0ca1) Kashmiri  (\u0915\u0936\u094d\u092e\u0940\u0930\u0940) Maithili  (\u092e\u0948\u0925\u093f\u0932\u0940) Malayalam  (\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02) Manipuri  (\u09ae\u09a3\u09bf"
   },
   {
-   "id": 11071,
-   "scraped_at": "2026-11-18T17:16:11.426227",
+   "id": 11095,
+   "scraped_at": "2026-11-19T09:02:40.860820",
    "sldc": "PUNJAB_SLDC",
    "state": "Punjab",
    "region": "Northern",
@@ -1931,8 +2085,8 @@
    "raw_snippet": "\n \n Welcome to State Load Dispatch Centre (SLDC), PSTCL, Patiala, Punjab, India  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Skip to Main Content \n \n Font Size \n \n \n \n \n \n \n \n \n \n \n \n Select Theme \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \r\n                        Punjab State Load Dispatch Centre\r\n                     \n \n \r\n                    Punjab State Transmission Corporation Limited\r\n                 \n \n \n \n \n \n \n \n \n \n \n"
   },
   {
-   "id": 11082,
-   "scraped_at": "2026-11-18T17:18:09.045645",
+   "id": 11105,
+   "scraped_at": "2026-11-19T09:04:00.856421",
    "sldc": "SIKKIM_SLDC",
    "state": "Sikkim",
    "region": "Eastern",
@@ -1949,8 +2103,8 @@
    "raw_snippet": "\n \n \n \n Government of Sikkim, India \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n                                                    An official website of the Government of Sikkim, India\n                                                 \n \n \n                                                    Sikkim Official Website, India\n                                                 \n \n \n \n \n \n \n \n \n \n \n \n                                                    dit-sik[at]nic[dot]in\n           "
   },
   {
-   "id": 11078,
-   "scraped_at": "2026-11-18T17:17:38.900663",
+   "id": 11104,
+   "scraped_at": "2026-11-19T09:03:56.716962",
    "sldc": "TN_SLDC",
    "state": "Tamil Nadu",
    "region": "Southern",
@@ -1985,12 +2139,12 @@
    "raw_snippet": "\n \n \n \n \n \n \n \n \n \n Official Website | Tripura State Electricity Corporation Limited \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n A+ \n A \n A- \n \n \n \n   \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n \n \n \n \n \n \n \n Tripura State Electricity Corporation Limited \n A Govt. of Tripur"
   },
   {
-   "id": 11067,
-   "scraped_at": "2026-11-18T17:16:02.369661",
+   "id": 11091,
+   "scraped_at": "2026-11-19T09:02:29.387636",
    "sldc": "UP_SLDC",
    "state": "Uttar Pradesh",
    "region": "Northern",
-   "freq_hz": 49.93,
+   "freq_hz": 50.04,
    "demand_mw": 32673.0,
    "generation_mw": null,
    "peak_demand_mw": 32673.0,
@@ -2003,8 +2157,8 @@
    "raw_snippet": "\n \n \n Welcome :: UPSLDC \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Employee Mail | \n RTI | \n Site Map | \n Contact Us \n \n \n \n \n \n \n \n \n U P SLDC Limited \n (A UP Government Undertaking) \n CIN - U40106UP2022SGC169330 \n \n \n \n \n \n \n \n \n \n \n Home \n About Us   \n \n About UPSLDC \n Formation of UP SLDC \n Organization Structure \n List of Personnel \n Sanctioned Manpower for SLDC \n Email IDs of SLDC Officers \n \n \n Real Time Data \n Transfer Capability   \n \n TTC & ATC   \n \n Month Wise \n \n \n \n \n "
   },
   {
-   "id": 11068,
-   "scraped_at": "2026-11-18T17:16:06.034472",
+   "id": 11092,
+   "scraped_at": "2026-11-19T09:02:31.899006",
    "sldc": "UK_SLDC",
    "state": "Uttarakhand",
    "region": "Northern",
@@ -2021,8 +2175,8 @@
    "raw_snippet": "\n Welcome to Power Tranmission Corporation of Uttarakhand Limited \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Screen Reader Access \n Skip to main content \n Skip to navigation \n \n \n \n \n \n \n \n \n \n Home \n Webmail \n Feedback \n \n \n \n \n Employee Login \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Menu \n \n About Us \n \n PTCUL at a Glance  \n Corporate Vision, Aims and Objectives  \n Corporate Values  \n Board of Directors  \n Milestones and Achievements  \n Statutory C"
   },
   {
-   "id": 11083,
-   "scraped_at": "2026-11-18T17:18:20.078255",
+   "id": 11103,
+   "scraped_at": "2026-11-19T09:03:55.100576",
    "sldc": "WB_SLDC",
    "state": "West Bengal",
    "region": "Eastern",
@@ -3573,49 +3727,13 @@
   {
    "date": "2026-11-17",
    "peak_demand_mw": 226446.0
+  },
+  {
+   "date": "2026-11-18",
+   "peak_demand_mw": 227500.0
   }
  ],
  "_peakStates": [
-  {
-   "date": "2026-10-19",
-   "state": "24,233MWSURPLUS POWERAT POWER EXCHANGE",
-   "peak_demand_mw": 24233.0
-  },
-  {
-   "date": "2026-10-19",
-   "state": "24,233MWSURPLUS POWERAT POWER EXCHANGE7.84\u20b9/UnitAVG MARKET CLEARING PRICE230GWDEMAND MET(CURRENT)225GWDEMAND MET(YESTERDAY)DURING PEAK943MW[0.50%]ENERGY45MU[1.00%]SHORTAGE FORYESTERDAY[83.33%]% OF TIMEUNCONSTRAINED PRICE",
-   "peak_demand_mw": 24233.0
-  },
-  {
-   "date": "2026-10-19",
-   "state": "Delhi",
-   "peak_demand_mw": 2026.0
-  },
-  {
-   "date": "2026-10-19",
-   "state": "Karnataka",
-   "peak_demand_mw": 1755.0
-  },
-  {
-   "date": "2026-10-19",
-   "state": "Odisha",
-   "peak_demand_mw": 5963.47
-  },
-  {
-   "date": "2026-10-19",
-   "state": "Punjab",
-   "peak_demand_mw": 5679.0
-  },
-  {
-   "date": "2026-10-19",
-   "state": "Tamil Nadu",
-   "peak_demand_mw": 2026.0
-  },
-  {
-   "date": "2026-10-19",
-   "state": "Uttar Pradesh",
-   "peak_demand_mw": 32673.0
-  },
   {
    "date": "2026-10-20",
    "state": "Delhi",
@@ -4483,6 +4601,31 @@
   },
   {
    "date": "2026-11-18",
+   "state": "Uttar Pradesh",
+   "peak_demand_mw": 32673.0
+  },
+  {
+   "date": "2026-11-19",
+   "state": "Delhi",
+   "peak_demand_mw": 2026.0
+  },
+  {
+   "date": "2026-11-19",
+   "state": "Karnataka",
+   "peak_demand_mw": 1121.0
+  },
+  {
+   "date": "2026-11-19",
+   "state": "Odisha",
+   "peak_demand_mw": 4846.47
+  },
+  {
+   "date": "2026-11-19",
+   "state": "Tamil Nadu",
+   "peak_demand_mw": 2026.0
+  },
+  {
+   "date": "2026-11-19",
    "state": "Uttar Pradesh",
    "peak_demand_mw": 32673.0
   }
@@ -5774,7 +5917,7 @@
   ],
   "current_fy": "2026-27",
   "fy_series_source": "Ministry of Power - \"Power Sector at a Glance, ALL INDIA\"",
-  "fy_series_fetched": "2026-11-18T17:30:37.695647+05:30"
+  "fy_series_fetched": "2026-11-19T09:44:57.469146+05:30"
  },
  "_curtailment": [
   {
@@ -5793,7 +5936,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
+   "scraped_at": "2026-11-19T09:06:20.330002"
   },
   {
    "id": 29862,
@@ -5811,7 +5954,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
+   "scraped_at": "2026-11-19T09:06:20.330002"
   },
   {
    "id": 29861,
@@ -5829,7 +5972,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
+   "scraped_at": "2026-11-19T09:06:20.330002"
   },
   {
    "id": 29858,
@@ -5847,7 +5990,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
+   "scraped_at": "2026-11-19T09:06:20.330002"
   },
   {
    "id": 29856,
@@ -5865,7 +6008,7 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
+   "scraped_at": "2026-11-19T09:06:20.330002"
   },
   {
    "id": 29854,
@@ -5883,44 +6026,35 @@
    "max_solar_mw": null,
    "max_wind_mw": null,
    "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
-  },
-  {
-   "id": 28181,
-   "date": "2026-09-19",
-   "demand_mw": null,
-   "vre_pct": null,
-   "wind_curtail_mu": 0.0,
-   "solar_curtail_mu": 15.7,
-   "total_curtail_mu": 15.7,
-   "tras_curtail_mu": null,
-   "solar_pct": null,
-   "wind_pct": null,
-   "solar_gen_mw": null,
-   "wind_gen_mw": null,
-   "max_solar_mw": null,
-   "max_wind_mw": null,
-   "source": "CURTAILMENT_CSV",
-   "scraped_at": "2026-11-18T17:20:20.180479"
+   "scraped_at": "2026-11-19T09:06:20.330002"
   }
  ],
  "_reCapacity": {
-  "total_re_mw": 251148.44,
-  "large_hydro_mw": 52314.66,
-  "solar_mw": null,
-  "wind_mw": null,
-  "small_hydro_mw": null,
+  "total_re_mw": 239660.97454999998,
+  "large_hydro_mw": 52064.66,
+  "solar_mw": 164594.75455,
+  "wind_mw": 58136.88999999999,
+  "small_hydro_mw": 5181.76,
   "as_of": "17-Nov-2026",
   "source": "NPP / CEA installed capacity",
-  "note": "RES excludes large hydro. NPP does not publish the solar/wind split, so those are left blank."
+  "note": "RES excludes large hydro. Solar/wind split from the CEA Installed Capacity report, 2026-07.",
+  "biomass_mw": 10869.17,
+  "waste_to_energy_mw": 878.4,
+  "nuclear_mw": 8780.0,
+  "coal_mw": 224157.5,
+  "lignite_mw": 6620.0,
+  "gas_mw": 20122.419,
+  "diesel_mw": 589.204,
+  "split_source": "CEA monthly Installed Capacity report",
+  "split_month": "2026-07"
  },
  "_storageData": {
   "status": "ok",
-  "ts": "2026-11-18T17:22:23.014892",
+  "ts": "2026-11-19T09:08:22.926682",
   "latest_dispatch": [
    {
-    "id": 118,
-    "scraped_at": "2026-11-18T17:15:54.449178",
+    "id": 119,
+    "scraped_at": "2026-11-19T09:02:20.125377",
     "source_name": "Storage",
     "storage_type": "Combined",
     "region": "All-India",
@@ -5935,13 +6069,6 @@
    }
   ],
   "dispatch_trend": [
-   {
-    "day": "2026-10-19",
-    "type": "Combined",
-    "avg_dispatch": 333.5,
-    "avg_dis": 333.5,
-    "avg_chg": 0.0
-   },
    {
     "day": "2026-10-20",
     "type": "Combined",
@@ -6116,6 +6243,13 @@
     "avg_dispatch": 14.0,
     "avg_dis": 14.0,
     "avg_chg": 0.0
+   },
+   {
+    "day": "2026-11-19",
+    "type": "Combined",
+    "avg_dispatch": 2.0,
+    "avg_dis": 2.0,
+    "avg_chg": 0.0
    }
   ],
   "merit_storage": [
@@ -6251,7 +6385,7 @@
   "status": "ok",
   "state": "Goa",
   "region": "Western",
-  "ts": "2026-11-18T17:22:23.024402",
+  "ts": "2026-11-19T09:08:22.938865",
   "demand_mw": null,
   "generation_mw": null,
   "freq_hz": null,
@@ -6260,12 +6394,6 @@
   "deficit_mw": null,
   "peak_trend": [],
   "demand_trend": [
-   {
-    "date": "2026-10-19",
-    "avg_mw": null,
-    "peak_mw": null,
-    "freq": null
-   },
    {
     "date": "2026-10-20",
     "avg_mw": null,
@@ -6424,6 +6552,12 @@
    },
    {
     "date": "2026-11-18",
+    "avg_mw": null,
+    "peak_mw": null,
+    "freq": null
+   },
+   {
+    "date": "2026-11-19",
     "avg_mw": null,
     "peak_mw": null,
     "freq": null
@@ -6643,13 +6777,6 @@
  "_goaHistory": {
   "sldc_trend": [
    {
-    "day": "2026-10-19",
-    "avg_dem": null,
-    "max_dem": null,
-    "avg_freq": null,
-    "avg_gen": null
-   },
-   {
     "day": "2026-10-20",
     "avg_dem": null,
     "max_dem": null,
@@ -6837,6 +6964,13 @@
     "max_dem": null,
     "avg_freq": null,
     "avg_gen": null
+   },
+   {
+    "day": "2026-11-19",
+    "avg_dem": null,
+    "max_dem": null,
+    "avg_freq": null,
+    "avg_gen": null
    }
   ],
   "peak_trend": [],
@@ -6857,7 +6991,7 @@
    null,
    268.4,
    345.7,
-   490.5
+   490.4
   ],
   "rtm": [
    null,
@@ -6874,7 +7008,7 @@
    "metric": "iex_mcp",
    "source": "iexindia.com",
    "status": "ok",
-   "value": 3727.65,
+   "value": 3747.35,
    "note": "96 blocks"
   },
   {
@@ -6885,7 +7019,7 @@
    "note": "already present"
   }
  ],
- "_fallbackRanAt": "2026-11-18T17:24:41.529162",
+ "_fallbackRanAt": "2026-11-19T09:39:58.955021",
  "_genTrend": {
   "times": [
    "00:03",
@@ -6939,7 +7073,13 @@
    "08:13",
    "08:21",
    "08:31",
-   "08:41"
+   "08:41",
+   "08:51",
+   "09:01",
+   "09:11",
+   "09:21",
+   "09:31",
+   "09:39"
   ],
   "series": {
    "Nuclear": [
@@ -6994,7 +7134,13 @@
     6751,
     6726,
     6743,
-    6755
+    6755,
+    6737,
+    6743,
+    6740,
+    6731,
+    6730,
+    6720
    ],
    "Hydro": [
     8941,
@@ -7048,7 +7194,13 @@
     13284,
     12425,
     11884,
-    10337
+    10337,
+    10051,
+    9024,
+    8231,
+    7679,
+    7692,
+    7478
    ],
    "Gas": [
     1542,
@@ -7102,7 +7254,13 @@
     1537,
     1533,
     1536,
-    1523
+    1523,
+    1527,
+    1525,
+    1523,
+    1526,
+    1535,
+    1483
    ],
    "Wind": [
     15032,
@@ -7156,7 +7314,13 @@
     12001,
     11628,
     11171,
-    10619
+    10619,
+    10294,
+    9773,
+    9000,
+    8551,
+    8104,
+    7639
    ],
    "Thermal": [
     133133,
@@ -7210,7 +7374,13 @@
     155485,
     153470,
     150183,
-    148653
+    148653,
+    144724,
+    141093,
+    141173,
+    138758,
+    134810,
+    132470
    ],
    "Solar": [
     0,
@@ -7264,17 +7434,36 @@
     30665,
     35282,
     40902,
-    46053
+    46053,
+    51674,
+    56732,
+    61334,
+    65113,
+    69160,
+    71782
    ]
   },
   "source": "NPP real-time chart API",
-  "as_of": "2026-11-19T08:41:33+05:30"
+  "as_of": "2026-11-19T09:39:33+05:30"
  },
  "vidyut_pravah": {
   "status": "ok",
-  "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+  "scraped_at": "2026-11-19T09:44:17.593327+05:30",
   "source": "https://vidyutpravah.in/state-data/{slug}",
   "states": [
+   {
+    "state": "Arunachal Pradesh",
+    "region": "North-Eastern",
+    "demand_mw": 128.0,
+    "met_mw": 128.0,
+    "demand_yesterday_mw": 128.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
    {
     "state": "Assam",
     "region": "North-Eastern",
@@ -7285,7 +7474,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7298,7 +7487,20 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0.9,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Delhi",
+    "region": "Northern",
+    "demand_mw": 3874.0,
+    "met_mw": 3874.0,
+    "demand_yesterday_mw": 3874.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7311,7 +7513,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7324,7 +7526,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7337,7 +7539,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 12.6,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7350,7 +7552,7 @@
     "shortage_pct": 0.77,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7363,7 +7565,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 5.3,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7376,7 +7578,20 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0.8,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Karnataka",
+    "region": "Southern",
+    "demand_mw": 18022.0,
+    "met_mw": 18022.0,
+    "demand_yesterday_mw": 18022.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7389,7 +7604,59 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Madhya Pradesh",
+    "region": "Western",
+    "demand_mw": 19503.0,
+    "met_mw": 19503.0,
+    "demand_yesterday_mw": 19503.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 8.9,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Maharashtra",
+    "region": "Western",
+    "demand_mw": 28291.0,
+    "met_mw": 28291.0,
+    "demand_yesterday_mw": 28291.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Manipur",
+    "region": "North-Eastern",
+    "demand_mw": 180.0,
+    "met_mw": 180.0,
+    "demand_yesterday_mw": 180.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0.1,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Meghalaya",
+    "region": "North-Eastern",
+    "demand_mw": 279.0,
+    "met_mw": 279.0,
+    "demand_yesterday_mw": 279.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7402,20 +7669,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
-    "date": "2026-11-19"
-   },
-   {
-    "state": "Nagaland",
-    "region": "North-Eastern",
-    "demand_mw": 102.0,
-    "met_mw": 102.0,
-    "demand_yesterday_mw": 102.0,
-    "shortage_mw": 0,
-    "shortage_pct": 0.0,
-    "energy_shortage_mu": 0,
-    "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7428,7 +7682,46 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 1.0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Rajasthan",
+    "region": "Northern",
+    "demand_mw": 15249.0,
+    "met_mw": 15249.0,
+    "demand_yesterday_mw": 15249.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Tamil Nadu",
+    "region": "Southern",
+    "demand_mw": 16430.0,
+    "met_mw": 16430.0,
+    "demand_yesterday_mw": 16430.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Telangana",
+    "region": "Southern",
+    "demand_mw": 11967.0,
+    "met_mw": 11967.0,
+    "demand_yesterday_mw": 11967.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7441,7 +7734,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7454,7 +7747,20 @@
     "shortage_pct": 5.22,
     "energy_shortage_mu": 9.8,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+    "date": "2026-11-19"
+   },
+   {
+    "state": "Uttarakhand",
+    "region": "Northern",
+    "demand_mw": 1990.0,
+    "met_mw": 1990.0,
+    "demand_yesterday_mw": 1990.0,
+    "shortage_mw": 0,
+    "shortage_pct": 0.0,
+    "energy_shortage_mu": 0.1,
+    "source": "Vidyut PRAVAH",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7467,7 +7773,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7480,7 +7786,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    },
    {
@@ -7493,7 +7799,7 @@
     "shortage_pct": 0.0,
     "energy_shortage_mu": 0,
     "source": "Vidyut PRAVAH",
-    "scraped_at": "2026-11-19T08:52:07.782646+05:30",
+    "scraped_at": "2026-11-19T09:44:17.593327+05:30",
     "date": "2026-11-19"
    }
   ]
@@ -7738,26 +8044,50 @@
    "rtm_price": 0.4,
    "rtm_mcp_rs_mwh": 399.9,
    "mcv_mw": 11439.8
+  },
+  {
+   "slot": "10:00-10:15",
+   "rtm_price": 0.4,
+   "rtm_mcp_rs_mwh": 399.84,
+   "mcv_mw": 10817.4
+  },
+  {
+   "slot": "10:15-10:30",
+   "rtm_price": 0.4,
+   "rtm_mcp_rs_mwh": 399.74,
+   "mcv_mw": 11076.2
+  },
+  {
+   "slot": "10:30-10:45",
+   "rtm_price": 1.762,
+   "rtm_mcp_rs_mwh": 1761.88,
+   "mcv_mw": 12916.1
+  },
+  {
+   "slot": "10:45-11:00",
+   "rtm_price": 1.761,
+   "rtm_mcp_rs_mwh": 1761.44,
+   "mcv_mw": 13000.61
   }
  ],
  "iex_rtm": {
   "status": "ok",
   "date": "19-11-2026",
-  "scraped_at": "2026-11-19T08:52:07.782646+05:30",
-  "mcp": 2.97,
-  "mcp_rs_mwh": 2970.77,
-  "min_mcp": 399.9,
+  "scraped_at": "2026-11-19T09:44:17.593327+05:30",
+  "mcp": 2.8,
+  "mcp_rs_mwh": 2798.95,
+  "min_mcp": 399.74,
   "max_mcp": 6000.77,
-  "mcv_mwh": 89413.63,
-  "purchase_mwh": 103856.82,
-  "sell_mwh": 159717.55,
+  "mcv_mwh": 101366.21,
+  "purchase_mwh": 115978.18,
+  "sell_mwh": 187634.15,
   "source": "https://www.iexindia.com/market-data/real-time-market/market-snapshot",
-  "blocks": 40
+  "blocks": 44
  },
  "_storageLive": {
   "storage_mw": 2.0,
   "transnational_mw": 967.0,
-  "as_of": "2026-11-19T08:52:07.782646+05:30",
+  "as_of": "2026-11-19T09:44:17.593327+05:30",
   "source": "MERIT India",
   "note": "Storage is PSP + BESS combined; MERIT does not split them."
  },
@@ -7773,7 +8103,7 @@
   "transnational_mw": 967.0,
   "generation_total_mw": 221620.0,
   "source": "MERIT India",
-  "as_of": "2026-11-19T08:52:07.782646+05:30"
+  "as_of": "2026-11-19T09:44:17.593327+05:30"
  },
  "_installedCapacity": {
   "thermal_mw": 252519.13,
@@ -7785,7 +8115,7 @@
   "source": "NPP / CEA"
  },
  "_sources": {
-  "captured_at_ist": "2026-11-19T08:52:07.782646+05:30",
+  "captured_at_ist": "2026-11-19T09:44:17.593327+05:30",
   "fields": [
    {
     "field": "National demand & generation mix",
@@ -7793,7 +8123,7 @@
     "url": "https://npp.gov.in/dashBoard/demandmet1chartdata?date=2026-11-19",
     "status": "ok",
     "tried": [],
-    "as_of": "08:41 IST"
+    "as_of": "09:39 IST"
    },
    {
     "field": "All-India price & shortage",
@@ -7801,13 +8131,13 @@
     "url": "https://vidyutpravah.in/",
     "status": "ok",
     "tried": [],
-    "as_of": "08:45 - 09:00 dated 19 NOV 2026"
+    "as_of": "09:30 - 09:45 dated 19 NOV 2026"
    },
    {
     "field": "State-wise demand & shortage",
     "source": "Vidyut PRAVAH, Ministry of Power",
     "url": "https://vidyutpravah.in/state-data/<state>",
-    "status": "ok (17 states), 15 unavailable",
+    "status": "ok (27 states), 5 unavailable",
     "tried": []
    },
    {
@@ -7837,22 +8167,22 @@
     "field": "RTM MCP / volume / blocks",
     "source": "Indian Energy Exchange (IEX)",
     "url": "https://www.iexindia.com/market-data/real-time-market/market-snapshot",
-    "status": "ok (40 blocks)",
+    "status": "ok (44 blocks)",
     "tried": [],
     "as_of": "Delivery day 19-11-2026"
    },
    {
     "field": "Grid frequency",
-    "source": "Grid-India / NLDC Daily PSP report",
+    "source": "-",
     "url": "https://webapi.grid-india.in/api/v1/file (DAILY_PSP_REPORT)",
-    "as_of": "2026-11-17 - published the morning after, so about a day behind live",
-    "status": "ok (96 blocks; latest 50.02 Hz at 23:45)",
+    "as_of": "-",
+    "status": "UNAVAILABLE - no live feed, and no PSP profile stored yet; shown blank",
     "tried": [
-     "grid-india.in (real-time): no live feed",
-     "report.grid-india.in: no live feed",
-     "nldc.in: no live feed",
-     "wrldc.in: no live feed",
-     "meritindia.in: no live feed"
+     "grid-india.in (real-time)",
+     "report.grid-india.in",
+     "nldc.in",
+     "wrldc.in",
+     "meritindia.in"
     ]
    }
   ]
@@ -19734,6 +20064,37 @@
    },
    {
     "date": "2026-11-18",
+    "demand_peak_mw": 227500.0,
+    "demand_min_mw": 159586.0,
+    "demand_avg_mw": 195974.5,
+    "demand_energy_mu": 4686.346,
+    "demand_peak_at": "09:45",
+    "samples": 571,
+    "gen_thermal_mw": 139992.9,
+    "gen_gas_mw": 1531.6,
+    "gen_hydro_mw": 11330.1,
+    "gen_wind_mw": 8488.4,
+    "gen_solar_mw": 26915.8,
+    "gen_nuclear_mw": 6714.9,
+    "gen_thermal_mu": 3353.493,
+    "gen_gas_mu": 36.657,
+    "gen_hydro_mu": 270.748,
+    "gen_wind_mu": 203.732,
+    "gen_solar_mu": 637.463,
+    "gen_nuclear_mu": 160.785,
+    "gen_total_avg_mw": 194973.7,
+    "gen_total_energy_mu": 4662.878,
+    "re_share_pct": 23.85,
+    "iex_avg_mcp": 3727.65,
+    "iex_min_mcp": 1114.47,
+    "iex_max_mcp": 10000.0,
+    "iex_cleared_mwh": 169377.35,
+    "source": "NPP chart API",
+    "fetched_at": "2026-11-19T09:44:21.119862+05:30",
+    "coverage_h": 23.94
+   },
+   {
+    "date": "2026-11-19",
     "demand_peak_mw": null,
     "demand_min_mw": null,
     "demand_avg_mw": null,
@@ -19755,10 +20116,10 @@
     "gen_total_avg_mw": null,
     "gen_total_energy_mu": null,
     "re_share_pct": null,
-    "iex_avg_mcp": 3727.65,
-    "iex_min_mcp": 1114.47,
+    "iex_avg_mcp": 3747.35,
+    "iex_min_mcp": 300.99,
     "iex_max_mcp": 10000.0,
-    "iex_cleared_mwh": 169377.35,
+    "iex_cleared_mwh": 151742.94,
     "source": null,
     "fetched_at": null,
     "coverage_h": null
@@ -21071,25 +21432,25 @@
    {
     "period": "2026-W47",
     "from": "2026-11-16",
-    "to": "2026-11-18",
-    "days_with_data": 3,
-    "days_complete": 2,
-    "energy_days": 2,
-    "demand_peak_mw": 226446.0,
-    "demand_peak_date": "2026-11-17",
-    "demand_peak_at": "09:41",
+    "to": "2026-11-19",
+    "days_with_data": 4,
+    "days_complete": 3,
+    "energy_days": 3,
+    "demand_peak_mw": 227500.0,
+    "demand_peak_date": "2026-11-18",
+    "demand_peak_at": "09:45",
     "demand_min_mw": 155956.0,
-    "demand_energy_mu": 9259.678,
-    "gen_total_energy_mu": 9227.586,
-    "gen_thermal_mu": 6872.723,
-    "gen_gas_mu": 75.209,
-    "gen_hydro_mu": 547.333,
-    "gen_wind_mu": 181.064,
-    "gen_solar_mu": 1230.067,
-    "gen_nuclear_mu": 321.19,
-    "demand_avg_mw": 194636.8,
-    "iex_avg_mcp": 3727.65,
-    "re_share_pct": 21.22
+    "demand_energy_mu": 13946.024,
+    "gen_total_energy_mu": 13890.464,
+    "gen_thermal_mu": 10226.216,
+    "gen_gas_mu": 111.866,
+    "gen_hydro_mu": 818.081,
+    "gen_wind_mu": 384.796,
+    "gen_solar_mu": 1867.53,
+    "gen_nuclear_mu": 481.975,
+    "demand_avg_mw": 195082.7,
+    "iex_avg_mcp": 3737.5,
+    "re_share_pct": 22.1
    }
   ],
   "monthly": [
@@ -21395,25 +21756,25 @@
    {
     "period": "2026-11",
     "from": "2026-11-01",
-    "to": "2026-11-18",
-    "days_with_data": 18,
-    "days_complete": 17,
-    "energy_days": 17,
+    "to": "2026-11-19",
+    "days_with_data": 19,
+    "days_complete": 18,
+    "energy_days": 18,
     "demand_peak_mw": 228168.0,
     "demand_peak_date": "2026-11-06",
     "demand_peak_at": "09:42",
     "demand_min_mw": 138526.0,
-    "demand_energy_mu": 77794.97,
-    "gen_total_energy_mu": 77448.798,
-    "gen_thermal_mu": 57181.309,
-    "gen_gas_mu": 670.293,
-    "gen_hydro_mu": 4667.316,
-    "gen_wind_mu": 2041.276,
-    "gen_solar_mu": 10126.412,
-    "gen_nuclear_mu": 2762.192,
-    "demand_avg_mw": 191157.8,
-    "iex_avg_mcp": 3727.65,
-    "re_share_pct": 21.74
+    "demand_energy_mu": 82481.316,
+    "gen_total_energy_mu": 82111.676,
+    "gen_thermal_mu": 60534.802,
+    "gen_gas_mu": 706.95,
+    "gen_hydro_mu": 4938.064,
+    "gen_wind_mu": 2245.008,
+    "gen_solar_mu": 10763.875,
+    "gen_nuclear_mu": 2922.977,
+    "demand_avg_mw": 191425.4,
+    "iex_avg_mcp": 3737.5,
+    "re_share_pct": 21.86
    }
   ],
   "yearly": [
@@ -21443,30 +21804,30 @@
    {
     "period": "FY2026-27",
     "from": "2026-04-01",
-    "to": "2026-11-18",
-    "days_with_data": 232,
-    "days_complete": 222,
-    "energy_days": 222,
+    "to": "2026-11-19",
+    "days_with_data": 233,
+    "days_complete": 223,
+    "energy_days": 223,
     "demand_peak_mw": 304054.0,
     "demand_peak_date": "2026-10-30",
     "demand_peak_at": "09:01",
     "demand_min_mw": 135538.0,
-    "demand_energy_mu": 1177052.983,
-    "gen_total_energy_mu": 1172997.25,
-    "gen_thermal_mu": 806886.02,
-    "gen_gas_mu": 16590.152,
-    "gen_hydro_mu": 104361.009,
-    "gen_wind_mu": 76210.607,
-    "gen_solar_mu": 132847.989,
-    "gen_nuclear_mu": 36101.473,
-    "demand_avg_mw": 221752.7,
-    "iex_avg_mcp": 7180.77,
-    "re_share_pct": 26.72
+    "demand_energy_mu": 1181739.329,
+    "gen_total_energy_mu": 1177660.128,
+    "gen_thermal_mu": 810239.513,
+    "gen_gas_mu": 16626.809,
+    "gen_hydro_mu": 104631.757,
+    "gen_wind_mu": 76414.339,
+    "gen_solar_mu": 133485.452,
+    "gen_nuclear_mu": 36262.258,
+    "demand_avg_mw": 221637.1,
+    "iex_avg_mcp": 7070.01,
+    "re_share_pct": 26.71
    }
   ],
   "coverage": {
-   "days_stored": 384,
-   "days_complete": 352,
+   "days_stored": 385,
+   "days_complete": 353,
    "days_short": [
     "2025-10-15",
     "2025-10-24",
@@ -21499,11 +21860,11 @@
     "2026-08-04",
     "2026-08-05",
     "2026-08-07",
-    "2026-11-18"
+    "2026-11-19"
    ],
    "min_coverage_h": 23.0,
    "first": "2025-10-15",
-   "last": "2026-11-18",
+   "last": "2026-11-19",
    "gaps": [
     "2025-10-09",
     "2025-10-10",
@@ -26902,7 +27263,8 @@
    "first": "2025-08-03",
    "last": "2026-11-17",
    "gaps": [
-    "2026-11-18"
+    "2026-11-18",
+    "2026-11-19"
    ]
   },
   "note": "CEA Daily Generation Report. Gross generation from stations above 25 MW; EXCLUDES RES. THERMAL bundles coal, lignite and gas, so these figures are not comparable with the NPP chart API's separate GAS series."
@@ -79820,6 +80182,52 @@
     "source": "Grid-India Daily AS/SCUC report",
     "report_file": "2026-11-16_Daily_AS_SCUC_16-11-2026_443.pdf",
     "fetched_at": "2026-11-18T17:30:20.943145+05:30"
+   },
+   {
+    "date": "2026-11-17",
+    "sras_up_mwh": 5898.0,
+    "sras_down_mwh": -7317.0,
+    "sras_max_mw": 1772.0,
+    "sras_min_mw": -2194.0,
+    "sras_avg_mw": -59.0,
+    "tras_up_mwh": 1931.0,
+    "tras_down_mwh": -89078.0,
+    "tras_max_mw": 2000.0,
+    "tras_min_mw": -19997.0,
+    "tras_avg_mw": -3631.0,
+    "total_up_mwh": 7830.0,
+    "total_down_mwh": -96395.0,
+    "total_max_mw": 2297.0,
+    "total_min_mw": -20138.0,
+    "total_avg_mw": -3690.0,
+    "scuc_up_mwh": 37828.0,
+    "scuc_down_mwh": -12404.0,
+    "source": "Grid-India Daily AS/SCUC report",
+    "report_file": "2026-11-17_Daily_AS_SCUC_17-11-2026_147.pdf",
+    "fetched_at": "2026-11-19T09:44:45.988678+05:30"
+   },
+   {
+    "date": "2026-11-18",
+    "sras_up_mwh": 4470.0,
+    "sras_down_mwh": -8050.0,
+    "sras_max_mw": 1710.0,
+    "sras_min_mw": -1993.0,
+    "sras_avg_mw": -149.0,
+    "tras_up_mwh": 3913.0,
+    "tras_down_mwh": -100020.0,
+    "tras_max_mw": 3000.0,
+    "tras_min_mw": -19000.0,
+    "tras_avg_mw": -4004.0,
+    "total_up_mwh": 8383.0,
+    "total_down_mwh": -108070.0,
+    "total_max_mw": 1874.0,
+    "total_min_mw": -19119.0,
+    "total_avg_mw": -4154.0,
+    "scuc_up_mwh": 53550.0,
+    "scuc_down_mwh": -17535.0,
+    "source": "Grid-India Daily AS/SCUC report",
+    "report_file": "2026-11-18_Daily_AS_SCUC_18-11-2026_215.pdf",
+    "fetched_at": "2026-11-19T09:44:46.511666+05:30"
    }
   ],
   "monthly": [
@@ -79879,27 +80287,27 @@
    },
    {
     "period": "2026-11",
-    "days": 15,
-    "sras_up_mwh": 95003.0,
-    "sras_down_mwh": -110604.0,
+    "days": 17,
+    "sras_up_mwh": 105371.0,
+    "sras_down_mwh": -125971.0,
     "sras_max_mw": 2103.0,
     "sras_min_mw": -2300.0,
-    "tras_up_mwh": 106843.0,
-    "tras_down_mwh": -1365691.0,
+    "tras_up_mwh": 112687.0,
+    "tras_down_mwh": -1554789.0,
     "tras_max_mw": 8000.0,
     "tras_min_mw": -34000.0,
-    "total_up_mwh": 201846.0,
-    "total_down_mwh": -1476293.0,
+    "total_up_mwh": 218059.0,
+    "total_down_mwh": -1680758.0,
     "total_max_mw": 7454.0,
     "total_min_mw": -33135.0,
-    "scuc_up_mwh": 891001.0,
-    "scuc_down_mwh": -350305.0
+    "scuc_up_mwh": 982379.0,
+    "scuc_down_mwh": -380244.0
    }
   ],
   "coverage": {
-   "days": 100,
+   "days": 102,
    "first": "2026-08-08",
-   "last": "2026-11-16",
+   "last": "2026-11-18",
    "note": "Daily totals as published by Grid-India. The intraday SRAS/TRAS shapes in the source PDF are images, so no block-wise series exists to show.",
    "source": "Grid-India Daily AS/SCUC report"
   },
